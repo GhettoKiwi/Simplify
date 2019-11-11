@@ -1,9 +1,14 @@
- <html>
- <head>
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
- </head>   
-<body>
-    <h1>BoligMS</h1>
-</body>
+const User = new Schema({
+    name : String,
+    rights: Number ,
+    position: String
+});
 
- </html>
+User.methods.toString = function () {
+    return this.name + ", " + this.position;
+};
+
+module.exports = mongoose.model('User', User);
