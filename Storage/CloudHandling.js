@@ -11,11 +11,9 @@ router
                 res.status(500).send(err);
             });
     })
-    .post('/post', (req, res) => {
-        let newUser = undefined;
-        const {username, rights, position, password, userId} = req.body;
-        controller.createUser(username, rights, position, password)
-
+    .post('/', (req, res) => {
+        const {username, password, rights, position} = req.body;
+        controller.createUser(username, password, position, rights)
             .then(() => res.json({message: 'User Saved!'}))
             .catch(err => {
                 console.error("Error: " + err);
