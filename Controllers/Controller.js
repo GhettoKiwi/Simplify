@@ -1,19 +1,20 @@
- const User = require('../Model/User');
+ const Account = require('../Model/User');
 
-exports.createUser = function (username, rights, position, password) {
-    const user = new User({
+exports.createUser = function (username, password, position, rights) {
+    const account = new Account({
         username: username,
         rights: rights,
         position: position,
         password: password
     });
-    return user.save();
+    console.log("TRYKKET 3");
+    return account.save();
 };
 
 exports.getUser = function (userId) {
-    return User.findOne({_id: userId}).exec;
+    return Account.findOne({_id: userId}).exec;
 };
 
 exports.getUsers = function () {
-    return User.find().populate().exec();
+    return Account.find().populate().exec();
 }

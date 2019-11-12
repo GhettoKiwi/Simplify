@@ -15,7 +15,7 @@ mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongod
 
 // ROUTES FOR THE APP
 const userRouter = require("./Storage/CloudHandling");
-app.use('/api/users', userRouter);
+app.use('/users', userRouter);
 
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
