@@ -1,8 +1,8 @@
  const User = require('../Model/User');
 
-exports.createUser = function (name, rights, position, password) {
+exports.createUser = function (username, rights, position, password) {
     const user = new User({
-        name: name,
+        username: username,
         rights: rights,
         position: position,
         password: password

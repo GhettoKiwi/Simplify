@@ -8,6 +8,10 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('tiny'));
 
+// ROUTES FOR THE APP
+const userRouter = require("./Storage/CloudHandling");
+app.use('/api/users', userRouter);
+
 // MONGODB & MONGOOSE SETUP
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
