@@ -1,4 +1,4 @@
-const controller = require("../controllers/controller");
+const controller = require("../Controllers/Controller");
 const express = require('express');
 const router = express.Router();
 
@@ -11,14 +11,11 @@ router
                 res.status(500).send(err);
             });
     })
-    .post('/', (req, res) => {
+    .post('/post', (req, res) => {
         let newUser = undefined;
         const {username, rights, position, password, userId} = req.body;
         controller.createUser(username, rights, position, password)
-            .then(user =>{
-                newUser = user;
-                return controller.getUser(userId);
-            })
+
             .then(() => res.json({message: 'User Saved!'}))
             .catch(err => {
                 console.error("Error: " + err);
@@ -26,3 +23,5 @@ router
                 res.status(500).send(err);
             });
     });
+
+module.exports = router;
