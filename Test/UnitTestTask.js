@@ -1,1 +1,2 @@
-const sho
+const should = require('should');
+
