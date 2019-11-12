@@ -1,10 +1,12 @@
 const Controller = require('../Controller/Controller');
-const expect = require('expect')
+const assert = require('assert');
 
-let person1 =  Controller.createUser('DDM','1','vicevært','passworder123');
-expect(person1.password).toBe('passworder123');
-expect(person1.name).toBe('DDM');
-expect(person1.rights).toBe('1');
-expect(person1.position).toBe('vicevært');
+Controller.createUser('DDM',1,'vicevært','passworder123');
+let alle = Controller.getUser();
+let person1 = alle.find
+assert.equal(person1.name , 'DDM');
+assert.equal(person1.rights , 1 );
+assert.equal(person1.position , 'vicevært' );
+assert.equal(person1.password , 'passworder123');
 
 
