@@ -1,9 +1,13 @@
 {
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "mongoose": "^5.3.7",
     "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0",
     "should": "^13.2.3",
     "supertest": "^4.0.2"
+  },
+  "scripts": {
+    "Test": "node ./node_modules/mocha/bin/mocha"
   }
 }

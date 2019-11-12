@@ -6,10 +6,6 @@ let Task = new Schema({
         type: String,
         required: true
     },
-    location: {
-        type: String,
-        required: true
-    },
     description: {
         type: String,
         required: true
@@ -19,8 +15,9 @@ let Task = new Schema({
         required: false
     },
     status: {
-        type: Status,
-        required: true
+        type: String,
+        enum : ['OPEN','IN PROGRESS','DONE','ON HOLD'],
+        default: 'OPEN'
     }
 });
 

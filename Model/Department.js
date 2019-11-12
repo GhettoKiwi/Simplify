@@ -1,6 +1,5 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let Task = require('Task');
 
 let Department = new Schema({
     name: {
@@ -14,7 +13,7 @@ let Department = new Schema({
 });
 
 Department.methods.toString = function () {
-    return this.name + " | " + this.tasks;
+    return this.location + " | " + this.tasks;
 }
 
 module.exports = mongoose.model('Department', Department);
