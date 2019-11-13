@@ -10,32 +10,8 @@
 
 .baggrunden{
     width: 100%;
-    grid-column: 1/2;
-    grid-row: 1/5;
     height: 96vh;
-}
-
-nav {
-
-    background: rgb(0,163,70);
-    background: linear-gradient(90deg, rgba(0,163,70,1) 35%, rgba(2,85,0,1) 100%);
-
-}
-
-nav ul {
-    display: grid;
-    grid-template-columns: 90% auto auto;
-    list-style-type: none;
-    height: 30px;
-}
-
-nav ul li {
-    align-self: center;
-    width: 60px;
-    text-align: center;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
+    background-color: #001f3f;
 }
 
 .login{
@@ -54,8 +30,6 @@ nav ul li {
     -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
-    /*    jusitfy er horrisontal, allign er vertikal*/
-
 }
 
 a {
@@ -67,11 +41,83 @@ h1 {
     font-family: "Calibri Light";
 }
 
+.frontpageLogin{
+    margin: 10% 0;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 80% auto auto auto auto;
+    justify-items: center;
+    grid-gap: 10%;
+}
+
 .signUp{
-    margin: 20% 0;
+    margin: 10% 0;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    justify-items: center;
+    grid-gap: 10%;
+}
+
+.deleteAccount{
+    margin: 10% 0;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
     justify-items: center;
-    grid-gap: 10%;
+    grid-gap: 50%;
+}
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #339966 0%, #33cc33 100%);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    display: grid;
+    grid-template-columns: 50%;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.scrollBoxAccounts {
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 200px;
+    height: 200px;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+
+}
+::-webkit-scrollbar-track {
+    border: 1px solid yellowgreen;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: yellowgreen;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #88ba1c;
 }

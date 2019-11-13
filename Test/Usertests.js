@@ -1,11 +1,11 @@
-const Controller = require('../Controller/Controller');
+const Controller = require('../Controllers/Controller');
 const assert = require('assert');
 
 Controller.createUser('DDM',1,'vicevært','passworder123');
 let alle = Controller.getUser();
 let findnavn = {name :"DDM"};
 let person1 = alle.findOne(findnavn);
-let person1 = alle._findOne(findnavn);
+let person2 = alle._findOne(findnavn);
 
 assert.equal(person1.name , 'DDM');
 assert.equal(person1.rights , 1 );

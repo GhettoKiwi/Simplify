@@ -1,4 +1,4 @@
- const Account = require('../Model/User');
+const Account = require('../Model/Account');
 
 exports.createUser = function (username, password, position, rights) {
     const account = new Account({
@@ -7,14 +7,19 @@ exports.createUser = function (username, password, position, rights) {
         position: position,
         password: password
     });
-    console.log("TRYKKET 3");
     return account.save();
 };
 
 exports.getUser = function (userId) {
-    return Account.findOne({_id: userId}).exec;
+    return Account.findOne({_id: userId}).exec();
 };
 
 exports.getUsers = function () {
     return Account.find().populate().exec();
-}
+};
+
+exports.deleteUser = async function (accountId) {
+  const account = await Account.findOne({_id: accountId}).exec();
+  return await Account.deleteOne(account);
+};
+
