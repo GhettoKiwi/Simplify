@@ -1,5 +1,5 @@
- const Account = require('../Model/User');
- const Task = require('../Model/Task');
+    const Account = require('../Model/Account');
+    const Task = require('../Model/Task');
 
 // ---------- Account ----------
 exports.createUser = function (username, password, position, rights) {
@@ -13,12 +13,17 @@ exports.createUser = function (username, password, position, rights) {
 };
 
 exports.getUser = function (userId) {
-    return Account.findOne({_id: userId}).exec;
+    return Account.findOne({_id: userId}).exec();
 };
 
 exports.getUsers = function () {
     return Account.find().populate().exec();
 };
+
+    exports.deleteUser = async function (accountId) {
+        const account = await Account.findOne({_id: accountId}).exec();
+        return await Account.deleteOne(account);
+    };
 
  // ---------- Task ----------
 
@@ -57,3 +62,4 @@ exports.getUsers = function () {
  exports.getDepartments = function () {
      return Department.find().populate().exec();
  }
+
