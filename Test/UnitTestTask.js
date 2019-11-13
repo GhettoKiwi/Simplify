@@ -3,7 +3,7 @@ const should = require('should');
 const request = require('supertest');
 const mocha = require('mocha');
 const { Task } = require("../Model/Task");
-const {app} = require('../App');
+const { app } = require('../app');
 
 mocha.setup;
 
