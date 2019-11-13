@@ -18,8 +18,7 @@ const userRouter = require("./Storage/CloudHandling");
 app.use('/api/users', userRouter);
 
 const taskRouter = require("./Storage/TaskRouter");
-app.use('/getTasks', taskRouter);
-app.use('/postTask', taskRouter);
+app.use('/tasks', taskRouter);
 
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
