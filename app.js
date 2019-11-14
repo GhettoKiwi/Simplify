@@ -18,6 +18,9 @@ const userRouter = require("./Storage/accountRouter");
 app.use('/accounts', userRouter);
 app.use('/accounts/:id', userRouter);
 
+const taskRouter = require("./Storage/TaskRouter");
+app.use('/tasks', taskRouter);
+
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
 app.listen(port);
