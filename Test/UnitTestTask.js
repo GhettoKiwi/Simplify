@@ -55,6 +55,5 @@ describe('First post', () => {
             .delete('/tasks/' + id)
             .expect(200)
             .expect('Content-Type', /json/)
-
     })
 });
