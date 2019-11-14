@@ -55,7 +55,7 @@ exports.updateTask = async function (taskId, name, description, deadline, status
 };
 
 exports.deleteTask = async function (taskId) {
-    return Task.findByIdAndDelete(taskId);
+    return Task.findByIdAndRemove(taskId);
 };
 
 exports.getTasks = function () {

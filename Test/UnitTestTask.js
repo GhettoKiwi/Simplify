@@ -5,7 +5,7 @@ const mocha = require('mocha');
 const Task = require("../Model/Task");
 const app = require('../app');
 
-let id = "5dcd9f8bf1ba4130dc34e2d7";
+let id = "";
 
 describe('First post', () => {
     it("Test af: Post af Standardobjekt", async () => {
@@ -24,23 +24,20 @@ describe('First post', () => {
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
     })
 
-    // it("Test af: Get af oprettet standardobjekt", async () => {
-    //     let response = await request(app)
-    //         .get('/tasks/')
-    //         .expect(200)
-    //         // .expect(response => (console.log(response.body)))
-    //         .expect('Content-Type', /json/)
-    //     let test = JSON.stringify(response.body)
-    //     for (let t of test) {
-           
-    //         console.log("Det her er t: " + t);
-    //         console.log("Her slutter fucking t");
-    //         if (t.name === "TEST MIG") {
-    //             id = t._id;
-    //             console.log("SUCCESFULDE SVIIIIN" + id)
-    //         }
-    //     }
-    // })
+    it("Test af: Get af oprettet standardobjekt", async () => {
+        let response = await request(app)
+            .get('/tasks/')
+            .expect(200)
+            // .expect(response => (console.log(response.body)))
+            .expect('Content-Type', /json/)
+        let test = response.body
+        for (let t of test) {
+            if (t.name === "TEST MIG") {
+                id = t._id;
+                console.log("SUCCESFULDE SVIIIIN: " + id)
+            }
+        }
+    })
     it("Test af: Put af eksisterende objekt (Update)", async () => {
         let response = await request(app)
             .put('/tasks/' + id)
@@ -58,5 +55,6 @@ describe('First post', () => {
             .delete('/tasks/' + id)
             .expect(200)
             .expect('Content-Type', /json/)
+
     })
 });
