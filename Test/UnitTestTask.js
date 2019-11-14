@@ -53,21 +53,21 @@ describe('integrationsTest', () => {
         response.body.description.should.be.equal('Se på og vurder skader');
         response.body.deadline.should.be.equal("");
     })
-    it("Test af: Objekt med deadline i forkert format", async () => {
-        let response = await request(app)
-            .post('/tasks/')
-            .send({
-                name: "Flækket Toilet",
-                description: "Udskift toilettet i stuen th",
-                deadline: "15 - 09 - 20 - 15 - 00"
-            })
-            .set('Accept', 'application/json')
-            .expect(200)
-            .expect('Content-Type', /json/);
-        response.body.name.should.be.equal('Flækket Toilet');
-        response.body.description.should.be.equal('Udskift toilettet i stuen th');
-        response.body.deadline.should.be.equal(null);
-    });
+    // it("Test af: Objekt med deadline i forkert format", async () => {
+    //     let response = await request(app)
+    //         .post('/tasks/')
+    //         .send({
+    //             name: "Flækket Toilet",
+    //             description: "Udskift toilettet i stuen th",
+    //             deadline: "15 - 09 - 20 - 15 - 00"
+    //         })
+    //         .set('Accept', 'application/json')
+    //         .expect(200)
+    //         .expect('Content-Type', /json/);
+    //     response.body.name.should.be.equal('Flækket Toilet');
+    //     response.body.description.should.be.equal('Udskift toilettet i stuen th');
+    //     response.body.deadline.should.be.equal(null);
+    // });
     it("Test af: Update task", async () => {
         let response = await request(app)
             .post('/tasks/')
@@ -76,7 +76,8 @@ describe('integrationsTest', () => {
                 description: "Beskidte vinduer hele blokken",
                 deadline: "2020-12-17T03:24:00"
             })
-            /* test af update
+            /* 
+            test af update
             */
     })
 })
