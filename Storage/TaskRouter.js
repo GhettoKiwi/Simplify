@@ -14,7 +14,7 @@ router
     })
     .post('/', (req, res) => {
         const {name, description, deadline} = req.body;
-        controller.createUser(name, description, deadline)
+        controller.createTask(name, description, deadline)
             .then(() => res.json({message: 'Task Saved!'}))
             .catch(err => {
                 console.error("Error: " + err);
