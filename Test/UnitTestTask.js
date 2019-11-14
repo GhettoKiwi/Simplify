@@ -16,14 +16,14 @@ describe('unitTest', () => {
         // });
         let response = await request(app)
             .post('/tasks/')
-            .send( {
+            .send({
                 name: "Vindues Polering",
                 description: "Beskidte vinduer hele blokken",
                 deadline: "1995-12-17T03:24:00"
             })
             .set('Accept', 'application/json')
-            .expect(200)
-            // .expect(response => { console.log(response) })
+            .expect(500)
+            .expect(response => { console.log(response) })
             .expect('Content-Type', /json/);
         // response.description.should.be.equal('Beskidte vinduer hele blokken');
         //     task1[0].deadline.should.be.equal('1995-12-17T03:24:00');

@@ -16,7 +16,7 @@ let Task = new Schema({
     },
     status: {
         type: String,
-        enum : ['OPEN','IN PROGRESS','DONE','ON HOLD'],
+        enum: ['OPEN', 'IN PROGRESS', 'DONE', 'ON HOLD'],
         default: 'OPEN'
     }
 });
