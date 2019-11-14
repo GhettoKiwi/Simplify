@@ -35,13 +35,6 @@ exports.createTask = function (name, description, deadline) {
     });
     return task.save();
 };
-exports.createTask = function (name, description) {
-    const task = new Task({
-        name: name,
-        description: description
-    });
-    return task.save();
-};
 
 exports.getTask = function (taskId) {
     return Task.findOne({ _id: taskId }).exec;

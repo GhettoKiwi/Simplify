@@ -14,8 +14,8 @@ router
     })
     .post('/', (req, res) => {
         const { name, description, deadline } = req.body;
-        let task = controller.createTask(name, description, deadline);
-        res.send(task)
+        controller.createTask(name, description, deadline);
+        res.send(req.body)
             .then(() => res.json({ message: 'Task created!' }))
             .catch(err => {
                 console.error("Error: " + err);

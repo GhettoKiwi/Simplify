@@ -11,7 +11,8 @@ let Task = new Schema({
         required: true
     },
     deadline: {
-        type: Date
+        type: Date,
+        required: true
     },
     status: {
         type: String,
