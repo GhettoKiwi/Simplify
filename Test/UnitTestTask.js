@@ -9,11 +9,6 @@ mocha.setup;
 
 describe('unitTest', () => {
     it("post(/postTask)", async () => {
-        // let task1 = new Task({
-        //     name: "Vindues Polering",
-        //     description: "Beskidte vinduer hele blokken",
-        //     deadline: "1995-12-17T03:24:00"
-        // });
         let response = await request(app)
             .post('/tasks/')
             .send({
@@ -24,11 +19,7 @@ describe('unitTest', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
-        response.body[0].name.should.be.equal('Vindues Polering');
-        response.body[0].description.should.be.equal('Beskidte vinduer hele blokken');
-        response.body[0].deadline.should.be.equal('1995-12-17T03:24:00');
-        //     task1[0].deadline.should.be.equal('1995-12-17T03:24:00');
-        // response.body.tal.should.be.equal(123);
+        response.body[0].message.should.be.equal('Opgave oprettet');
     })
     // it("StandardObjekt med deadline i format 1", () => {
     //     let task1 = [{
