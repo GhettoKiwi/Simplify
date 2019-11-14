@@ -15,7 +15,8 @@ router
     .post('/', (req, res) => {
         const {name, description, deadline} = req.body;
         controller.createTask(name, description, deadline)
-            .then(() => res.send(req.body))
+        res.send(req.body)
+            .then(() => res.json({Message: "Opgave oprettet"}))
             .catch(err => {
                 console.error("Error: " + err);
                 if (err.stack) console.error(err.stack);
