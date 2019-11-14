@@ -28,10 +28,11 @@ describe('First post', () => {
 
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
-            .get('/tasks/' + id)
+            .get('/tasks/')
             .expect(200)
             .expect(response => (console.log(response.body)))
             .expect('Content-Type', /json/)
+            
     })
     it("Test af: Put af eksisterende objekt (Update)", async () => {
         let response = await request(app)
@@ -40,7 +41,7 @@ describe('First post', () => {
                 name: "Slå græsset",
                 description: "Græsset er virkelig blevet langt",
                 deadline: "2020-12-11T12:00:00",
-                status: "OPEN"
+                status: "IN PROGRESS"
             })
             .expect(200)
             .expect('Content-Type', /json/)

@@ -23,7 +23,6 @@ router
             const { name, description, deadline } = req.body;
             controller.createTask(name, description, deadline);
             res.send(req.body)
-            console.log(res._id)
         }
         catch (error) {
             if (typeof error.message === 'number')

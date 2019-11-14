@@ -11,7 +11,7 @@ app.use(morgan('tiny'));
 // MONGODB & MONGOOSE SETUP
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // ROUTES FOR THE APP
 const userRouter = require("./Storage/accountRouter");
