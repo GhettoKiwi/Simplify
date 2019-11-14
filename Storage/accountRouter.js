@@ -14,7 +14,7 @@ router
     .post('/', (req, res) => {
         const {username, password, rights, position} = req.body;
         controller.createUser(username, password, position, rights)
-            .then(() => res.json({message: 'User Saved!'}))
+            .then(() => res.json({}))
             .catch(err => {
                 console.error("Error: " + err);
                 if (err.stack) console.error(err.stack);
@@ -28,7 +28,8 @@ router
             .catch(err => console.log("Error: " + err));
     })
     .delete('/:id', (req, res) => {
-        controller.deleteUser(req.params.account)
+        const id = req.params.id;
+        controller.deleteUser(id)
             .then(() => res.json({ message: 'Account Deleted!'}))
             .catch(err => {
                 console.error("Error: " + err);
