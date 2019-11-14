@@ -55,7 +55,16 @@ exports.updateTask = async function (taskId, name, description, deadline, status
 };
 
 exports.deleteTask = async function (taskId) {
-    return Task.findOneAndDelete(taskId, {new: true});
+    return Task.findOneAndDelete({_id: taskId})
+    .then(deletedDocument => {
+        if(deletedDocument) {
+          console.log(`Successfully deleted document that had the form: ${deletedDocument}.`)
+        } else {
+          console.log("No document matches the provided query.")
+        }
+        return deletedDocument
+      })
+      .catch(err => console.error(`Failed to find and delete document: ${err}`))
 };
 
 exports.getTasks = function () {
