@@ -23,14 +23,14 @@ router
             const { name, description, deadline } = req.body;
             let taskId = controller.createTask(name, description, deadline);
             console.log(taskId);
-            res.send(req.body);
+            res.send(req.body)
             res.send(taskId)
         }
         catch (error) {
             if (typeof error.message === 'number')
-                response.sendStatus(error.message);
+                res.sendStatus(error.message);
             else {
-                response.send(error.name + ": " + error.message);
+                res.send(error.name + ": " + error.message);
             }
         }
     })
@@ -43,9 +43,9 @@ router
         }
         catch (error) {
             if (typeof error.message === 'number')
-                response.sendStatus(error.message);
+                res.sendStatus(error.message);
             else {
-                response.send(error.name + ": " + error.message);
+                res.send(error.name + ": " + error.message);
             }
         }
     })
