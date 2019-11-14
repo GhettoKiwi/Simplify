@@ -37,7 +37,7 @@ exports.createTask = function (name, description, deadline) {
 };
 
 exports.getTask = function (taskId) {
-    return Task.findOne({ _id: taskId }).exec;
+    return Task.findOne({ _id: taskId }).exec();
 };
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
