@@ -56,7 +56,7 @@ exports.updateTask = async function (taskId, name, description, deadline, status
 
 exports.deleteTask = async function (taskId) {
     console.log(taskId);
-    return Task.findOneAndDelete({_id: taskId})
+    return Task.deleteOne({_id: taskId})
 };
 
 exports.getTasks = function () {

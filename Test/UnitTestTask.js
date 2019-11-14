@@ -54,7 +54,7 @@ describe('First post', () => {
         let response = await request(app)
             .delete('/tasks/' + id)
             .expect(200)
+            .expect( response => (console.log(response)))
             .expect('Content-Type', /json/)
-            .end()
     })
 });
