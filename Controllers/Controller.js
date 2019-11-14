@@ -45,14 +45,14 @@ function getTask(taskId) {
 }
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
-    let task = new Task({
+    let task = {
         _id: taskId,
         name: name,
         description: description,
         deadline: deadline,
         status: status
-    })
-    return task.save();
+    }
+    return task.update();
 };
 
 exports.deleteTask = async function (taskId) {
