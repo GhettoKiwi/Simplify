@@ -50,6 +50,7 @@ router
     .delete('/:id', (req, res) => {
         try {
             let id = req.params.site;
+            const {id} = req.body;
             controller.deleteTask(id)
         }
         catch (error) {
