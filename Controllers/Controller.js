@@ -28,21 +28,13 @@ exports.deleteUser = async function (accountId) {
 // ---------- Task ----------
 
 exports.createTask = function (name, description, deadline) {
-    if (Object.prototype.toString.call(deadline) === "[object Date]") {
-        if (isNaN(deadline.getTime())) { 
-            throw new Error("Forkert dato format!")
-        } else {
-            const task = new Task({
-                name: name,
-                description: description,
-                deadline: deadline,
-                status: 'OPEN'
-            });
-            return task.save();
-        }
-    } else {
-        throw new Error("Forkert dato format!")
-    }    
+    const task = new Task({
+        name: name,
+        description: description,
+        deadline: deadline,
+        status: 'OPEN'
+    });
+    return task.save();
 };
 
 exports.getTask = function (taskId) {
