@@ -58,14 +58,6 @@ exports.deleteTask = async function (taskId) {
     return Task.find({_id: taskId}).remove().exec();
 };
 
-Example.findByIdAndRemove(example._id, function(err1, doc1) { // doc here is actually err
-    // handle err1
-    console.log('findByIdAndRemove doc: ', doc1);
-    Example.find({}, function(err2, docs) {
-      console.log('Finding all: ', docs)
-    })
-  })
-
 exports.getTasks = function () {
     return Task.find().populate().exec();
 };
