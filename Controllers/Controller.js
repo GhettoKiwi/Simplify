@@ -40,6 +40,10 @@ exports.getTask = function (taskId) {
     return Task.find({ _id: taskId }).exec();
 };
 
+function getTask(taskId) {
+    return Task.find({_id: taskId}).exec();
+}
+
 exports.updateTask = async function (taskId, name, description, deadline, status) {
     let task = await getTask(taskId);
     task = {name: name, description: description, deadline: deadline, status: status}
