@@ -4,7 +4,8 @@ const request = require('supertest');
 const mocha = require('mocha');
 const Task = require("../Model/Task");
 const app = require('../app');
-let id = 0;
+
+let id = "5dcd6ee837f98a28444ec098";
 
 describe('First post', () => {
     it("Test af: Post af Standardobjekt", async () => {
@@ -18,15 +19,17 @@ describe('First post', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
+        console.log("THIS IS THE RESPONSE!!!!!!: " + response);
         response.body.name.should.be.equal('Vindues Polering');
         response.body.description.should.be.equal('Beskidte vinduer hele blokken');
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
     })
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
-            .get('/:id')
+            .get('/tasks/')
             .send(id)
             .expect(200)
+            .expect(response => (console.log(response.body)))
             .expect('Content-Type', /json/)
     })
     // it("Test af: Update task", async () => {
