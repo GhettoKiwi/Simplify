@@ -40,13 +40,13 @@ exports.getTask = function (taskId) {
     return Task.findOne({ _id: taskId }).exec;
 };
 
-exports.updateTask = function (taskId, name, description, deadline, status ) {
+exports.updateTask = async function (taskId, name, description, deadline, status ) {
     let task = await getTask(taskId);
     task =({_id: taskId, name: name, description: description, deadline: deadline, status: status});
     return task.save();
 };
 
-exports.deleteTask = function (taskId) {
+exports.deleteTask = async function (taskId) {
     let task = await getTask(taskId);
     return Task.deleteOne(task);
 };
