@@ -21,10 +21,9 @@ router
     .post('/', (req, res) => {
         try {
             const { name, description, deadline } = req.body;
-            let taskId = controller.createTask(name, description, deadline);
-            console.log("TaskRouter print ID: " + taskId);
+            controller.createTask(name, description, deadline);
             res.send(req.body)
-            res.send(taskId)
+            console.log(res._id)
         }
         catch (error) {
             if (typeof error.message === 'number')

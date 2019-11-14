@@ -46,13 +46,12 @@ function getTask(taskId) {
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
     let task = {
-        _id: taskId,
         name: name,
         description: description,
         deadline: deadline,
-        status: status
+        status: status 
     }
-    return task.update();
+    return findByIdAndUpdate(taskId, task, {new: true});
 };
 
 exports.deleteTask = async function (taskId) {
