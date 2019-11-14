@@ -31,8 +31,14 @@ exports.createTask = function (name, description, deadline) {
     const task = new Task({
         name: name,
         description: description,
-        deadline: deadline,
-        status: 'OPEN'
+        deadline: deadline
+    });
+    return task.save();
+};
+exports.createTask = function (name, description) {
+    const task = new Task({
+        name: name,
+        description: description
     });
     return task.save();
 };

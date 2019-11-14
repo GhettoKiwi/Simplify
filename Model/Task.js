@@ -11,12 +11,11 @@ let Task = new Schema({
         required: true
     },
     deadline: {
-        type: Date,
-        required: false,
-        default: ""
+        type: Date
     },
     status: {
         type: String,
+        required: true,
         enum: ['OPEN', 'IN PROGRESS', 'DONE', 'ON HOLD'],
         default: 'OPEN'
     }
