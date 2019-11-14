@@ -16,7 +16,6 @@ mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongod
 // ROUTES FOR THE APP
 const userRouter = require("./Storage/accountRouter");
 app.use('/accounts', userRouter);
-app.use('/accounts/:id', userRouter);
 
 const taskRouter = require("./Storage/TaskRouter");
 app.use('/tasks', taskRouter);
