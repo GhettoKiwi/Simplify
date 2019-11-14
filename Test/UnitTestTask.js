@@ -20,15 +20,28 @@ describe('First post', () => {
             .expect(200)
             .expect('Content-Type', /json/);
         console.log("THIS IS THE RESPONSE!!!!!!: " + response);
+        console.log("This is key: " + response.body.key);
         response.body.name.should.be.equal('Vindues Polering');
         response.body.description.should.be.equal('Beskidte vinduer hele blokken');
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
     })
+
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
-            .get('/tasks/'+id)
+            .get('/tasks/' + id)
             .expect(200)
             .expect(response => (console.log(response.body)))
+            .expect('Content-Type', /json/)
+    })
+    it("Test af: Put af eksisterende objekt (Update)", async () => {
+        let response = await request(app)
+            .put('/tasks/' + id)
+            .send({
+                name: "Slå græsset",
+                description: "Græsset er virkelig blevet langt",
+                deadline: "2020-12-11T12:00:00"
+            })
+            .expect(200)
             .expect('Content-Type', /json/)
     })
     // it("Test af: Update task", async () => {

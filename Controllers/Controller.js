@@ -37,15 +37,18 @@ exports.createTask = function (name, description, deadline) {
 };
 
 exports.getTask = function (taskId) {
-    return Task.findOne({ _id: taskId }).exec();
+    return Task.find({ _id: taskId }).exec();
 };
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
-    return Task.findOneAndUpdate({_id :taskId}, {name: name, description: description, deadline: deadline, status: status});
+    let task = await getTask(taskId);
+    task = {name: name, description: description, deadline: deadline, status: status}
+    return task.save();
 };
 
 exports.deleteTask = async function (taskId) {
-    return Task.findOneAndDelete({_id :taskId});
+    let task = await getTask(taskId);
+    return Task.deleteOne(task);
 };
 
 exports.getTasks = function () {
