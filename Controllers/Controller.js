@@ -28,14 +28,32 @@ exports.deleteUser = async function (accountId) {
 // ---------- Task ----------
 
 exports.createTask = function (name, description, deadline) {
-    const task = new Task({
-        name: name,
-        description: description,
-        deadline: deadline,
-        status: 'OPEN'
-    });
-    return task.save();
+    if (Object.prototype.toString.call(d) === "[object Date]") {
+        if (isNaN(d.getTime())) { 
+            throw new Error("Forkert dato format!")
+        } else {
+            const task = new Task({
+                name: name,
+                description: description,
+                deadline: deadline,
+                status: 'OPEN'
+            });
+            return task.save();
+        }
+    } else {
+        throw new Error("Forkert dato format!")
+    }    
 };
+
+exports.getTask = function (taskId) {
+    return Task.findOne({ _id: taskId }).exec;
+};
+
+// exports.updateTask = function (taskId, name, description, deadline, status ) {
+//     let task = await getTask(taskId);
+//     task =({_id: taskId, name: name, description: description, deadline: deadline, status: status});
+//     return task.save();
+// };
 
 exports.getTask = function (taskName) {
     return Task.findOne({ name: taskName }).exec;
@@ -61,5 +79,5 @@ exports.getDepartment = function (departmentId) {
 
 exports.getDepartments = function () {
     return Department.find().populate().exec();
-}
+};
 
