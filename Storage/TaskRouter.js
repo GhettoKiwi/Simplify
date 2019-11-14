@@ -15,8 +15,6 @@ router
     .get('/:id', (req, res) => {
         const id = req.params.id
         controller.getTask(id)
-            .then(() => res.json({ message: "Task found!" }))
-            .catch(err => console.log("Error: " + err))
     })
     .post('/', (req, res) => {
         const { name, description, deadline } = req.body;

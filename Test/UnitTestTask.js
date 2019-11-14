@@ -19,7 +19,7 @@ describe('First post', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
-        console.log("THIS IS THE RESPONSE!!!!!!: ");
+        console.log("THIS IS THE RESPONSE!!!!!!: " + response);
         response.body.name.should.be.equal('Vindues Polering');
         response.body.description.should.be.equal('Beskidte vinduer hele blokken');
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
