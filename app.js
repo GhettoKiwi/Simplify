@@ -14,11 +14,9 @@ mongoose.Promise = Promise;
 mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // ROUTES FOR THE APP
-const userRouter = require("./Storage/CloudHandling");
-app.use('/api/users', userRouter);
-
-const taskRouter = require("./Storage/TaskRouter");
-app.use('/tasks', taskRouter);
+const userRouter = require("./Storage/accountRouter");
+app.use('/accounts', userRouter);
+app.use('/accounts/:id', userRouter);
 
 // START THE SERVER
 const port = process.env.PORT || config.localPort;

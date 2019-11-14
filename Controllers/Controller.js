@@ -1,61 +1,65 @@
-"use strict";
- 
-const User = require('../Model/User');
-const Task = require('../Model/Task');
+    const Account = require('../Model/Account');
+    const Task = require('../Model/Task');
 
-// ---------- User ----------
-exports.createUser = function (username, rights, position, password) {
-    const user = new User({
+// ---------- Account ----------
+exports.createUser = function (username, password, position, rights) {
+    const account = new Account({
         username: username,
         rights: rights,
         position: position,
         password: password
     });
-    return user.save();
+    return account.save();
 };
 
 exports.getUser = function (userId) {
-    return User.findOne({_id: userId}).exec;
+    return Account.findOne({_id: userId}).exec();
 };
 
 exports.getUsers = function () {
-    return User.find().populate().exec();
-}
-
-// ---------- Task ----------
-
-exports.createTask = function (name, description, deadline) {
-    const task = new Task({
-        name: name,
-        description: description,
-        deadline: deadline,
-        status: "OPEN"
-    });
-    return task.save();
+    return Account.find().populate().exec();
 };
 
-exports.getTask = function (taskName) {
-    return Task.findOne({name: taskName}).exec;
-};
+    exports.deleteUser = async function (accountId) {
+        const account = await Account.findOne({_id: accountId}).exec();
+        return await Account.deleteOne(account);
+    };
 
-exports.getTasks = function () {
-    return Task.find().populate().exec();
-};
+ // ---------- Task ----------
 
-// ---------- Department ----------
+ exports.createTask = function (name, description, deadline) {
+     const task = new Task({
+         name: name,
+         description: description,
+         deadline: deadline,
+         status: 'OPEN'
+     });
+     return task.save();
+ };
 
-exports.createDepartment = function (name, tasks) {
-    const department = new department({
-        name: name,
-        tasks: tasks
-    });
-    return department.save();
-};
+ exports.getTask = function (taskName) {
+     return Task.findOne({name: taskName}).exec;
+ };
 
-exports.getDepartment = function (departmentId) {
-    return Department.findOne({_id: departmentId}).exec;
-};
+ exports.getTasks = function () {
+     return Task.find().populate().exec();
+ };
 
-exports.getDepartments = function () {
-    return Department.find().populate().exec();
-}
+ // ---------- Department ----------
+
+ exports.createDepartment = function (name, tasks) {
+     const department = new department({
+         name: name,
+         tasks: tasks
+     });
+     return department.save();
+ };
+
+ exports.getDepartment = function (departmentId) {
+     return Department.findOne({_id: departmentId}).exec;
+ };
+
+ exports.getDepartments = function () {
+     return Department.find().populate().exec();
+ }
+

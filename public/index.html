@@ -2,25 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Simplify</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="index.html"> Forside </a></li>
-        <li><a href="signUp.html"> Login </a></li>
-        <li><a href="signUp.html"> Sign Up </a></li>
-    </ul>
-</nav>
-<div class="klasseContent">
-    <img src="images/Baggrund.jpeg" class="baggrunden">
-    <div class="login">
-        <h1 id="signUpH1"> Sign Up </h1>
-        <button id="btnSignUp"><a href="signUp.html"> Sign Up </a></button>
-        <h1 id="loginH1"> Login </h1>
-        <button id="btnLogin"> Login </button>
-    </div>
+<div class="frontpageLogin">
+    <h1> Randers Boligforening </h1>
+    <p> Brugernavn </p>
+    <input id="usernameLoginInput" placeholder="Brugernavn">
+    <p> Adgangskode </p>
+    <input type="password" id="passwordLoginInput" placeholder="Kodeord">
+    <button id="btnLogin"><a>  Login  <a/></button>
+    <p id="loginErrorMsg"> </p> <!--SKAL GØREs RØD-->
 </div>
 </body>
 </html>
