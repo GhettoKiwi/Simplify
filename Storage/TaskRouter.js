@@ -17,14 +17,20 @@ router
         controller.getTask(id)
     })
     .post('/', (req, res) => {
-        const { name, description, deadline } = req.body;
-        let id = controller.createTask(name, description, deadline);
-        console.log(id);
-        res.send(req.body)
-        res.send(id)
-            .then(() => res.json({ message: 'Task created!' }))
-            .catch(err => console.log("Error: " + err))
-    })
+        try {
+            const { name, description, deadline } = req.body;
+            let id = controller.createTask(name, description, deadline);
+            console.log(id);
+            res.send(req.body)
+            res.send(id)
+        }
+        catch (error) {
+            if (typeof error.message === 'number')
+                response.sendStatus(error.message);
+            else {
+                response.send(error.name + ": " + error.message);
+            }
+        }})
 
     .put('/:id', (req, res) => {
         let id = req.params.id;
