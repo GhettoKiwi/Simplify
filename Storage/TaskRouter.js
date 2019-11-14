@@ -16,6 +16,7 @@ router
         const { name, description, deadline } = req.body;
         controller.createTask(name, description, deadline)
         res.send(req.body)
+            .then(() => res.json({ message: 'Task created!' }))
             .catch(err => {
                 console.error("Error: " + err);
                 if (err.stack) console.error(err.stack);
