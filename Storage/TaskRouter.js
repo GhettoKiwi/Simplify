@@ -26,27 +26,27 @@ router
             .catch(err => console.log("Error: " + err))
     })
 
-.put('/:id', (req, res) =>{
-    let id = req.params.id;
-    const {name, description, deadline, status } = req.body;
-    controller.updateTask(id, name, description, deadline, status);
-    res.send(req.body)
-    .then(() => res.json({message: "Task updated!"}))
-    .catch(err => {
-        console.error("Error: " + err);
-        if (err.stack) console.error(err.stack);
-        res.status(500).send(err);
+    .put('/:id', (req, res) => {
+        let id = req.params.id;
+        const { name, description, deadline, status } = req.body;
+        controller.updateTask(id, name, description, deadline, status);
+        res.send(req.body)
+            .then(() => res.json({ message: "Task updated!" }))
+            .catch(err => {
+                console.error("Error: " + err);
+                if (err.stack) console.error(err.stack);
+                res.status(500).send(err);
+            });
+    })
+    .delete('/:id', (req, res) => {
+        let id = req.params.site;
+        controller.deleteTask(id)
+            .then(() => res.json({ message: "Task deleted!" }))
+            .catch(err => {
+                console.error("Error: " + err);
+                if (err.stack) console.error(err.stack);
+                res.status(500).send(err);
+            });
     });
-})
-.delete('/:id', (req, res) =>{
-    let id = req.params.site;
-    controller.deleteTask(id)
-    .then(() => res.json({message: "Task deleted!"}))
-    .catch(err => {
-        console.error("Error: " + err);
-        if (err.stack) console.error(err.stack);
-        res.status(500).send(err);
-    });
-});
 
 module.exports = router;

@@ -21,8 +21,6 @@ describe('First post', () => {
         response.body.name.should.be.equal('Vindues Polering');
         response.body.description.should.be.equal('Beskidte vinduer hele blokken');
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
-        id = response.body._id;
-
     })
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
@@ -31,7 +29,7 @@ describe('First post', () => {
             .expect(200)
             .expect('Content-Type', /json/)
     })
-        // it("Test af: Update task", async () => {
+    // it("Test af: Update task", async () => {
     //     let response = await request(app)
     //         .post('/tasks/')
     //         .send({
