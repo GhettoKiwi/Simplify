@@ -39,7 +39,8 @@ describe('First post', () => {
             .send({
                 name: "Slå græsset",
                 description: "Græsset er virkelig blevet langt",
-                deadline: "2020-12-11T12:00:00"
+                deadline: "2020-12-11T12:00:00",
+                status: "OPEN"
             })
             .expect(200)
             .expect('Content-Type', /json/)

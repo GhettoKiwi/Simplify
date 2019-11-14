@@ -12,7 +12,7 @@ router
                 res.status(500).send(err);
             });
     })
-    .get('/:id',(req, res) => {
+    .get('/:id', (req, res) => {
         const id = req.params.id
         controller.getTask(id)
             .then(result => res.json(result))
@@ -30,18 +30,22 @@ router
             else {
                 response.send(error.name + ": " + error.message);
             }
-        }})
+        }
+    })
     .put('/:id', (req, res) => {
-        let id = req.params.id;
-        const { name, description, deadline, status } = req.body;
-        controller.updateTask(id, name, description, deadline, status);
-        res.send(req.body)
-            .then(() => res.json({ message: "Task updated!" }))
-            .catch(err => {
-                console.error("Error: " + err);
-                if (err.stack) console.error(err.stack);
-                res.status(500).send(err);
-            });
+        try {
+            let id = req.params.id;
+            const { name, description, deadline, status } = req.body;
+            controller.updateTask(id, name, description, deadline, status);
+            res.send(req.body)
+        }
+        catch (error) {
+            if (typeof error.message === 'number')
+                response.sendStatus(error.message);
+            else {
+                response.send(error.name + ": " + error.message);
+            }
+        }
     })
     .delete('/:id', (req, res) => {
         let id = req.params.site;
