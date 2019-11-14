@@ -12,38 +12,41 @@ router
                 res.status(500).send(err);
             });
     })
+    .get('/:id', (req, res) => {
+        const id = req.params.id
+        controller.getTask(id)
+            .then(() => res.json({ message: "Task found!" }))
+            .catch(err => console.log("Error: " + err))
+    })
     .post('/', (req, res) => {
         const { name, description, deadline } = req.body;
         controller.createTask(name, description, deadline);
         res.send(req.body)
             .then(() => res.json({ message: 'Task created!' }))
-            .catch(err => {
-                console.error("Error: " + err);
-                if (err.stack) console.error(err.stack);
-                res.status(500).send(err);
-            });
+            .catch(err => console.log("Error: " + err))
     })
-    // .put('/:id', (req, res) =>{
-    //     let id = req.params.site;
-    //     const {id, name, description, deadline, status } = req.body;
-    //     controller.updateTask(id, name, description, deadline, status);
-    //     res.send(req.body)
-    //     .then(() => res.json({message: "Task updated!"}))
-    //     .catch(err => {
-    //         console.error("Error: " + err);
-    //         if (err.stack) console.error(err.stack);
-    //         res.status(500).send(err);
-    //     });
-    // })
-    // .delete('/:id', (req, res) =>{
-    //     let id = req.params.site;
-    //     controller.deleteTask(id)
-    //     .then(() => res.json({message: "Task deleted!"}))
-    //     .catch(err => {
-    //         console.error("Error: " + err);
-    //         if (err.stack) console.error(err.stack);
-    //         res.status(500).send(err);
-    //     });
-    // });
+
+.put('/:id', (req, res) =>{
+    let id = req.params.site;
+    const {id, name, description, deadline, status } = req.body;
+    controller.updateTask(id, name, description, deadline, status);
+    res.send(req.body)
+    .then(() => res.json({message: "Task updated!"}))
+    .catch(err => {
+        console.error("Error: " + err);
+        if (err.stack) console.error(err.stack);
+        res.status(500).send(err);
+    });
+})
+.delete('/:id', (req, res) =>{
+    let id = req.params.site;
+    controller.deleteTask(id)
+    .then(() => res.json({message: "Task deleted!"}))
+    .catch(err => {
+        console.error("Error: " + err);
+        if (err.stack) console.error(err.stack);
+        res.status(500).send(err);
+    });
+});
 
 module.exports = router;
