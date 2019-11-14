@@ -19,7 +19,9 @@ describe('unitTest', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
-        response.body[0].message.should.be.equal('Opgave oprettet');
+        response.body.name.should.be.equal('Vindues Polering');
+        response.body.description.should.be.equal('Beskidte vinduer hele blokken');
+        response.body.deadline.should.be.equal('1995-12-17T03:24:00');
     })
     // it("StandardObjekt med deadline i format 1", () => {
     //     let task1 = [{
