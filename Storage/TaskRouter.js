@@ -12,9 +12,11 @@ router
                 res.status(500).send(err);
             });
     })
-    .get('/:id', (req, res) => {
+    .get('/:id',(req, res) => {
         const id = req.params.id
         controller.getTask(id)
+            .then(result => res.json(result))
+            .catch(err => console.log("Error: " + err));
     })
     .post('/', (req, res) => {
         try {
@@ -31,7 +33,6 @@ router
                 response.send(error.name + ": " + error.message);
             }
         }})
-
     .put('/:id', (req, res) => {
         let id = req.params.id;
         const { name, description, deadline, status } = req.body;
