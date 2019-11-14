@@ -28,7 +28,7 @@ router
 
 .put('/:id', (req, res) =>{
     let id = req.params.id;
-    const {id, name, description, deadline, status } = req.body;
+    const {name, description, deadline, status } = req.body;
     controller.updateTask(id, name, description, deadline, status);
     res.send(req.body)
     .then(() => res.json({message: "Task updated!"}))
