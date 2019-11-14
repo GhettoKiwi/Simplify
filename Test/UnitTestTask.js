@@ -52,9 +52,6 @@ describe('First post', () => {
     })
     it("Test af: Delete af eksisterende objekt", async () => {
         let response = await request(app)
-            .delete('/tasks/' + id)
-            .expect(200)
-            .expect( response => (console.log(response)))
-            .expect('Content-Type', /json/)
+            .delete('/tasks/' + id)            
     })
 });
