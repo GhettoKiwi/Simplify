@@ -19,15 +19,14 @@ describe('First post', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
-        console.log("THIS IS THE RESPONSE!!!!!!: " + response);
+        console.log("THIS IS THE RESPONSE!!!!!!: ");
         response.body.name.should.be.equal('Vindues Polering');
         response.body.description.should.be.equal('Beskidte vinduer hele blokken');
         response.body.deadline.should.be.equal('2020-12-17T03:24:00');
     })
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
-            .get('/tasks/')
-            .send(id)
+            .get('/tasks/'+id)
             .expect(200)
             .expect(response => (console.log(response.body)))
             .expect('Content-Type', /json/)

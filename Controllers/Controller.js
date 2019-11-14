@@ -33,7 +33,7 @@ exports.createTask = function (name, description, deadline) {
         description: description,
         deadline: deadline
     });
-    return task.save();
+    return task.save(function(err, id) {console.log(id.id)});
 };
 
 exports.getTask = function (taskId) {
