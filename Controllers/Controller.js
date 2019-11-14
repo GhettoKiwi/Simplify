@@ -28,14 +28,12 @@ exports.deleteUser = async function (accountId) {
 // ---------- Task ----------
 
 exports.createTask = function (name, description, deadline) {
-    let realfuckingid = "";
     const task = new Task({
         name: name,
         description: description,
         deadline: deadline
     });
-    task.save(function(err, task) {realfuckingid = task.id});
-    return realfuckingid;
+    return task.save(function(err, task) {task.id});
 };
 
 exports.getTask = function (taskId) {
@@ -47,8 +45,13 @@ function getTask(taskId) {
 }
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
-    let task = await getTask(taskId);
-    task = {name: name, description: description, deadline: deadline, status: status}
+    let task = new Task({
+        _id: taskId,
+        name: name,
+        description: description,
+        deadline: deadline,
+        status: status
+    })
     return task.save();
 };
 
