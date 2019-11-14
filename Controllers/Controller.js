@@ -34,7 +34,7 @@ exports.createTask = function (name, description, deadline) {
         description: description,
         deadline: deadline
     });
-    task.save(function(err, id) {realfuckid = id.id});
+    task.save(function(err, task) {realfuckingid = task.id});
     return realfuckingid;
 };
 
@@ -48,7 +48,7 @@ function getTask(taskId) {
 
 exports.updateTask = async function (taskId, name, description, deadline, status) {
     let task = await getTask(taskId);
-    task = [{name: name, description: description, deadline: deadline, status: status}]
+    task = {name: name, description: description, deadline: deadline, status: status}
     return task.save();
 };
 
