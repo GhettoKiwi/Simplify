@@ -29,7 +29,7 @@ exports.createTask = function (name, description, deadline) {
         name: name,
         description: description,
         deadline: deadline,
-        status: 'OPEN'
+        status: "OPEN"
     });
     return task.save();
 };

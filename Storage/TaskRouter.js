@@ -2,6 +2,7 @@ const controller = require("../Controllers/Controller");
 const express = require('express');
 const router = express.Router();
 
+
 router
     .get('/getTasks', (req, res) => {
         controller.getTasks()
@@ -11,9 +12,9 @@ router
                 res.status(500).send(err);
             });
     })
-    .post('/postTask', (req, res) => {
-        const {name, description, deadline, status} = req.body;
-        controller.createUser(name, description, deadline, status)
+    .post('/', (req, res) => {
+        const {name, description, deadline} = req.body;
+        controller.createUser(name, description, deadline)
             .then(() => res.json({message: 'Task Saved!'}))
             .catch(err => {
                 console.error("Error: " + err);

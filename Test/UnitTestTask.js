@@ -2,20 +2,31 @@
 const should = require('should');
 const request = require('supertest');
 const mocha = require('mocha');
-const { Task } = require("../Model/Task");
-const { app } = require('../app');
+const Task = require("../Model/Task");
+const app = require('../app');
 
 mocha.setup;
 
-
 describe('unitTest', () => {
     it("post(/postTask)", async () => {
+        // let task1 = new Task({
+        //     name: "Vindues Polering",
+        //     description: "Beskidte vinduer hele blokken",
+        //     deadline: "1995-12-17T03:24:00"
+        // });
         let response = await request(app)
-            .post('/postTask')
-            .send({name: "Vindues Polering", description: "Beskidte vinduer hele blokken", deadline: "1995-12-17T03:24:00"})
+            .post('/tasks/')
+            .send( {
+                name: "Vindues Polering",
+                description: "Beskidte vinduer hele blokken",
+                deadline: "1995-12-17T03:24:00"
+            })
             .set('Accept', 'application/json')
             .expect(200)
+            // .expect(response => { console.log(response) })
             .expect('Content-Type', /json/);
+        // response.description.should.be.equal('Beskidte vinduer hele blokken');
+        //     task1[0].deadline.should.be.equal('1995-12-17T03:24:00');
         // response.body.tal.should.be.equal(123);
     })
     // it("StandardObjekt med deadline i format 1", () => {
