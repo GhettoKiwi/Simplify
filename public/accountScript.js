@@ -7,7 +7,7 @@ async function findAccount() {
     return foundAccount;
 };
 
-async function setOnClick() {
+function setOnClick() {
     document.getElementById('#btnRemoveAccount').onclick = async () => {
         try {
             const foundAccount = await findAccount();
@@ -27,5 +27,27 @@ async function setOnClick() {
     };
 };
 
+function update(){
+    getUsers();
+}
 
-setOnClick();
+async function getUsers() {
+    const [template, userResponse] = await Promise.all(
+        [fetch('user.hbs'), fetch('/accounts')]);
+    const [templateText, users] = await Promise.all(
+        [template.text(), userResponse.json()]);
+    console.log(users);
+    const compiledTemplate = Handlebars.compile(templateText);
+    let userHTML = '';
+    users.forEach(user => {
+        userHTML += compiledTemplate({
+            username: user.username,
+            position: user.position
+        });
+    });
+    console.log(userHTML);
+    document.querySelector('#scrollBoxAccounts').innerHTML = userHTML;
+};
+
+update();
+//setOnClick();

@@ -16,13 +16,19 @@ exports.getUser = function (userId) {
     return Account.findOne({ _id: userId }).exec();
 };
 
+exports.getUser_ByUsernameAndPassword = function (username, password) {
+    return Account.findOne({username: username, password: password}).exec();
+};
+
 exports.getUsers = function () {
     return Account.find().populate().exec();
 };
 
 exports.deleteUser = async function (accountId) {
-    const account = await Account.findOne({ _id: accountId }).exec();
-    return await Account.deleteOne(account);
+    console.log(accountId);
+    return Account.findOneAndDelete({_id: accountId});
+    //const account = await Account.findOne({_id: accountId}).exec();
+    //return await Account.deleteOne(account);
 };
 
 // ---------- Task ----------
@@ -80,4 +86,44 @@ exports.getDepartment = function (departmentId) {
 exports.getDepartments = function () {
     return Department.find().populate().exec();
 };
+
+ // ---------- Task ----------
+
+ exports.createTask = function (name, description, deadline) {
+     const task = new Task({
+         name: name,
+         description: description,
+         deadline: deadline,
+         status: 'OPEN'
+     });
+     return task.save();
+ };
+
+ exports.getTask = function (taskName) {
+     return Task.findOne({name: taskName}).exec();
+ };
+
+ exports.getTasks = function () {
+     return Task.find().populate().exec();
+ };
+
+ // ---------- Department ----------
+
+ exports.createDepartment = function (name, tasks) {
+     const department = new Department({
+         name: name,
+         tasks: tasks
+     });
+     return department.save();
+ };
+
+ exports.getDepartment = function (departmentId) {
+     return Department.findOne({_id: departmentId}).exec;
+ };
+
+ exports.getDepartments = function () {
+     return Department.find().populate().exec();
+ }
+
+    // ---------- Login ----------
 
