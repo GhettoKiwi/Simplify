@@ -2,11 +2,18 @@
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
+const session = require('express-session');
 
 const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 app.use(morgan('tiny'));
+
+// FOR SECRET LOGIN
+app.use(session({
+    secret: 'hemmelig',
+    saveUninitialized: false,
+    resave: false}));
 
 // MONGODB & MONGOOSE SETUP
 const mongoose = require('mongoose');
@@ -16,7 +23,9 @@ mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongod
 // ROUTES FOR THE APP
 const userRouter = require("./Storage/accountRouter");
 app.use('/accounts', userRouter);
-app.use('/accounts/:id', userRouter);
+
+const loginRouter = require("./Storage/loginRouter");
+app.use('/session', loginRouter);
 
 // START THE SERVER
 const port = process.env.PORT || config.localPort;

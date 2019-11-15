@@ -1,35 +1,40 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.klasseContent{
+.klasseContent {
     display: grid;
 }
 
-.baggrunden{
+.baggrunden {
     width: 100%;
     height: 96vh;
     background-color: #001f3f;
 }
 
-.login{
+.login {
     margin: 15% 40% 10% 40%;
     padding: 20px 20px;
-    display:grid;
+    display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto 30px auto 30px;
     justify-items: center;
     grid-gap: 10px;
     grid-row: 1/5;
     grid-column: 1/2;
-    background: rgb(117,119,119);
-    background: linear-gradient(0deg, rgba(117,119,119,1) 2%, rgba(216,216,216,1) 100%);
+    background: rgb(117, 119, 119);
+    background: linear-gradient(0deg, rgba(117, 119, 119, 1) 2%, rgba(216, 216, 216, 1) 100%);
     align-items: center;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 23px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
+}
+
+#loginErrorMsg {
+    color: red;
+    font-size: 14px;
 }
 
 a {
@@ -41,7 +46,7 @@ h1 {
     font-family: "Calibri Light";
 }
 
-.frontpageLogin{
+.frontpageLogin {
     margin: 10% 0;
     display: grid;
     grid-template-columns: auto;
@@ -50,7 +55,7 @@ h1 {
     grid-gap: 10%;
 }
 
-.signUp{
+.signUp {
     margin: 10% 0;
     display: grid;
     grid-template-columns: auto;
@@ -59,13 +64,32 @@ h1 {
     grid-gap: 10%;
 }
 
-.deleteAccount{
-    margin: 10% 0;
+.opdeling {
+    display: grid;
+    grid-template-columns: auto auto;
+    height: 100vh;
+    grid-column-gap: 20px;
+}
+
+.deleteAccount {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
     justify-items: center;
-    grid-gap: 50%;
+    justify-self: start;
+    align-self: center;
+    grid-row-gap: 30px;
+}
+
+#scrollBoxAccounts {
+    justify-self: end;
+    align-self: center;
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 400px;
+    height: 400px;
+    overflow: scroll;
 }
 
 .sidenav {
@@ -94,20 +118,13 @@ h1 {
     color: #f1f1f1;
 }
 
-.scrollBoxAccounts {
-    border: none;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 200px;
-    height: 200px;
-    overflow: scroll;
-}
 
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
 
 }
+
 ::-webkit-scrollbar-track {
     border: 1px solid yellowgreen;
     border-radius: 10px;
