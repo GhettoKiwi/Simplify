@@ -30,7 +30,7 @@ async function CreateTasks() {
     };
 
     try {
-        await POST('/tasks',task);
+        await POST('/tasks/',task);
             name.value = "";
             description.value = "";
             deadling.value = "";
