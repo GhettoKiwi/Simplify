@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Midtbyen</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="Drop.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="SectionCentrum.js" defer></script>
+</head>
+<body>
+
+<!--Dette er menu-baren i venstre side-->
+<div class="sidenav">
+    <a href="frontpage.html">Forside</a>
+    <a href="signUp.html">Opret bruger</a>
+    <a href="account.html">Brugere</a>
+    <button class="btnForDropDownMenu">Opgaver</button>
+
+    <div class="DropDownMenuForTask">
+        <a href="SectionNorth.html">Nordbyen</a>
+        <a href="SectionCentrum.html">Midtbyen</a>
+        <a href="SectionEast.html">Østbyen</a>
+        <a href="CreateTasks.html">Opret Opgave</a>
+    </div>
+    <a href="index.html">Log af</a>
+</div>
+
+<!--Her skal siden indhold stå-->
+
+<h1 class="OverskiftenOverHeader">Afdeling Midtbyen</h1>
+<div class="DivOverviewOverSection">
+
+    <div class="">
+        <h1 class="HeaderForSections" > Opgave Oversigt </h1><br><br>
+        <div id="OverviewOverListViewCentrum">
+
+            <table id="Cen" border="1">
+                <tr>
+                    <th>Navn</th>
+                    <th>Bekrivelse</th>
+                    <th>Deadline</th>
+                </tr>
+                <tr>
+                    <td>Navnet</td>
+                    <td>Beskerielsen på tksks</td>
+                    <td>22/22/2020</td>
+                </tr>
+                <tr>
+                    <td>Navnet igen</td>
+                    <td>Nej nej på tasks </td>
+                    <td>11/11/2021</td>
+                </tr>
+                <tr>
+                    <td>VVS</td>
+                    <td>Toliet på tksks</td>
+                    <td>22/22/2020</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="">
+        <h1 class="HeaderForSections" >Info for Valgt Opgave</h1><br><br>
+        <div id="OverviewOverInfomationForTask">
+            <h1>Infomationen:</h1><br>
+            <label>Opgavens Title:</label><br>
+            <input class="form-control" type="text" name="name" placeholder="Navn" id="NameCentrum" maxlength="50"><br>
+
+            <label>Beskrivelse for Opgaven</label><br>
+            <textarea class="form-control" type="text" name="description" id="DescriptionCentrum" placeholder="Skirv din opgaves beskrivelse her"></textarea><br>
+
+            <label>Tidfristen for Opgaven:</label><br>
+            <input class="form-control" type="date" name="deadline" id="DeadlineCentrum"  max="12-12-2999"><br>
+
+            <label>Status for Opgaven:</label><br>
+            <input type="radio" name="status" value="Notstarted" class="">&nbsp Rød  &nbsp
+            <input type="radio" name="status" value="AllMost" class="">&nbsp Gul &nbsp
+            <input type="radio" name="status" value="Done" class="">&nbsp Grøn &nbsp
+
+            <br>
+            <!-- Knapperne for Ændre opgaven -->
+            <button type="button" class="btnDelete" id="btnEditTaskCentrum"><a>Ændre Opgaven:</a></button>
+            <button type="button" class="btnDelete" id="BtnDeleteTaskCentrum"><a>Slet Opgaven:</a></button>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
