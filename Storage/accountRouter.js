@@ -28,14 +28,26 @@ router
             .catch(err => console.log("Error: " + err));
     })
     .delete('/:id', (req, res) => {
-        const id = req.params.id;
-        controller.deleteUser(id)
+        try{
+          let id = req.params.id;
+          controller.deleteUser(id);
+        } catch (e) {
+            if(typeof e.message === 'number') {
+                res.sendStatus(e.message);
+            } else {
+                res.send(e.name + ": " + e.message);
+            }
+        }
+    });
+
+/*
+controller.deleteUser(req.params.account)
             .then(() => res.json({ message: 'Account Deleted!'}))
             .catch(err => {
                 console.error("Error: " + err);
                 if (err.stack) console.error(err.stack);
                 res.status(500).send(err);
             });
-    });
+ */
 
 module.exports = router;
