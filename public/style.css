@@ -138,3 +138,137 @@ h1 {
 ::-webkit-scrollbar-thumb:hover {
     background: #88ba1c;
 }
+
+/* Overskiften "h1"*/
+.OverskiftenOverHeader{
+    margin-left: 160px;
+    text-align: center;
+    font-size: 40px;
+    font-family: "Times New Roman";
+}
+
+/* Div over Afldeling med Oversigt og Opdatere*/
+.DivOverviewOverSection {
+
+    border: 2px darkgray;
+    border-radius: 12px;
+    width: 80%;
+    height: 80%;
+    margin: 1% auto 2% 165px;
+    padding: 3%;
+    background-color: whitesmoke;
+
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 3%;
+}
+
+/* Div over Opret opgave for valgte afdeling*/
+.OverviewOverCreatedTasks{
+    border: 2px darkgray;
+    border-radius: 12px;
+    width: 80%;
+    height: 80%;
+    margin: 1% auto 2% 165px;
+    padding: 3%;
+    background-color: whitesmoke;
+
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 3%;
+}
+
+
+/* Knappen for sletting */
+.btnDelete {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    /*border-radius: 12px;*/
+}
+
+
+/* Knappen for Opretting */
+.btnCreate{
+
+}
+
+
+/* Knappen for Opdatring */
+.btnUpdate{
+
+}
+
+/*Overskrift For Afdelingerne på grid Div*/
+.HeaderForSections{
+    text-align: center;
+}
+
+
+
+/* Div Over Oversigten til Opgaverne*/
+#OverviewOverListView {
+    border: 1px solid green;
+    background-color: whitesmoke;
+    height: 400px;
+    width: 100%;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+
+/* Div Over Oversigten til Infomation af opgaverne*/
+#OverviewOverInfomationForTask{
+    /*
+    border: 1px solid green;
+    background-color: whitesmoke;
+    height: 400px;
+    width: 100%;
+    border-radius: 4px;
+    overflow-y: scroll;
+    */
+    font-size: 20px;
+}
+
+/* Knapper der får afdeling vist*/
+.btnForDropDownMenu{
+    padding: 6px 8px 6px 16px;
+    font-size: 25px;
+    color: black;
+    display: block;
+    border: none;
+    background: none;
+    font-family: "Times New Roman";
+
+
+
+}
+/* Dropdown Menuen for Opgaver i venstre side */
+.DropDownMenuForTask{
+    display: none;
+    padding-left: 16px;
+}
+
+
+
+/* Textarealet i Opgaven delen (Tasks) */
+textarea{
+    resize: none;
+    overflow-y: scroll;
+    height: 100px;
+    width: 200px;
+}
+
+table tr{
+    width: 100px;
+}
