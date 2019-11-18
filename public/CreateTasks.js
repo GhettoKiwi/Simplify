@@ -37,7 +37,9 @@ async function CreateTasks() {
         } catch (e) {
         console.log("Nej " + e);
     }
-
+    document.getElementById('Name').innerHTML = "";
+    document.getElementById('Description').innerHTML = "";
+    document.getElementById('Deadline').innerHTML = "";
 }
 
 async function main() {
