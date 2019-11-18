@@ -1,3 +1,9 @@
+let nameField = document.getElementById("NameCentrum");
+let descriptionField = document.getElementById("DescriptionCentrum")
+let deadlineField = document.getElementById("DeadlineCentrum");
+
+let taskId = "";
+
 async function GETtext(url) {
     const OK = 200;
     let response = await fetch(url);
@@ -10,6 +16,13 @@ async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');
     let compiledTemplate = Handlebars.compile(template);
     return compiledTemplate({ task });
+}
+
+function getTask(task) {
+    taskId = task._id;
+    nameField.innerHTML = task.name;
+    descriptionField = task.description;
+    deadlineField = task.deadline;
 }
 
 async function main() {
