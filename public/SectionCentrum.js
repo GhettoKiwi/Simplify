@@ -15,6 +15,18 @@ async function generateTaskTable(task) {
 async function main() {
     try {
         update();
+        let coll = document.getElementsByClassName("collapsible");
+        for (let e of coll) {
+            e.addEventListener("click", function () {
+                this.classList.toggle("active");
+                let content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
     } catch (e) {
         console.log(e.name + ": " + e.message)
     }
