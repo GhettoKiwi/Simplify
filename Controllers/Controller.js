@@ -19,7 +19,7 @@ exports.getUser = function (userId) {
 exports.getUser_ByUsernameAndPassword = function (username, password) {
     return Account.findOne({username: username, password: password}).exec();
 };
----
+
 exports.getUsers = function () {
     return Account.find().populate().exec();
 };
@@ -85,5 +85,5 @@ exports.getDepartments = function () {
     return Department.find().populate().exec();
 };
 
-    // ---------- Login ----------
+
 
