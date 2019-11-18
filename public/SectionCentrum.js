@@ -19,9 +19,9 @@ async function generateTaskTable(task) {
 }
 
 async function getTask(task) {
-    taskId = task;
+    taskId = task.data;
     console.log(taskId);
-    let taskDB = await GET('/tasks/'+task);
+    let taskDB = await GET('/tasks/'+taskId);
     nameField.innerHTML = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
     deadlineField.innerHTML = taskDB.deadline;
