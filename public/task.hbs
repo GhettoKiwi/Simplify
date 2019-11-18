@@ -1,5 +1,5 @@
 {{#each joke}}
-<div>
+<li data="{{id}}">
     <label>Task: </label>{{name}}<BR />
     <label>Status: </label>{{status}}<BR />
     <label>Deadline: </label>{{deadline}}<BR />
@@ -10,5 +10,5 @@
         <p>{{responsible}}</p>
         <p>{{ETA}}</p>
     </div>
-</div>
+</li>
 {{/each}}

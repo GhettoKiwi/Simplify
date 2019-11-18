@@ -29,7 +29,7 @@ async function getUsers() {
     });
     console.log(userHTML);
     document.querySelector('#scrollBoxAccounts').innerHTML = userHTML;
-};
+};  
 
 function setOnClick() {
     document.querySelector('#btnRemoveAccount').onclick = async () => {
