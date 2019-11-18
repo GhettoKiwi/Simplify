@@ -1,10 +1,9 @@
 {{#each task}}
 <div>
-    <label>Task: </label>{{name}}<BR />
-    <label>Status: </label>{{status}}<BR />
     <label>Deadline: </label>{{deadline}}<BR />
-    <button type="button" class="collapsible">Description</button>
+    <button type="button" class="collapsible">{{name}} - {{status}}</button>
     <div class="content">
+        <p>{{deadline}}</p>
         <p>{{description}}</p>
         <p>{{responsible}}</p>
         <p>{{ETA}}</p>
