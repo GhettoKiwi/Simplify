@@ -22,9 +22,9 @@ async function getTask(task) {
     taskId = task.dataset.customid;
     console.log(taskId);
     let taskDB = await GET('/tasks/'+taskId);
-    nameField.innerHTML = taskDB.name;
+    nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
-    deadlineField.innerHTML = taskDB.deadline;
+    deadlineField.value = taskDB.deadline;
 }
 
 async function main() {
