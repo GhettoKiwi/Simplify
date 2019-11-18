@@ -4,14 +4,6 @@ let deadlineField = document.getElementById("DeadlineCentrum");
 
 let taskId = "";
 
-async function GETtext(url) {
-    const OK = 200;
-    let response = await fetch(url);
-    if (response.status !== OK)
-        throw new Error("GET status code " + response.status);
-    return await response.text();
-}
-
 async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');
     let compiledTemplate = Handlebars.compile(template);
@@ -21,7 +13,7 @@ async function generateTaskTable(task) {
 async function getTask(task) {
     taskId = task.dataset.customid;
     console.log(taskId);
-    let taskDB = await GET('/tasks/'+taskId);
+    let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
     let date = taskDB.deadline.slice(0, -1);
@@ -30,6 +22,10 @@ async function getTask(task) {
 
 async function main() {
     await update();
+    let btnEdit = document.getElementById("btnEditTaskCentrum");
+    btnEdit.onclick = updateTask();
+    let btnDelete = document.getElementById("BtnDeleteTaskCentrum");
+    btnDelete.onclick = deleteTask();
     let coll = document.getElementsByClassName("collapsible");
     for (let e of coll) {
         e.addEventListener("click", function () {
@@ -44,12 +40,31 @@ async function main() {
     }
 }
 
-async function GET(url) {
-    const OK = 200;
-    let response = await fetch(url);
-    if (response.status !== OK)
-        throw new Error("GET status code " + response.status);
-    return await response.json();
+async function updateTask() {
+    let task = {
+        "name":nameField.value,
+        "description":descriptionField.innerHTML,
+        "deadline":deadlineField.value
+    };
+    try {
+        await PUT('/tasks/'+taskId,task);
+        udpate();
+        } catch (e) {
+        console.log("Nej " + e);
+    }
+}
+
+async function deleteTask() {
+    try {
+        await DELETE('/tasks/'+taskId,task);
+            nameField.value = "";
+            descriptionField.innerHTML = "";
+            deadlineField.value = null;
+            update();
+        } catch (e) {
+        console.log("Nej " + e);
+    }
+}
 }
 
 async function update() {
@@ -60,6 +75,58 @@ async function update() {
     } catch (e) {
         console.log(e.name + ": " + e.message);
     }
+}
+
+async function GETtext(url) {
+    const OK = 200;
+    let response = await fetch(url);
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.text();
+}
+
+async function GET(url) {
+    const OK = 200;
+    let response = await fetch(url);
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
+}
+
+async function POST(url, data) {
+    const OK = 200;
+    let response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
+}
+
+async function PUT(url, data) {
+    const OK = 200;
+    let response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
+}
+
+async function DELETE(url, data) {
+    const OK = 200;
+    let response = await fetch(url, {
+        method: "DELETE",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
 }
 
 main();
