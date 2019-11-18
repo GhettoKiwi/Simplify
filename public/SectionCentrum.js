@@ -13,7 +13,11 @@ async function generateTaskTable(task) {
 }
 
 async function main() {
-    update();
+    try {
+        update();
+    } catch (e) {
+        console.log(e.name + ": " + e.message)
+    }
 }
 
 async function GET(url) {
