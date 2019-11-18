@@ -1,8 +1,13 @@
 {{#each task}}
-<li data="{{id}}">
-    <label>Task: </label>{{name}}<br />
-    <label>Status: </label>{{status}}<br />
-    <label>Deadline: </label>{{deadline}}<br />
-    <label>Description: </label> {{description}}<br />
-</li>
+<div>
+    <label>Task: </label>{{name}}<BR />
+    <label>Status: </label>{{status}}<BR />
+    <label>Deadline: </label>{{deadline}}<BR />
+    <button type="button" class="collapsible">Description</button>
+    <div class="content">
+        <p>{{description}}</p>
+        <p>{{responsible}}</p>
+        <p>{{ETA}}</p>
+    </div>
+</div>
 {{/each}}
