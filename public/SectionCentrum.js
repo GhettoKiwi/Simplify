@@ -12,10 +12,14 @@ async function generateTaskTable(task) {
     return compiledTemplate({ task });
 }
 
-function open(element) {
-        element.addEventListener("click", function () {
-            this.classList.toggle("active");
-            let content = this.nextElementSibling;
+async function main() {
+    await update();
+
+    let coll = document.getElementsByClassName("collapsible");
+    for (let e of coll) {
+        e.addEventListener("click", function () {
+            e.classList.toggle("active");
+            let content = e.nextElementSibling;
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
             } else {
@@ -23,9 +27,6 @@ function open(element) {
             }
         });
     }
-
-async function main() {
-        update(); 
 }
 
 async function GET(url) {
