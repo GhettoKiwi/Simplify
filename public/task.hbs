@@ -1,5 +1,5 @@
 {{#each task}}
-<button type="button" onclick = "getTask(this.data-id)" class="collapsible" data-id="{{_id}}">{{name}} - {{status}}</button>
+<button type="button" onclick = "getTask(this.data-customID)" class="collapsible" data-customID="{{_id}}">{{name}} - {{status}}</button>
 <div class="content">
     <label>Deadline: </label>
     <p>{{deadline}}</p>
