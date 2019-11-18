@@ -18,9 +18,13 @@ async function generateTaskTable(task) {
     return compiledTemplate({ task });
 }
 
-function getTask(task) {
+async function getTask(task) {
     taskId = task;
     console.log(taskId);
+    let taskDB = await GET('/tasks/'+task);
+    nameField.innerHTML = taskDB.name;
+    descriptionField.innerHTML = taskDB.description;
+    deadlineField.innerHTML = taskDB.deadline;
 }
 
 async function main() {
