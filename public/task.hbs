@@ -1,11 +1,9 @@
 {{#each task}}
-<div>
-    <button type="button" class="collapsible">{{name}} - {{status}}</button>
-    <div class="content">
-        <p>{{deadline}}</p>
-        <p>{{description}}</p>
-        <p>{{responsible}}</p>
-        <p>{{ETA}}</p>
-    </div>
+<button type="button" class="collapsible">{{name}} - {{status}}</button>
+<div class="content">
+    <p>{{deadline}}</p>
+    <p>{{description}}</p>
+    <p>{{responsible}}</p>
+    <p>{{ETA}}</p>
 </div>
 {{/each}}
