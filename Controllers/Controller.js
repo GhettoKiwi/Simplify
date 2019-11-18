@@ -50,12 +50,14 @@ function getTask(taskId) {
     return Task.find({_id: taskId}).exec();
 }
 
-exports.updateTask = async function (taskId, name, description, deadline, status) {
+exports.updateTask = async function (taskId, name, description, deadline, status, responsible, ETA) {
     let task = {
         name: name,
         description: description,
         deadline: deadline,
-        status: status 
+        status: status,
+        responsible: responsible,
+        ETA: ETA
     }
     return Task.findByIdAndUpdate(taskId, task, {new: true});
 };

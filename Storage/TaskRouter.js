@@ -35,8 +35,8 @@ router
     .put('/:id', (req, res) => {
         try {
             let id = req.params.id;
-            const { name, description, deadline, status } = req.body;
-            controller.updateTask(id, name, description, deadline, status);
+            const { name, description, deadline, status, responsible, ETA } = req.body;
+            controller.updateTask(id, name, description, deadline, status, responsible, ETA);
             res.send(req.body)
         }
         catch (error) {
