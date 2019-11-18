@@ -13,10 +13,25 @@ async function generateTaskTable(task) {
 }
 
 async function main() {
+    update();
+}
 
+async function GET(url) {
+    const OK = 200;
+    let response = await fetch(url);
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
 }
 
 async function update() {
-    let taskTable = document.getElementById('OverviewOverListViewCentrum');
-    taskTable.innerHTML = generateTaskTable();
+    try {
+        let tasks = await GET('/tasks/')
+        let taskTable = document.getElementById('OverviewOverListViewCentrum');
+        taskTable.innerHTML = await generateTaskTable(tasks);
+    } catch (e) {
+        console.log(e.name + ": " + e.message);
+    }
 }
+
+main();
