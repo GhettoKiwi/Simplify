@@ -19,7 +19,7 @@ async function generateTaskTable(task) {
 }
 
 async function getTask(task) {
-    taskId = task;
+    taskId = task.data-customid;
     console.log(taskId);
     let taskDB = await GET('/tasks/'+taskId);
     nameField.innerHTML = taskDB.name;
