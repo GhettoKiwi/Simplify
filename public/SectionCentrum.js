@@ -19,7 +19,7 @@ async function generateTaskTable(task) {
 }
 
 function getTask(task) {
-    taskId = task._id;
+    taskId = task;
     console.log(taskId);
 }
 
