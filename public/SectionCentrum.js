@@ -19,7 +19,7 @@ async function generateTaskTable(task) {
 }
 
 async function getTask(task) {
-    taskId = task.querySelector("#id").innerHTML;
+    taskId = task.childNodes.item("id").innerHTML;
     console.log(taskId);
     let taskDB = await GET('/tasks/'+taskId);
     nameField.innerHTML = taskDB.name;
