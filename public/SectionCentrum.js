@@ -24,12 +24,12 @@ async function getTask(task) {
     let taskDB = await GET('/tasks/'+taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
-    deadlineField.value = Date.parse(taskDB.deadline);
+    let date = taskDB.slice(0, -1);
+    deadlineField.value = date;
 }
 
 async function main() {
     await update();
-
     let coll = document.getElementsByClassName("collapsible");
     for (let e of coll) {
         e.addEventListener("click", function () {
