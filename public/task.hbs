@@ -1,12 +1,25 @@
 {{#each task}}
 <div>
-    <label>Deadline: </label>{{deadline}}<BR />
     <button type="button" class="collapsible">{{name}} - {{status}}</button>
     <div class="content">
-        <p>{{deadline}}</p>
-        <p>{{description}}</p>
-        <p>{{responsible}}</p>
-        <p>{{ETA}}</p>
+        <label>Deadline: </label/ <p>{{deadline}}</p>
+        <label>Beskrivelse: </label<p>{{description}}</p>
+            <label>Ansvarlig: </label<p>{{responsible}}</p>
+                <label>Tidsestimat: </label<p>{{ETA}}</p>
     </div>
 </div>
+<script>
+    let coll = document.getElementsByClassName("collapsible");
+    for (let e of coll) {
+        e.addEventListener("click", function () {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 {{/each}}
