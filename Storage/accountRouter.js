@@ -28,16 +28,10 @@ router
             .catch(err => console.log("Error: " + err));
     })
     .delete('/:id', (req, res) => {
-        try{
           let id = req.params.id;
-          controller.deleteUser(id);
-        } catch (e) {
-            if(typeof e.message === 'number') {
-                res.sendStatus(e.message);
-            } else {
-                res.send(e.name + ": " + e.message);
-            }
-        }
+          controller.deleteUser(id)
+              .then(result => res.json(result))
+              .catch(err => console.log("Error: " + err));
     });
 
 /*

@@ -3,7 +3,6 @@ const errorMsg = document.querySelector("#loginErrorMsg");
 const username = document.querySelector("#usernameLoginInput");
 const password = document.querySelector("#passwordLoginInput");
 
-/*
 async function isAccountsValid(username, password) {
     let valid = false;
     console.log(username + ", " + password);
@@ -21,7 +20,6 @@ async function isAccountsValid(username, password) {
 
 async function setOnClick() {
     login.onclick = async () => {
-    // KIG OP
        let username = document.querySelector("#usernameLoginInput").value;
        let password = document.querySelector("#passwordLoginInput").value;
        if (await isAccountsValid(username, password)) {
@@ -33,7 +31,8 @@ async function setOnClick() {
 }
 
 setOnClick();
- */
+
+ /*
 async function POST(url, data) {
     const CREATED = 200;
     console.log("ER INDE I POST");
@@ -72,4 +71,4 @@ function setOnClicks() {
 }
 
 setOnClicks();
-
+*/
