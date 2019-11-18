@@ -33,7 +33,7 @@ async function CreateTasks() {
         await POST('/tasks/',task);
             name.innerHTML = "";
             description.innerHTML = "";
-            deadling.innerHTML = "";
+            deadline.innerHTML = "";
         } catch (e) {
         console.log("Nej " + e);
     }
