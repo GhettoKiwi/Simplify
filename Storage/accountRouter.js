@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router
-    .get('/', (req, res) => {
+    .get('/', (req, res) => { 
         controller.getUsers()
             .then(val => res.json(val))
             .catch(err => {
