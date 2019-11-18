@@ -1,16 +1,15 @@
 {{#each task}}
-<button type="button" onclick="getTask(this)" class="collapsible" data-customid="{{_id}}">{{name}} - {{status}}
-        <div class="content">
-            <label>Deadline: </label>
-            <p>{{deadline}}</p>
-            <label>Beskrivelse: </label>
-            <p>{{description}}</p>
-            <label>Ansvarlig: </label>
-            <p>{{responsible}}</p>
-            <label>ETA: </label>
-            <p>{{ETA}}</p>
-            <label>ID: </label>
-            <p id="id">{{_id}}</p>
-        </div>
-</button>
+<button type="button" onclick="getTask(content)" class="collapsible" data-customid="{{_id}}">{{name}} - {{status}}</button>
+<div class="content">
+    <label>Deadline: </label>
+    <p>{{deadline}}</p>
+    <label>Beskrivelse: </label>
+    <p>{{description}}</p>
+    <label>Ansvarlig: </label>
+    <p>{{responsible}}</p>
+    <label>ETA: </label>
+    <p>{{ETA}}</p>
+    <label>ID: </label>
+    <p id="id">{{_id}}</p>
+</div>
 {{/each}}
