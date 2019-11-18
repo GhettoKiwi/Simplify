@@ -19,12 +19,12 @@ async function main() {
     for (let e of coll) {
         e.addEventListener("click", function () {
             e.classList.toggle("active");
-            // let content = e.nextElementSibling;
-            // if (content.style.maxHeight) {
-            //     content.style.maxHeight = null;
-            // } else {
-            //     content.style.maxHeight = content.scrollHeight + "px";
-            // }
+            let content = e.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
         });
     }
 }
