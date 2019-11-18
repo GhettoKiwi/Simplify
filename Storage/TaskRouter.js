@@ -48,17 +48,10 @@ router
         }
     })
     .delete('/:id', (req, res) => {
-        try {
-            let id = req.params.id;
-            controller.deleteTask(id)
-        }
-        catch (error) {
-            if (typeof error.message === 'number')
-                res.sendStatus(error.message);
-            else {
-                res.send(error.name + ": " + error.message);
-            }
-        }
+        let id = req.params.id;
+        controller.deleteTask(id)
+            .then(result => res.json(result))
+            .catch(err => console.log("Error: " + err));
     });
 
 module.exports = router;
