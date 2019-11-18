@@ -20,9 +20,7 @@ async function generateTaskTable(task) {
 
 function getTask(task) {
     taskId = task._id;
-    nameField.innerHTML = task.name;
-    descriptionField = task.description;
-    deadlineField = task.deadline;
+    console.log(taskId);
 }
 
 async function main() {

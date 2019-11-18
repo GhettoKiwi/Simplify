@@ -1,5 +1,5 @@
 {{#each task}}
-<button type="button" onclick = "getTask(this)" class="collapsible">{{name}} - {{status}}</button>
+<button type="button" onclick = "getTask(this.value)" class="collapsible" value={{_id}}>{{name}} - {{status}}</button>
 <div class="content">
     <label>Deadline: </label>
     <p>{{deadline}}</p>
