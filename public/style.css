@@ -299,7 +299,7 @@ table tr{
     background-color: #f1f1f1;
   }
 
-  .OverviewOverListViewCentrum {
+  #OverviewOverListViewCentrum {
     border: 1px solid green;
     background-color: whitesmoke;
     height: 400px;
