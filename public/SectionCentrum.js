@@ -24,7 +24,7 @@ async function getTask(task) {
     let taskDB = await GET('/tasks/'+taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
-    let date = taskDB.slice(0, -1);
+    let date = taskDB.deadline.slice(0, -1);
     deadlineField.value = date;
 }
 
