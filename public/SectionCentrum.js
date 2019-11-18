@@ -65,7 +65,6 @@ async function deleteTask() {
         console.log("Nej " + e);
     }
 }
-}
 
 async function update() {
     try {
