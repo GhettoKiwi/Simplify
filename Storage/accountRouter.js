@@ -5,7 +5,7 @@ const router = express.Router();
 router
     .get('/', (req, res) => {
         if (!req.session.username) {
-            res.redirect('/index.html');
+            res.redirect('/');
         }
         controller.getUsers()
             .then(val => res.json(val))
@@ -27,7 +27,7 @@ router
     })
     .get('/:id',(req, res) => {
         if (!req.session.username) {
-            res.redirect('/index.html');
+            res.redirect('/');
         }
         const id = req.params.id
         controller.getUser(id)

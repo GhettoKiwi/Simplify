@@ -4,6 +4,9 @@ const router = express.Router();
 
 router
     .get('/', (req, res) => {
+        if (!req.session.username) {
+            res.redirect('/');
+        }
         controller.getTasks()
             .then(val => res.json(val))
             .catch(err => {
@@ -12,6 +15,9 @@ router
             });
     })
     .get('/:id', (req, res) => {
+        if (!req.session.username) {
+            res.redirect('/');
+        }
         const id = req.params.id
         controller.getTask(id)
             .then(result => res.json(result))
