@@ -48,21 +48,21 @@ async function updateTask() {
     };
     try {
         await PUT('/tasks/'+taskId,task);
-        udpate();
+        update();
         } catch (e) {
-        console.log("Nej " + e);
+        console.log("Nej (update)" + e);
     }
 }
 
 async function deleteTask() {
     try {
-        await DELETE('/tasks/'+taskId,task);
+        await DELETE('/tasks/'+taskId);
             nameField.value = "";
             descriptionField.innerHTML = "";
             deadlineField.value = null;
             update();
         } catch (e) {
-        console.log("Nej " + e);
+        console.log("Nej (delete)" + e);
     }
 }
 
@@ -128,4 +128,4 @@ async function DELETE(url, data) {
     return await response.json();
 }
 
-main();
+main(); 
