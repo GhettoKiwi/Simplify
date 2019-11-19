@@ -3,6 +3,7 @@ const errorMsg = document.querySelector("#loginErrorMsg");
 const username = document.querySelector("#usernameLoginInput");
 const password = document.querySelector("#passwordLoginInput");
 
+/*
 async function isAccountsValid(username, password) {
     let valid = false;
     console.log(username + ", " + password);
@@ -31,44 +32,39 @@ async function setOnClick() {
 }
 
 setOnClick();
+*/
 
- /*
 async function POST(url, data) {
     const CREATED = 200;
-    console.log("ER INDE I POST");
-    console.log(url);
     let res = await fetch(url, {
         method: "POST",
-        //mode: 'cors',
         body: JSON.stringify(data),
         headers: {'Content-Type': 'application/json'}
 });
     if(res.status !== CREATED){
+        console.log(res.status);
         throw new Error("POST status code " + res.status);
     }
-    console.log("RETURNER POST");
     return await res.json();
 }
 
 function setOnClicks() {
     login.onclick = async () => {
         try{
-            console.log("FØR POST KØRES");
             const data = { username: username.value, password: password.value};
-            const answer = await POST('/login', data);
-            console.log("EFTER POST ER KØRT");
-            console.log("Svar fra POST: " + answer.ok.toString());
-            if(answer.ok){
+            const answer = await POST('session/login', data);
+            if(answer){
                 window.location.href = "/frontpage.html";
             } else {
                 //password.value = ""; reseter password if error
                 errorMsg.innerHTML = "Forkert password, eller brugernavn";
             }
         } catch (e) {
-            errorMsg.innerHTML = "Server " + e.name + ": " + e.message;
+            console.log("Server " + e.name + ": " + e.message);
+            errorMsg.innerHTML = "Forkert password, eller brugernavn";
         }
     }
 }
 
 setOnClicks();
-*/
+
