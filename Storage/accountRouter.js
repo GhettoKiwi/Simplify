@@ -20,6 +20,7 @@ router
                 if (err.stack) console.error(err.stack);
                 res.status(500).send(err);
             });
+        res.send(req.body)
     })
     .get('/:id',(req, res) => {
         const id = req.params.id
