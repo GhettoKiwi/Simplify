@@ -23,9 +23,9 @@ async function getTask(task) {
 async function main() {
     await update();
     let btnEdit = document.getElementById("btnEditTaskCentrum");
-    btnEdit.onclick = updateTask();
+    btnEdit.onclick = updateTask;
     let btnDelete = document.getElementById("BtnDeleteTaskCentrum");
-    btnDelete.onclick = deleteTask();
+    btnDelete.onclick = deleteTask;
     let coll = document.getElementsByClassName("collapsible");
     for (let e of coll) {
         e.addEventListener("click", function () {
@@ -47,10 +47,10 @@ async function updateTask() {
         "deadline":deadlineField.value
     };
     try {
-        await PUT('/tasks/'+taskId,task);
+        await PUT('/tasks/'+taskId, task);
         update();
         } catch (e) {
-        console.log("Nej (update)" + e);
+        console.log("Error: " + e);
     }
 }
 
@@ -62,7 +62,7 @@ async function deleteTask() {
             deadlineField.value = null;
             update();
         } catch (e) {
-        console.log("Nej (delete)" + e);
+        console.log("Error: " + e);
     }
 }
 

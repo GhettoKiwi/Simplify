@@ -29,7 +29,7 @@ router
                 res.sendStatus(error.message);
             else {
                 res.send(error.name + ": " + error.message);
-            }
+            } 
         }
     })
     .put('/:id', (req, res) => {
