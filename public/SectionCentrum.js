@@ -1,6 +1,7 @@
 let nameField = document.getElementById("NameCentrum");
 let descriptionField = document.getElementById("DescriptionCentrum")
 let deadlineField = document.getElementById("DeadlineCentrum");
+let statusField = document.getElementById("statusChange");
 
 let taskId = "";
 
@@ -32,7 +33,8 @@ async function updateTask() {
     let task = {
         "name": nameField.value,
         "description": descriptionField.value,
-        "deadline": deadlineField.value
+        "deadline": deadlineField.value,
+        "status": statusField.value 
     };
     try {
         await PUT('/tasks/' + taskId, task);
