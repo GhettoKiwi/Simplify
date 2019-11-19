@@ -3,7 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 router
-    .get('/', (req, res) => { 
+    .get('/', (req, res) => {
+        if (!req.session.username) {
+            res.redirect('/index.html');
+        }
         controller.getUsers()
             .then(val => res.json(val))
             .catch(err => {
@@ -23,6 +26,9 @@ router
         res.send(req.body)
     })
     .get('/:id',(req, res) => {
+        if (!req.session.username) {
+            res.redirect('/index.html');
+        }
         const id = req.params.id
         controller.getUser(id)
             .then(result => res.json(result))
@@ -34,15 +40,5 @@ router
               .then(result => res.json(result))
               .catch(err => console.log("Error: " + err));
     });
-
-/*
-controller.deleteUser(req.params.account)
-            .then(() => res.json({ message: 'Account Deleted!'}))
-            .catch(err => {
-                console.error("Error: " + err);
-                if (err.stack) console.error(err.stack);
-                res.status(500).send(err);
-            });
- */
 
 module.exports = router;
