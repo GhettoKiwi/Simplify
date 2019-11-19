@@ -48,10 +48,10 @@ async function updateTask() {
     };
     try {
         await PUT('/tasks/'+taskId, task);
-        update();
         } catch (e) {
         console.log("Error: " + e);
     }
+    update();
 }
 
 async function deleteTask() {
@@ -60,10 +60,10 @@ async function deleteTask() {
             nameField.value = "";
             descriptionField.innerHTML = "";
             deadlineField.value = null;
-            update();
         } catch (e) {
         console.log("Error: " + e);
     }
+    update();
 }
 
 async function update() {
