@@ -39,7 +39,7 @@ exports.createTask = function (name, description, deadline) {
         description: description,
         deadline: deadline
     });
-    return task.save(function(err, task) {task.id});
+    return task.save();
 };
 
 exports.getTask = function (taskId) {
