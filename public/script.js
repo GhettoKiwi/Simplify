@@ -3,37 +3,6 @@ const errorMsg = document.querySelector("#loginErrorMsg");
 const username = document.querySelector("#usernameLoginInput");
 const password = document.querySelector("#passwordLoginInput");
 
-/*
-async function isAccountsValid(username, password) {
-    let valid = false;
-    console.log(username + ", " + password);
-    const response = await fetch('/accounts');
-    const accounts = await response.json();
-    for (let i = 0; i < accounts.length; i++) {
-        let tempAccount = accounts[i];
-        if(tempAccount.username == username && tempAccount.password == password){
-            valid = true;
-            console.log("Valid: " + valid);
-        }
-    }
-    return valid;
-}
-
-async function setOnClick() {
-    login.onclick = async () => {
-       let username = document.querySelector("#usernameLoginInput").value;
-       let password = document.querySelector("#passwordLoginInput").value;
-       if (await isAccountsValid(username, password)) {
-            window.open('/frontpage.html', "_self");
-       } else {
-           document.querySelector("#loginErrorMsg").innerHTML = "Forkert kodeord eller brugernavn!";
-       }
-    }
-}
-
-setOnClick();
-*/
-
 async function POST(url, data) {
     const CREATED = 200;
     let res = await fetch(url, {
@@ -67,4 +36,6 @@ function setOnClicks() {
 }
 
 setOnClicks();
+
+
 
