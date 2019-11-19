@@ -26,29 +26,17 @@ async function main() {
     btnEdit.onclick = updateTask;
     let btnDelete = document.getElementById("BtnDeleteTaskCentrum");
     btnDelete.onclick = deleteTask;
-    let coll = document.getElementsByClassName("collapsible");
-    for (let e of coll) {
-        e.addEventListener("click", function () {
-            e.classList.toggle("active");
-            let content = e.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
-    }
 }
 
 async function updateTask() {
     let task = {
-        "name":nameField.value,
-        "description":descriptionField.value,
-        "deadline":deadlineField.value
+        "name": nameField.value,
+        "description": descriptionField.value,
+        "deadline": deadlineField.value
     };
     try {
-        await PUT('/tasks/'+taskId, task);
-        } catch (e) {
+        await PUT('/tasks/' + taskId, task);
+    } catch (e) {
         console.log("Error: " + e);
     }
     update();
@@ -56,11 +44,11 @@ async function updateTask() {
 
 async function deleteTask() {
     try {
-        await DELETE('/tasks/'+taskId);
-            nameField.value = "";
-            descriptionField.value = "";
-            deadlineField.value = null;
-        } catch (e) {
+        await DELETE('/tasks/' + taskId);
+        nameField.value = "";
+        descriptionField.value = "";
+        deadlineField.value = null;
+    } catch (e) {
         console.log("Error: " + e);
     }
     update();
@@ -71,6 +59,18 @@ async function update() {
         let tasks = await GET('/tasks/')
         let taskTable = document.getElementById('OverviewOverListViewCentrum');
         taskTable.innerHTML = await generateTaskTable(tasks);
+        let coll = document.getElementsByClassName("collapsible");
+        for (let e of coll) {
+            e.addEventListener("click", function () {
+                e.classList.toggle("active");
+                let content = e.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
     } catch (e) {
         console.log(e.name + ": " + e.message);
     }
