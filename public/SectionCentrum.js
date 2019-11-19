@@ -43,7 +43,7 @@ async function main() {
 async function updateTask() {
     let task = {
         "name":nameField.value,
-        "description":descriptionField.innerHTML,
+        "description":descriptionField.value,
         "deadline":deadlineField.value
     };
     try {
@@ -58,7 +58,7 @@ async function deleteTask() {
     try {
         await DELETE('/tasks/'+taskId);
             nameField.value = "";
-            descriptionField.innerHTML = "";
+            descriptionField.value = "";
             deadlineField.value = null;
         } catch (e) {
         console.log("Error: " + e);
