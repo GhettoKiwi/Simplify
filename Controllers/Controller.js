@@ -42,6 +42,8 @@ exports.createTask = function (name, description, deadline) {
     return task.save();
 };
 
+// function(err, task) {task.id}
+
 exports.getTask = function (taskId) {
     return Task.findOne({ _id: taskId }).exec();
 };

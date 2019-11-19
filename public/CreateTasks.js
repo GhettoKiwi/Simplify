@@ -1,11 +1,3 @@
-async function GET(url) {
-    const OK = 200;
-    let response = await fetch(url);
-    if (response.status !== OK)
-        throw new Error("GET status code " + response.status);
-    return await response.json();
-}
-
 async function POST(url, data) {
     const OK = 200;
     let response = await fetch(url, {
