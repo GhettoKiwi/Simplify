@@ -50,13 +50,16 @@
             <label>Beskrivelse for Opgaven</label><br>
             <textarea class="form-control" type="text" name="description" id="DescriptionCentrum" placeholder="Skriv din opgaves beskrivelse her"></textarea><br>
 
-            <label>Tidfristen for Opgaven:</label><br>
+            <label>Tidsfristen for Opgaven:</label><br>
             <input class="form-control" type="datetime-local" name="deadline" id="DeadlineCentrum"><br>
 
             <label>Status for Opgaven:</label><br>
-            <input type="radio" name="status" value="Notstarted" class="">&nbsp Rød  &nbsp
-            <input type="radio" name="status" value="AllMost" class="">&nbsp Gul &nbsp
-            <input type="radio" name="status" value="Done" class="">&nbsp Grøn &nbsp
+            <select style="width: 200px">
+                <option value="OPEN">Åben</option>
+                <option value="IN PROGRESS">Igangværende</option>
+                <option value="DONE">Færdig</option>
+                <option value="ON HOLD">På hold</option>
+            </select>
 
             <br>
             <!-- Knapperne for Ændre opgaven -->
