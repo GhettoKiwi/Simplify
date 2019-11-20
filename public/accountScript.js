@@ -42,10 +42,6 @@ function setOnClick() {
                 console.log("T1");
                 throw new Error('Failed to fetch');
             };
-            //start her
-            if(res === undefined){
-                throw new Error('du har ikke rettihed til at slette');
-            }//slut her
             await getUsers();
             const json = await res.json();
             console.log('Result: %o', json);
