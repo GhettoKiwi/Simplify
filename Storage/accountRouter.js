@@ -35,10 +35,24 @@ router
             .catch(err => console.log("Error: " + err));
     })
     .delete('/:id', (req, res) => {
-          let id = req.params.id;
-          controller.deleteUser(id)
-              .then(result => res.json(result))
-              .catch(err => console.log("Error: " + err));
+        // start af ændring
+        if(req.session.position == "Ejedomsmester" || req.session.position == "Ejedomsdirektør"){
+            //til her
+            let id = req.params.id;
+            controller.deleteUser(id)
+                .then(result => res.json(result))
+                .catch(err => console.log("Error: " + err));
+            //start her
+        }else {
+            let id = "0";   
+            function returnUndefined() {
+             return undefined
+            }
+            returnUndefined()
+                .then(result => res.json(result))
+                .catch(err => console.log("Error: " + err));
+        }//slut her
+
     });
 
 module.exports = router;
