@@ -14,8 +14,7 @@ describe('opret bruger', function() {
             .send({
                 username: "testperson",
                 password: "testpassword",
-                rights: 2 ,
-                position: "vicevært",
+                position: "Vicevært",
             })
             .set('Accept', 'application/json')
             .expect(200)
