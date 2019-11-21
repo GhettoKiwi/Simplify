@@ -2,14 +2,6 @@ const controller = require("../Controllers/Controller");
 const express = require('express');
 const router = express.Router();
 
-let sessionChecker = (req, res, next) => {
-    if (req.session.username) { // Tilføj Cookies ?
-        res.redirect('/dashboard');
-    } else {
-        next();
-    }
-}
-
 router
     .post('/login', async (req, res) => {
         let username = req.body.username;
@@ -20,6 +12,7 @@ router
                 console.log("Account is not in the database");
                 res.send(account);
             } else {
+                req.session.position = account.position;
                 req.session.username = account.username;
                 res.send(account);
             }
@@ -30,9 +23,20 @@ router
             if (err) {
                 console.log(err);
             } else {
-                res.redirect('/index.html');
+                res.redirect('/');
             }
         });
+    })
+    .post('/accountPosition', (req, res) => {
+        const position = req.session.position;
+        res.send({pos: position});
+    })
+    .post('/checkIfLoggedIn', (req, res) => {
+        if(!req.session.username) {
+            res.send({ok: false});
+        } else {
+            res.send({ok: true});
+        }
     });
 
 module.exports = router;

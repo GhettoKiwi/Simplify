@@ -33,6 +33,9 @@ app.use('/session', loginRouter);
 const departmentRouter = require("./Storage/departmentRouter");
 app.use('/department', departmentRouter);
 
+const webRouter = require("./Storage/htmlRouter");
+app.use('/web', webRouter);
+
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
 app.listen(port);
