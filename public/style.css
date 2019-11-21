@@ -177,9 +177,13 @@ h1 {
 
 
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    /*grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
+     */
+    justify-items: center;
     gap: 3%;
+
+
 }
 
 
@@ -198,18 +202,6 @@ h1 {
     /*border-radius: 12px;*/
 }
 
-
-/* Knappen for Opretting */
-.btnCreate{
-
-}
-
-
-/* Knappen for Opdatring */
-.btnUpdate{
-
-}
-
 /*Overskrift For Afdelingerne på grid Div*/
 .HeaderForSections{
     text-align: center;
@@ -220,7 +212,6 @@ h1 {
 /* Div Over Oversigten til Opgaverne*/
 #OverviewOverListView {
     border: 1px solid green;
-    background-color: whitesmoke;
     height: 400px;
     width: 100%;
     border-radius: 4px;
@@ -249,10 +240,8 @@ h1 {
     border: none;
     background: none;
     font-family: "Times New Roman";
-
-
-
 }
+
 /* Dropdown Menuen for Opgaver i venstre side */
 .DropDownMenuForTask{
     display: none;
@@ -298,10 +287,7 @@ table tr{
   }
   
   /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
-    background-color: #ccc;
-  }
-  
+
   /* Style the collapsible content. Note: hidden by default */
   .content {
     padding: 0 18px;
@@ -311,13 +297,30 @@ table tr{
   }
 
   .collapsible:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
     font-size: 13px;
     color: white;
     float: right;
     margin-left: 5px;
   }
-  
-  .active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
-  }
+
+/* ----------------- Tilhører SectionEast -----------------*/
+
+#OverviewOverListViewEast{
+    border: 1px solid green;
+    background-color: white;
+    height: 400px;
+    width: 100%;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+
+/* ----------------- Tilhører SectionNorth -----------------*/
+
+#OverviewOverListViewNorth{
+    border: 1px solid green;
+    background-color: white;
+    height: 400px;
+    width: 100%;
+    border-radius: 4px;
+    overflow-y: scroll;
+}

@@ -1,68 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Østbyen</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="handlebars-v4.4.3.js"></script>
     <script src="Drop.js" defer></script>
-    <script src="SectionEast.js" ></script>
+    <script src="SectionEast.js"></script>
 </head>
+
 <body>
 
-<!--Dette er menu-baren i venstre side-->
-<div class="sidenav">
-    <a href="frontpage.html">Forside</a>
-    <a href="signUp.html">Opret bruger</a>
-    <a href="account.html">Brugere</a>
-    <button class="btnForDropDownMenu">Opgaver</button>
+    <!--Dette er menu-baren i venstre side-->
+    <div class="sidenav">
+        <a href="frontpage.html">Forside</a>
+        <a href="signUp.html">Opret bruger</a>
+        <a href="account.html">Brugere</a>
 
-    <div class="DropDownMenuForTask">
-        <a href="SectionNorth.html">Nordbyen</a>
-        <a href="SectionCentrum.html">Midtbyen</a>
-        <a href="SectionEast.html">Østbyen</a>
-        <a href="CreateTasks.html">Opret Opgave</a>
+        <button class="btnForDropDownMenu">Opgaver</button>
+        <div class="DropDownMenuForTask">
+            <a href="SectionNorth.html">Nordbyen</a>
+            <a href="SectionCentrum.html">Midtbyen</a>
+            <a href="SectionEast.html">Østbyen</a>
+        </div>
+
+        <a href="CreateTasks.html">Opret Opgaver</a>
+        <a href="index.html">Log af</a>
     </div>
-    <a href="index.html">Log af</a>
-</div>
 
-<!--Her skal siden indhold stå-->
+    <!--Her skal siden indhold stå-->
+    <h1 class="OverskiftenOverHeader">Afdeling Østbyen</h1>
+    <div class="DivOverviewOverSection">
 
-<h1 class="OverskiftenOverHeader">Afdeling Østbyen</h1>
-<div class="DivOverviewOverSection">
+        <div class="">
+            <h1 class="HeaderForSections"> Opgave Oversigt </h1><br><br>
+            <div id="OverviewOverListView">
+            </div>
+        </div>
 
-    <div class="">
-        <h1 class="HeaderForSections" > Opgave Oversigt </h1><br><br>
-        <div id="OverviewOverListViewEast">
+        <div class="">
+            <h1 class="HeaderForSections">Info for Valgt Opgave</h1><br><br>
+            <div id="OverviewOverInfomationForTask">
+                <h1>Infomationen:</h1><br>
+                <label>Opgavens Title:</label><br>
+                <input class="form-control" type="text" name="name" placeholder="Navn" id="Name" maxlength="50"><br>
 
+                <label>Beskrivelse for Opgaven</label><br>
+                <textarea class="form-control" type="text" name="description" id="Description"
+                    placeholder="Skriv din opgaves beskrivelse her"></textarea><br>
+
+                <label>Tidfristen for Opgaven:</label><br>
+                <input class="form-control" type="date" name="deadline" id="Deadline"><br>
+
+                <label>Status for Opgaven:</label><br>
+                <select id="statusChange" style="width: 200px">
+                    <option value="OPEN">Åben</option>
+                    <option value="IN PROGRESS">Igangværende</option>
+                    <option value="DONE">Færdig</option>
+                    <option value="ON HOLD">På hold</option>
+                </select>
+                <br>
+                <!-- Knapperne for Ændre opgaven -->
+                <button type="button" class="btnDelete" id="btnEditTask"><a>Ændre Opgaven:</a></button>
+                <button type="button" class="btnDelete" id="BtnDeleteTask"><a>Slet Opgaven:</a></button>
+            </div>
         </div>
     </div>
-
-    <div class="">
-        <h1 class="HeaderForSections" >Info for Valgt Opgave</h1><br><br>
-        <div id="OverviewOverInfomationForTask">
-            <h1>Infomationen:</h1><br>
-            <label>Opgavens Title:</label><br>
-            <input class="form-control" type="text" name="name" placeholder="Navn" id="NameEast" maxlength="50"><br>
-
-            <label>Beskrivelse for Opgaven</label><br>
-            <textarea class="form-control" type="text" name="description" id="DescriptionEast" placeholder="Skirv din opgaves beskrivelse her"></textarea><br>
-
-            <label>Tidfristen for Opgaven:</label><br>
-            <input class="form-control" type="date" name="deadline" id="DeadlineEast"  max="12-12-2999"><br>
-
-            <label>Status for Opgaven:</label><br>
-            <input type="radio" name="status" value="Notstarted" class="">&nbsp Rød  &nbsp
-            <input type="radio" name="status" value="AllMost" class="">&nbsp Gul &nbsp
-            <input type="radio" name="status" value="Done" class="">&nbsp Grøn &nbsp
-
-            <br>
-            <!-- Knapperne for Ændre opgaven -->
-            <button type="button" class="btnDelete" id="btnEditTaskEast"><a>Ændre Opgaven:</a></button>
-            <button type="button" class="btnDelete" id="BtnDeleteTaskEast"><a>Slet Opgaven:</a></button>
-        </div>
-    </div>
-</div>
-
 
 </body>
+
 </html>

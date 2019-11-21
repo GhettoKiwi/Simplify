@@ -1,9 +1,10 @@
-let nameField = document.getElementById("NameCentrum");
-let descriptionField = document.getElementById("DescriptionCentrum")
-let deadlineField = document.getElementById("DeadlineCentrum");
+let nameField = document.getElementById("Name");
+let descriptionField = document.getElementById("Description")
+let deadlineField = document.getElementById("Deadline");
 let statusField = document.getElementById("statusChange");
 
 let taskId = "";
+let departmentid = "5dd54fac1ecfc1160cc62df2";
 
 async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');
@@ -23,9 +24,9 @@ async function getTask(task) {
 
 async function main() {
     await update();
-    let btnEdit = document.getElementById("btnEditTaskCentrum");
+    let btnEdit = document.getElementById("btnEditTask");
     btnEdit.onclick = updateTask;
-    let btnDelete = document.getElementById("BtnDeleteTaskCentrum");
+    let btnDelete = document.getElementById("BtnDeleteTask");
     btnDelete.onclick = deleteTask;
 }
 
@@ -58,8 +59,13 @@ async function deleteTask() {
 
 async function update() {
     try {
-        let tasks = await GET('/tasks/')
-        let taskTable = document.getElementById('OverviewOverListViewCentrum');
+        let department = await GET('/department/'+departmentid);
+        let deptasks = department.tasks;
+        let tasks = [];
+        for (let t of deptasks) {
+            tasks.push(await GET('/tasks/'+t));
+        }
+        let taskTable = document.getElementById('OverviewOverListView');
         taskTable.innerHTML = await generateTaskTable(tasks);
         let coll = document.getElementsByClassName("collapsible");
         for (let e of coll) {

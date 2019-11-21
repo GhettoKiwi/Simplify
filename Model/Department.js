@@ -7,8 +7,8 @@ let Department = new Schema({
         required: true
     },
     tasks: [{
-        type: Task,
-        required: false
+        type: String,
+        required: false,
     }]
 });
 

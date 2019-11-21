@@ -1,5 +1,6 @@
 const Account = require('../Model/Account');
 const Task = require('../Model/Task');
+const Department = require('../Model/Department');
 
 // ---------- Account ----------
 exports.createUser = function (username, password, position, rights) {
@@ -72,20 +73,23 @@ exports.getTasks = function () {
 // ---------- Department ----------
 
 exports.createDepartment = function (name, tasks) {
-    const department = new department({
+    const department = new Department({
         name: name,
         tasks: tasks
     });
     return department.save();
 };
 
-exports.getDepartment = function (departmentId) {
-    return Department.findOne({ _id: departmentId }).exec;
+exports.getDepartment = function (depId) {
+    return Department.findOne({ _id: depId }).exec();
 };
 
 exports.getDepartments = function () {
     return Department.find().populate().exec();
 };
 
-
-
+exports.updateDepartment = async function(name, taskid) {
+    let department = await getDepartment(name);
+    department.tasks.push(taskid); 
+    return department.save(); 
+}

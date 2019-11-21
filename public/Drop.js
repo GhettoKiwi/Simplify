@@ -1,16 +1,13 @@
-let dropdown = document.getElementsByClassName("btn-drop");
+let dropdown = document.getElementsByClassName("btnForDropDownMenu");
 
-for(let i = 0; i <dropdown.length; i++){
+for (let i = 0; i < dropdown.length; i++) {
     dropdown[i].addEventListener("click", function () {
         this.classList.toggle("active");
         let dropdownContent = this.nextElementSibling;
         if (dropdownContent.style.display === "block") {
             dropdownContent.style.display = "none";
-
         } else {
             dropdownContent.style.display = "block";
-
-
         }
     });
 }

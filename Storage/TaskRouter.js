@@ -40,6 +40,7 @@ router
     .put('/:id', (req, res) => {
         try {
             let id = req.params.id;
+            controller.updateDepartment("departmentshitid", id);
             const { name, description, deadline, status, responsible, ETA } = req.body;
             controller.updateTask(id, name, description, deadline, status, responsible, ETA);
             res.send(req.body)

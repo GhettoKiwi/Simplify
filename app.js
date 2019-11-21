@@ -30,6 +30,9 @@ app.use('/tasks', taskRouter);
 const loginRouter = require("./Storage/loginRouter");
 app.use('/session', loginRouter);
 
+const departmentRouter = require("./Storage/departmentRouter");
+app.use('/department', departmentRouter);
+
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
 app.listen(port);

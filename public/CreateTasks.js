@@ -10,23 +10,31 @@ async function POST(url, data) {
     return await response.json();
 }
 
+async function GET(url) {
+    const OK = 200;
+    let response = await fetch(url);
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
+}
+
 async function CreateTasks() {
     let name = document.getElementById('Name').value;
     let description = document.getElementById('Description').value;
     let deadline = document.getElementById('Deadline').value;
 
     let task = {
-        "name":name,
-        "description":description,
-        "deadline":deadline
+        "name": name,
+        "description": description,
+        "deadline": deadline
     };
 
     try {
-        await POST('/tasks/',task);
-            name.innerHTML = "";
-            description.innerHTML = "";
-            deadline.innerHTML = "";
-        } catch (e) {
+        await POST('/tasks/', task);
+        name.innerHTML = "";
+        description.innerHTML = "";
+        deadline.innerHTML = "";
+    } catch (e) {
         console.log("Nej " + e);
     }
     document.getElementById('Name').value = "";
@@ -37,6 +45,16 @@ async function CreateTasks() {
 async function main() {
     let button = document.getElementById('btnCreateTask');
     button.onclick = CreateTasks
+    let department = document.getElementById('departmentDrop');
+    let departments = await GET('/department/');
+    for (let d of departments) {
+        let option = document.createElement('option');
+        option.value = d.name;
+        option.innerHTML = d.name;
+        option.dataset.depid = d._id;
+        console.log(option.dataset.depid);
+        department.appendChild(option);
+    }
 }
 
 main();
