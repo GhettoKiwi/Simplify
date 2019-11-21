@@ -4,7 +4,7 @@ let deadlineField = document.getElementById("Deadline");
 let statusField = document.getElementById("statusChange");
 
 let taskId = "";
-let departmentid = "5dd54fac1ecfc1160cc62df3";
+let departmentid = "5dd6a64f2e877324bcd7dd4f";
 
 async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');

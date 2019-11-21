@@ -18,11 +18,26 @@ async function GET(url) {
     return await response.json();
 }
 
+async function PUT(url, data) {
+    const OK = 200;
+    let response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' }
+    });
+    if (response.status !== OK)
+        throw new Error("GET status code " + response.status);
+    return await response.json();
+}
+
 async function CreateTasks() {
     let name = document.getElementById('Name').value;
     let description = document.getElementById('Description').value;
     let deadline = document.getElementById('Deadline').value;
+    let departments = document.getElementById('departmentDrop');
+    let departmentId = departments.options[departments.selectedIndex].dataset.depid;
 
+    console.log("DIS IS DE FUKIN DEPID: " + departmentId);
     let task = {
         "name": name,
         "description": description,
@@ -30,13 +45,14 @@ async function CreateTasks() {
     };
 
     try {
-        await POST('/tasks/', task);
-        name.innerHTML = "";
-        description.innerHTML = "";
-        deadline.innerHTML = "";
+        let createdTaskId = await POST('/tasks/', task);
+        console.log(createdTaskId);
+        await PUT('/department/' + departmentId, {"tasks": createdTaskId});
     } catch (e) {
-        console.log("Nej " + e);
+        console.log("Error: " + e);
     }
+
+
     document.getElementById('Name').value = "";
     document.getElementById('Description').value = "";
     document.getElementById('Deadline').value = "";

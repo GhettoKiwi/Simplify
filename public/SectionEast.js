@@ -61,10 +61,12 @@ async function update() {
     try {
         let department = await GET('/department/'+departmentid);
         let deptasks = department.tasks;
+        console.log(deptasks);
         let tasks = [];
         for (let t of deptasks) {
             tasks.push(await GET('/tasks/'+t));
         }
+        console.log(tasks);
         let taskTable = document.getElementById('OverviewOverListView');
         taskTable.innerHTML = await generateTaskTable(tasks);
         let coll = document.getElementsByClassName("collapsible");

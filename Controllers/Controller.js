@@ -40,7 +40,8 @@ exports.createTask = function (name, description, deadline) {
         description: description,
         deadline: deadline
     });
-    return task.save();
+    task.save();
+    return task.id;
 };
 
 // function(err, task) {task.id}
@@ -62,7 +63,6 @@ exports.updateTask = async function (taskId, name, description, deadline, status
 };
 
 exports.deleteTask = async function (taskId) {
-    console.log(taskId);
     return Task.findOneAndDelete({_id: taskId})
 };
 
@@ -88,8 +88,13 @@ exports.getDepartments = function () {
     return Department.find().populate().exec();
 };
 
-exports.updateDepartment = async function(name, taskid) {
-    let department = await getDepartment(name);
-    department.tasks.push(taskid); 
+async function getDepartment(depId) {
+    return Department.findOne({ _id: depId }).exec();
+}
+
+exports.updateDepartment = async function(depId, taskId) {
+    let department = await getDepartment(depId);
+    console.log("update department: "+taskId);
+    department.tasks.push(taskId); 
     return department.save(); 
 }

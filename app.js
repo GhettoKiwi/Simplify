@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
 const session = require('express-session');
+// const controller = require('./Controllers/Controller'); // testing
 
 const app = express();
 app.use(express.static('public'));

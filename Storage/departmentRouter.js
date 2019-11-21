@@ -22,21 +22,21 @@ router
         controller.getDepartment(id)
             .then(result => res.json(result))
             .catch(err => console.log("Error: " + err));
+    })
+    .put('/:id', (req, res) => {
+    try {
+            let depId = req.params.id;
+            const {tasks} = req.body;
+            controller.updateDepartment(depId, tasks)
+            res.send(req.body)
+        }
+        catch (error) {
+            if (typeof error.message === 'number')
+                res.sendStatus(error.message);
+            else {
+                res.send(error.name + ": " + error.message);
+            }
+        }
     });
-    // .put('/:id', (req, res) => {
-    // try {
-    //         let taskid = req.params.id;
-    //         const {name, taskid} = req.body;
-    //         controller.updateDepartment(name, taskid)
-    //         res.send(req.body)
-    //     }
-    //     catch (error) {
-    //         if (typeof error.message === 'number')
-    //             res.sendStatus(error.message);
-    //         else {
-    //             res.send(error.name + ": " + error.message);
-    //         }
-    //     }
-    // })
 
     module.exports = router;

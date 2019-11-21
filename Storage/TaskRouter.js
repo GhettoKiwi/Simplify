@@ -25,22 +25,21 @@ router
     })
     .post('/', (req, res) => {
         try {
-            const { name, description, deadline } = req.body;
-            controller.createTask(name, description, deadline);
-            res.send(req.body)
-        }
-        catch (error) {
+            const { name, description, deadline } = req.body
+            let task = controller.createTask(name, description, deadline);
+            console.log("This is router: " + task);
+            res.json(task);
+        }  catch (error) {
             if (typeof error.message === 'number')
                 res.sendStatus(error.message);
             else {
                 res.send(error.name + ": " + error.message);
-            } 
+            }
         }
     })
     .put('/:id', (req, res) => {
         try {
             let id = req.params.id;
-            controller.updateDepartment("departmentshitid", id);
             const { name, description, deadline, status, responsible, ETA } = req.body;
             controller.updateTask(id, name, description, deadline, status, responsible, ETA);
             res.send(req.body)
@@ -54,7 +53,7 @@ router
         }
     })
     .delete('/:id', (req, res) => {
-        let id = req.params.id;
+        let id = req.params.id
         controller.deleteTask(id)
             .then(result => res.json(result))
             .catch(err => console.log("Error: " + err));
