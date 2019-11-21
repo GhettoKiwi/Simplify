@@ -18,9 +18,13 @@
     <h1> Opret bruger </h1>
     <input id="usernameInput" placeholder="Username">
     <input id="passwordInput" placeholder="Password">
-    <input id="positionInput" placeholder="Position">
-    <input id="rightsInput" placeholder="Rights">
+    <select id = "positionInput"style="width: 163px">
+        <option value="Vicevært">Vicevært</option>
+        <option value="Ejendomsmester">Ejendomsmester</option>
+        <option value="Ejendomsdirektør">Ejendomsdirektør</option>
+    </select>
     <button type="button" id="btnCreateUser"><a>  Opret </a></button>
+    <h3 id="errorMsg"> </h3>
 </div>
 <div class="sidenav">
     <a href="frontpage.html">Forside</a>

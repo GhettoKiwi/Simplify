@@ -2,10 +2,9 @@ const Account = require('../Model/Account');
 const Task = require('../Model/Task');
 
 // ---------- Account ----------
-exports.createUser = function (username, password, position, rights) {
+exports.createUser = function (username, password, position) {
     const account = new Account({
         username: username,
-        rights: rights,
         position: position,
         password: password
     });
@@ -27,8 +26,6 @@ exports.getUsers = function () {
 exports.deleteUser = async function (accountId) {
     console.log(accountId);
     return Account.findOneAndDelete({_id: accountId});
-    //const account = await Account.findOne({_id: accountId}).exec();
-    //return await Account.deleteOne(account);
 };
 
 // ---------- Task ----------

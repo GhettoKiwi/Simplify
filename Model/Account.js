@@ -4,8 +4,10 @@ const Schema = mongoose.Schema;
 const Account = new Schema({
     username: String,
     password: String,
-    rights: Number ,
-    position: String
+    position: {
+        type: String,
+        enum:["Vicevært", "Ejendomsmester", "Ejendomsdirektør"]
+    }
 });
 
 Account.methods.toString = function () {

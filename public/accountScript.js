@@ -6,7 +6,6 @@ function saveClicked(clickedInput){
 
 async function findAccount(input) {
     const username = input.substring(0, input.indexOf(','));
-    console.log(username);
     const response = await fetch('/accounts');
     const accounts = await response.json();
     const foundAccount = accounts.find(account => account.username == username);
@@ -18,7 +17,6 @@ async function getUsers() {
         [fetch('user.hbs'), fetch('/accounts')]);
     const [templateText, users] = await Promise.all(
         [template.text(), userResponse.json()]);
-    console.log(users);
     const compiledTemplate = Handlebars.compile(templateText);
     let userHTML = '';
     users.forEach(user => {
@@ -27,7 +25,6 @@ async function getUsers() {
             position: user.position
         });
     });
-    console.log(userHTML);
     document.querySelector('#scrollBoxAccounts').innerHTML = userHTML;
 };  
 
@@ -39,14 +36,41 @@ function setOnClick() {
                 method: "DELETE",
             });
             if (res.status >= 400 || !res) {
-                console.log("T1");
                 throw new Error('Failed to fetch');
             };
             await getUsers();
-            const json = await res.json();
-            console.log('Result: %o', json);
+            //const json = await res.json();
     };
 };
 
-setOnClick();
-getUsers();
+// -------------------- Valid Check Functions
+async function POST(url, data) {
+    const CREATED = 200;
+    let res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {'Content-Type': 'application/json'}
+    });
+    if(res.status !== CREATED){
+        console.log(res.status);
+        throw new Error("POST status code " + res.status);
+    }
+    return await res.json();
+};
+
+async function checkIFLoggedIn(){
+    const loggedIn = await POST('/session/checkIfLoggedIn');
+    const position = await POST('/session/accountPosition');
+    console.log(loggedIn.ok);
+    if(!loggedIn.ok){
+        window.location.replace('/');
+    }
+    if(position.pos == "Vicevært"){
+        window.location.replace('/web/notAllowed');
+    } else {
+        await getUsers();
+        await setOnClick();
+    }
+};
+
+checkIFLoggedIn();
