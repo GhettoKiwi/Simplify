@@ -89,9 +89,20 @@ async function getDepartment(depId) {
     return Department.findOne({ _id: depId }).exec();
 }
 
-exports.updateDepartment = async function(depId, taskId) {
+exports.addTaskToDepartment = async function(depId, taskId) {
     let department = await getDepartment(depId);
     console.log("update department: "+taskId);
     department.tasks.push(taskId); 
+    return department.save(); 
+}
+
+exports.removeTaskFromDepartment = async function(depId, taskId) {
+    let department = await getDepartment(depId);
+    for (let i = 0; i < department.tasks.length; i++) {
+        if (department.tasks[i] === taskId) {
+            console.log("test controller");
+            department.tasks.splice(i, 1);
+        } 
+    }
     return department.save(); 
 }

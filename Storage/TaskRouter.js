@@ -37,10 +37,26 @@ router
             }
         }
     })
-    .put('/:id', (req, res) => {
+    .put('/update/:id', (req, res) => {
         try {
             let id = req.params.id;
             const { name, description, deadline, status, responsible, ETA } = req.body;
+            controller.updateTask(id, name, description, deadline, status, responsible, ETA);
+            res.send(req.body)
+        }
+        catch (error) {
+            if (typeof error.message === 'number')
+                res.sendStatus(error.message);
+            else {
+                res.send(error.name + ": " + error.message);
+            }
+        }
+    })
+    .put('/responsible/:id', (req, res) => {
+        try {
+            let id = req.params.id;
+            let responsible = req.session.username
+            const { name, description, deadline, status, ETA } = req.body;
             controller.updateTask(id, name, description, deadline, status, responsible, ETA);
             res.send(req.body)
         }

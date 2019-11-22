@@ -23,11 +23,11 @@ router
             .then(result => res.json(result))
             .catch(err => console.log("Error: " + err));
     })
-    .put('/:id', (req, res) => {
+    .put('/put/:id', (req, res) => {
     try {
             let depId = req.params.id;
             const {tasks} = req.body;
-            controller.updateDepartment(depId, tasks)
+            controller.addTaskToDepartment(depId, tasks)
             res.send(req.body)
         }
         catch (error) {
@@ -37,6 +37,21 @@ router
                 res.send(error.name + ": " + error.message);
             }
         }
-    });
+    })
+    .put('/remove/:id', (req, res) => {
+        try {
+                let depId = req.params.id;
+                const {tasks} = req.body;
+                controller.removeTaskFromDepartment(depId, tasks)
+                res.send(req.body)
+            }
+            catch (error) {
+                if (typeof error.message === 'number')
+                    res.sendStatus(error.message);
+                else {
+                    res.send(error.name + ": " + error.message);
+                }
+            }
+        })
 
     module.exports = router;

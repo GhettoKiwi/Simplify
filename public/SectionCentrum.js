@@ -12,13 +12,31 @@ async function generateTaskTable(task) {
     return compiledTemplate({ task });
 }
 
+function daysBetween(second) {
+    let first = new Date();
+    let dd = String(first.getDate()).padStart(2, '0');
+    let mm = String(first.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = first.getFullYear();
+
+    first = mm + '/' + dd + '/' + yyyy;
+    let one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
+    let two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
+
+    // Do the math.
+    let millisecondsPerDay = 1000 * 60 * 60 * 24;
+    let millisBetween = two.getTime() - one.getTime();
+    let days = millisBetween / millisecondsPerDay;
+    console.log(days);
+    // Round down.
+    return Math.floor(days);
+}
+
 async function getTask(task) {
     taskId = task.dataset.customid;
-    console.log(taskId);
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
-    let date = taskDB.deadline.slice(0, -1);
+    let date = taskDB.deadline.slice(0, 10);
     deadlineField.value = date;
 }
 
@@ -31,14 +49,16 @@ async function main() {
 }
 
 async function updateTask() {
+    let responsible = await GET("/tasks/" + taskId);
     let task = {
         "name": nameField.value,
         "description": descriptionField.value,
         "deadline": deadlineField.value,
-        "status": statusField.value 
+        "status": statusField.value,
+        "responsible": responsible.responsible
     };
     try {
-        await PUT('/tasks/' + taskId, task);
+        await PUT('/tasks/update/' + taskId, task);
     } catch (e) {
         console.log("Error: " + e);
     }
@@ -48,6 +68,7 @@ async function updateTask() {
 async function deleteTask() {
     try {
         await DELETE('/tasks/' + taskId);
+        await PUT('/department/remove/' + departmentid, { "tasks": taskId });
         nameField.value = "";
         descriptionField.value = "";
         deadlineField.value = null;
@@ -59,11 +80,11 @@ async function deleteTask() {
 
 async function update() {
     try {
-        let department = await GET('/department/'+departmentid);
+        let department = await GET('/department/' + departmentid);
         let deptasks = department.tasks;
         let tasks = [];
         for (let t of deptasks) {
-            tasks.push(await GET('/tasks/'+t));
+            tasks.push(await GET('/tasks/' + t));
         }
         let taskTable = document.getElementById('OverviewOverListView');
         taskTable.innerHTML = await generateTaskTable(tasks);
@@ -134,6 +155,16 @@ async function DELETE(url, data) {
     if (response.status !== OK)
         throw new Error("GET status code " + response.status);
     return await response.json();
+}
+
+async function takeTask() {
+    let task = await GET('/tasks/' + taskId);
+    try {
+        await PUT('/tasks/responsible/' + taskId, task);
+    } catch (e) {
+        console.log("Error: " + e);
+    }
+    update();
 }
 
 main(); 

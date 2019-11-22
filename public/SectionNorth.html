@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="handlebars-v4.4.3.js"></script>
     <script src="Drop.js" defer></script>
-    <script src="SectionNorth.js"></script>
+    <script src="SectionNorth.js" defer></script>
 </head>
 
 <body>
@@ -36,7 +36,6 @@
         <div class="">
             <h1 class="HeaderForSections"> Opgave Oversigt </h1><br><br>
             <div id="OverviewOverListView">
-
             </div>
         </div>
 
@@ -45,14 +44,13 @@
             <div id="OverviewOverInfomationForTask">
                 <h1>Infomationen:</h1><br>
                 <label>Opgavens Title:</label><br>
-                <input class="form-control" type="text" name="name" placeholder="Navn" id="Name"
-                    maxlength="50"><br>
+                <input class="form-control" type="text" name="name" placeholder="Navn" id="Name" maxlength="50"><br>
 
                 <label>Beskrivelse for Opgaven</label><br>
                 <textarea class="form-control" type="text" name="description" id="Description"
                     placeholder="Skriv din opgaves beskrivelse her"></textarea><br>
 
-                <label>Tidfristen for Opgaven:</label><br>
+                <label>Tidsfristen for Opgaven:</label><br>
                 <input class="form-control" type="date" name="deadline" id="Deadline"><br>
 
                 <label>Status for Opgaven:</label><br>
@@ -62,6 +60,7 @@
                     <option value="DONE">Færdig</option>
                     <option value="ON HOLD">På hold</option>
                 </select>
+
                 <br>
                 <!-- Knapperne for Ændre opgaven -->
                 <button type="button" class="btnDelete" id="btnEditTask"><a>Ændre Opgaven:</a></button>
