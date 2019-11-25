@@ -2,6 +2,7 @@ const nameField = document.getElementById("Name");
 const descriptionField = document.getElementById("Description")
 const deadlineField = document.getElementById("Deadline");
 const statusField = document.getElementById("statusChange");
+let ActiveButton = null;
 
 let taskId = "";
 const departmentid = "5dd6a64f2e877324bcd7dd4f";
@@ -163,9 +164,7 @@ async function DELETE(url, data) {
 }
 
 async function takeTask() {
-    console.log("This sucks")
-    let task = await getTask(taskId);
-    console.log(task);
+    let task = await GET("/tasks/"+taskId);
     try {
         await PUT('/tasks/responsible/' + taskId, task);
     } catch (e) {
