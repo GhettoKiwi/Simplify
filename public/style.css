@@ -81,6 +81,14 @@ h1 {
     grid-row-gap: 30px;
 }
 
+.NoAccessPlacement{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    justify-self: start;
+}
+
 #scrollBoxAccounts {
     justify-self: end;
     align-self: center;

@@ -75,9 +75,6 @@ async function CreateTasks() {
     document.getElementById('Name').value = "";
     document.getElementById('Description').value = "";
     document.getElementById('Deadline').value = "";
-
-
-
 }
 
 async function main() {
@@ -94,4 +91,18 @@ async function main() {
     }
 }
 
-main();
+async function checkIFLoggedIn(){
+    const loggedIn = await POST('/session/checkIfLoggedIn');
+    const position = await POST('/session/accountPosition');
+    console.log(loggedIn.ok);
+    if(!loggedIn.ok){
+        window.location.replace('/');
+    }
+    if(position.pos == "Vicevært"){
+        window.location.replace('/web/notAllowed');
+    } else {
+        await main();
+    }
+};
+
+checkIFLoggedIn();

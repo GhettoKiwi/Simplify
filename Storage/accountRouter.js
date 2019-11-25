@@ -39,11 +39,6 @@ router
                 .catch(err => console.log("Error: " + err));
         }
     })
-    .get('/check', (req, res) => {
-        if(!req.session.username){
-            res.redirect('/');
-        }
-    })
     .delete('/:id', (req, res) => {
             let id = req.params.id;
             controller.deleteUser(id)

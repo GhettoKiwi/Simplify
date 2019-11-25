@@ -165,4 +165,17 @@ async function DELETE(url, data) {
 //     update();
 // }
 
+async function checkIFLoggedIn(){
+    const loggedIn = await POST('/session/checkIfLoggedIn');
+    const position = await POST('/session/accountPosition');
+    console.log(loggedIn.ok);
+    if(!loggedIn.ok){
+        window.location.replace('/');
+    } else {
+        await main();
+    }
+};
+
+checkIFLoggedIn();
+
 main(); 

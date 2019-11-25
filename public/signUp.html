@@ -8,13 +8,7 @@
     <script src="Drop.js" defer></script>
 </head>
 <body bgcolor="#DDDDDD">
-<nav>
-    <ul>
-        <li><a href="frontpage.html"> Forside </a></li>
-        <li><a href="signUp.html"> Login </a></li>
-        <li><a href="signUp.html"> Sign Up </a></li>
-    </ul>
-</nav>
+
 <div class="signUp">
     <h1> Opret bruger </h1>
     <input id="usernameInput" placeholder="Username">
@@ -27,23 +21,22 @@
     <button type="button" id="btnCreateUser"><a>  Opret </a></button>
     <h3 id="errorMsg"> </h3>
 </div>
+
     <!--Dette er menu-baren i venstre side-->
-    <div class="sidenav">
-        <a href="frontpage.html">Forside</a>
-        <a href="signUp.html">Opret bruger</a>
-        <a href="account.html">Brugere</a>
+<div class="sidenav">
+    <a href="/web/frontpage">Forside</a>
+    <a href="/web/createAccount">Opret bruger</a>
+    <a href="/web/deleteAccount">Brugere</a>
 
-        <button class="btnForDropDownMenu">Opgaver</button>
-        <div class="DropDownMenuForTask">
-            <a href="SectionNorth.html">Nordbyen</a>
-            <a href="SectionCentrum.html">Midtbyen</a>
-            <a href="SectionEast.html">Østbyen</a>
-        </div>
-
-        <a href="CreateTasks.html">Opret Opgaver</a>
-        <a href="index.html">Log af</a>
+    <button class="btnForDropDownMenu">Opgaver</button>
+    <div class="DropDownMenuForTask">
+        <a href="/web/sectionNorth">Nordbyen</a>
+        <a href="/web/sectionCentrum">Midtbyen</a>
+        <a href="/web/sectionEast">Østbyen</a>
     </div>
 
-
+    <a href="/web/createTask">Opret Opgaver</a>
+    <a href="/session/logout">Log af</a>
+</div>
 </body>
 </html>

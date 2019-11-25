@@ -6,22 +6,24 @@ router
     .get('/', (req, res) => {
         if (!req.session.username) {
             res.redirect('/');
+        } else {
+            controller.getTasks()
+                .then(val => res.json(val))
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).send(err);
+                });
         }
-        controller.getTasks()
-            .then(val => res.json(val))
-            .catch(err => {
-                console.log(err);
-                res.status(500).send(err);
-            });
     })
     .get('/:id', (req, res) => {
         if (!req.session.username) {
             res.redirect('/');
+        } else {
+            const id = req.params.id
+            controller.getTask(id)
+                .then(result => res.json(result))
+                .catch(err => console.log("Error: " + err));
         }
-        const id = req.params.id
-        controller.getTask(id)
-            .then(result => res.json(result))
-            .catch(err => console.log("Error: " + err));
     })
     .post('/', (req, res) => {
         try {
