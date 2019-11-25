@@ -1,10 +1,11 @@
-let nameField = document.getElementById("Name");
-let descriptionField = document.getElementById("Description")
-let deadlineField = document.getElementById("Deadline");
-let statusField = document.getElementById("statusChange");
+const nameField = document.getElementById("Name");
+const descriptionField = document.getElementById("Description")
+const deadlineField = document.getElementById("Deadline");
+const statusField = document.getElementById("statusChange");
+let ActiveButton = null;
 
 let taskId = "";
-let departmentid = "5dd54fac1ecfc1160cc62df2";
+const departmentid = "5dd54fac1ecfc1160cc62df2";
 
 async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');
@@ -33,6 +34,11 @@ function daysBetween(second) {
 
 async function getTask(task) {
     taskId = task.dataset.customid;
+    if (ActiveButton !== null) {
+        ActiveButton.disabled = true;
+    }
+    ActiveButton = document.getElementById(taskId);
+    ActiveButton.disabled = false;
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
@@ -158,7 +164,9 @@ async function DELETE(url, data) {
 }
 
 async function takeTask() {
-    let task = await GET('/tasks/' + taskId);
+    console.log("This sucks")
+    let task = await getTask(taskId);
+    console.log(task);
     try {
         await PUT('/tasks/responsible/' + taskId, task);
     } catch (e) {

@@ -1,10 +1,10 @@
-let nameField = document.getElementById("Name");
-let descriptionField = document.getElementById("Description")
-let deadlineField = document.getElementById("Deadline");
-let statusField = document.getElementById("statusChange");
+const nameField = document.getElementById("Name");
+const descriptionField = document.getElementById("Description")
+const deadlineField = document.getElementById("Deadline");
+const statusField = document.getElementById("statusChange");
 
 let taskId = "";
-let departmentid = "5dd6a64f2e877324bcd7dd4f";
+const departmentid = "5dd6a64f2e877324bcd7dd4f";
 
 async function generateTaskTable(task) {
     let template = await GETtext('/task.hbs');
@@ -12,27 +12,32 @@ async function generateTaskTable(task) {
     return compiledTemplate({ task });
 }
 
-// function daysBetween(second) {
-//     let first = new Date();
-//     let dd = String(first.getDate()).padStart(2, '0');
-//     let mm = String(first.getMonth() + 1).padStart(2, '0'); //January is 0!
-//     let yyyy = first.getFullYear();
+function daysBetween(second) {
+    let first = new Date();
+    let dd = String(first.getDate()).padStart(2, '0');
+    let mm = String(first.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = first.getFullYear();
 
-//     first = mm + '/' + dd + '/' + yyyy;
-//     let one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
-//     let two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
+    first = mm + '/' + dd + '/' + yyyy;
+    let one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
+    let two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
 
-//     // Do the math.
-//     let millisecondsPerDay = 1000 * 60 * 60 * 24;
-//     let millisBetween = two.getTime() - one.getTime();
-//     let days = millisBetween / millisecondsPerDay;
-//     console.log(days);
-//     // Round down.
-//     return Math.floor(days);
-// }
+    // Do the math.
+    let millisecondsPerDay = 1000 * 60 * 60 * 24;
+    let millisBetween = two.getTime() - one.getTime();
+    let days = millisBetween / millisecondsPerDay;
+    console.log(days);
+    // Round down.
+    return Math.floor(days);
+}
 
 async function getTask(task) {
     taskId = task.dataset.customid;
+    if (ActiveButton !== null) {
+        ActiveButton.disabled = true;
+    }
+    ActiveButton = document.getElementById(taskId);
+    ActiveButton.disabled = false;
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
@@ -49,11 +54,13 @@ async function main() {
 }
 
 async function updateTask() {
+    let responsible = await GET("/tasks/" + taskId);
     let task = {
         "name": nameField.value,
         "description": descriptionField.value,
         "deadline": deadlineField.value,
-        "status": statusField.value
+        "status": statusField.value,
+        "responsible": responsible.responsible
     };
     try {
         await PUT('/tasks/update/' + taskId, task);
@@ -155,15 +162,17 @@ async function DELETE(url, data) {
     return await response.json();
 }
 
-// async function takeTask() {
-//     let task = await GET('/' + taskId);
-//     try {
-//         await PUT('/tasks/responsible/' + taskId, task);
-//     } catch (e) {
-//         console.log("Error: " + e);
-//     }
-//     update();
-// }
+async function takeTask() {
+    console.log("This sucks")
+    let task = await getTask(taskId);
+    console.log(task);
+    try {
+        await PUT('/tasks/responsible/' + taskId, task);
+    } catch (e) {
+        console.log("Error: " + e);
+    }
+    update();
+}
 
 async function checkIFLoggedIn(){
     const loggedIn = await POST('/session/checkIfLoggedIn');
