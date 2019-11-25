@@ -55,6 +55,61 @@ h1 {
     grid-gap: 10%;
 }
 
+.frontpageContainer{
+    display: grid;
+    grid-gap: 5%;
+    grid-template-columns:  repeat(8, 100px);
+    grid-template-rows: repeat(8, 80px);
+    align-items: center;
+
+
+}
+
+.overviewFrontpage{
+    grid-column: 3 / 6;
+    grid-row: 2 / 6;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    align-self: stretch;
+}
+
+.btnDIV {
+    grid-column: 3 / 6;
+    grid-row: 6;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+#btnMySelf {
+    grid-column: 3/4;
+    grid-row: 6;
+    align-self: end;
+    height: 50px;
+    width: 100px;
+}
+
+#btnEast {
+    grid-column: 3 / 4;
+    grid-row: 6;
+    align-self: end;
+    height: 50px;
+    width: 100px;
+}
+
+#btnCentrum {
+    grid-column: 4 / 5;
+    grid-row: 6;
+    align-self: end;
+    height: 50px;
+    width: 100px;
+}
+
+#btnNorth {
+    grid-column: 5 / 6;
+    grid-row: 6;
+    align-self: end;
+    height: 50px;
+    width: 100px;
+}
+
 .signUp {
     margin: 10% 0;
     display: grid;
