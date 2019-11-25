@@ -337,8 +337,7 @@ table tr{
 
 /* ----------------- "Tag opgave" afdelinger -----------------*/
 
-#takeTask{
-
+.takeTask{
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -351,5 +350,8 @@ table tr{
     cursor: pointer;
     border-radius: 8px;
     float: right;
-
 } 
+.takeTask:disabled,
+.takeTask[disabled]{
+  display:  none;
+}

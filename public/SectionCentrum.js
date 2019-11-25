@@ -164,9 +164,7 @@ async function DELETE(url, data) {
 }
 
 async function takeTask() {
-    console.log("This sucks")
-    let task = await getTask(taskId);
-    console.log(task);
+    let task = await GET("/tasks/"+taskId);
     try {
         await PUT('/tasks/responsible/' + taskId, task);
     } catch (e) {
