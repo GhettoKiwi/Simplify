@@ -27,6 +27,10 @@ router
             }
         });
     })
+    .post('/username', (req, res) => {
+        const name = req.session.username;
+        res.send({currentUser: name});
+    })
     .post('/accountPosition', (req, res) => {
         const position = req.session.position;
         res.send({pos: position});
