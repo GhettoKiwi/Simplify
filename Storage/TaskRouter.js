@@ -29,7 +29,6 @@ router
         try {
             const { name, description, deadline } = req.body
             let task = controller.createTask(name, description, deadline);
-            console.log("This is router: " + task);
             res.json(task);
         }  catch (error) {
             if (typeof error.message === 'number')
@@ -42,8 +41,8 @@ router
     .put('/update/:id', (req, res) => {
         try {
             let id = req.params.id;
-            const { name, description, deadline, status, responsible, ETA } = req.body;
-            controller.updateTask(id, name, description, deadline, status, responsible, ETA);
+            const { name, description, deadline, status, responsible, ETA, Comments} = req.body;
+            controller.updateTask(id, name, description, deadline, status, responsible, ETA, Comments);
             res.send(req.body)
         }
         catch (error) {
@@ -54,12 +53,27 @@ router
             }
         }
     })
+    .put('/addComment/:id', (req, res) => {
+        try {
+                let taskId = req.params.id;
+                const {Comments} = req.body;
+                controller.addCommentToTask(taskId, Comments)
+                res.send(req.body)
+            }
+            catch (error) {
+                if (typeof error.message === 'number')
+                    res.sendStatus(error.message);
+                else {
+                    res.send(error.name + ": " + error.message);
+                }
+            }
+        })
     .put('/responsible/:id', (req, res) => {
         try {
             let id = req.params.id;
             let responsible = req.session.username
-            const { name, description, deadline, status, ETA } = req.body;
-            controller.updateTask(id, name, description, deadline, status, responsible, ETA);
+            const { name, description, deadline, status, ETA, Comments } = req.body;
+            controller.updateTask(id, name, description, deadline, status, responsible, ETA, Comments);
             res.send(req.body)
         }
         catch (error) {

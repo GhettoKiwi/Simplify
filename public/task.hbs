@@ -11,7 +11,11 @@
     <p>{{responsible}}</p>
     <label>ETA: </label>
     <p>{{ETA}}</p>
-    <label>ID: </label>
-    <p id="id">{{_id}}</p>
+    <div class="collapsible">Kommentarer</div>
+    <div class="content>">
+        <p>{{Comments}}</p>
+        <input type="text" id="com{{_id}}" placeholder="Skriv kommentar"></input>
+        <button class="takeTask" onclick="addComment()">Tilføj</button>
+    </div>
 </div>
 {{/each}}

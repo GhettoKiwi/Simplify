@@ -44,6 +44,7 @@ async function getTask(task) {
     descriptionField.innerHTML = taskDB.description;
     let date = taskDB.deadline.slice(0, 10);
     deadlineField.value = date;
+    statusField.value = taskDB.status;
 }
 
 async function main() {

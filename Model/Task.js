@@ -27,6 +27,9 @@ let Task = new Schema({
     ETA: {
         type: Date,
         default: null
+    },
+    Comments: {
+        type: Array
     }
 });
 

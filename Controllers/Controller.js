@@ -47,17 +47,28 @@ exports.getTask = function (taskId) {
     return Task.findOne({ _id: taskId }).exec();
 };
 
-exports.updateTask = async function (taskId, name, description, deadline, status, responsible, ETA) {
+exports.updateTask = async function (taskId, name, description, deadline, status, responsible, ETA, Comments) {
     let task = {
         name: name,
         description: description,
         deadline: deadline,
         status: status,
         responsible: responsible,
-        ETA: ETA
+        ETA: ETA,
+        Comments: Comments
     }
     return Task.findByIdAndUpdate(taskId, task, {new: true});
 };
+
+async function getTask(taskId) {
+    return Task.findOne({ _id: taskId }).exec();
+}
+
+exports.addCommentToTask = async function(taskId, comment) {
+    let task = await getTask(taskId);
+    task.Comments.push(comment); 
+    return task.save(); 
+}
 
 exports.deleteTask = async function (taskId) {
     return Task.findOneAndDelete({_id: taskId})
@@ -91,7 +102,6 @@ async function getDepartment(depId) {
 
 exports.addTaskToDepartment = async function(depId, taskId) {
     let department = await getDepartment(depId);
-    console.log("update department: "+taskId);
     department.tasks.push(taskId); 
     return department.save(); 
 }
@@ -100,7 +110,6 @@ exports.removeTaskFromDepartment = async function(depId, taskId) {
     let department = await getDepartment(depId);
     for (let i = 0; i < department.tasks.length; i++) {
         if (department.tasks[i] === taskId) {
-            console.log("test controller");
             department.tasks.splice(i, 1);
         } 
     }
