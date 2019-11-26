@@ -17,7 +17,7 @@ let Task = new Schema({
     status: {
         type: String,
         required: true,
-        enum: ['OPEN', 'IN PROGRESS', 'DONE', 'ON HOLD'],
+        enum: ['OPEN', 'IN PROGRESS', 'DONE', 'ON HOLD', "CONFIRMED"],
         default: 'OPEN'
     },
     responsible: {

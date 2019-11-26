@@ -34,6 +34,14 @@
 
         <div class="">
             <h1 class="HeaderForSections"> Opgave Oversigt </h1><br><br>
+            <select id="taskChoice" style="width: 200px">
+                <option value="ALL">Alle Opgaver</option>
+                <option value="OPEN">Åbne Opgaver</option>
+                <option value="IN PROGRESS">Igangværende Opgaver</option>
+                <option value="DONE">Færdige Opgaver</option>
+                <option value="ON HOLD">På hold</option>
+                <option value="CONFIRMED">Endeligt Færdigmeldte Opgaver</option>
+            </select><br><br>
             <div id="OverviewOverListView">
             </div>
         </div>
@@ -52,12 +60,16 @@
                 <label>Tidsfristen for Opgaven:</label><br>
                 <input class="form-control" type="date" name="deadline" id="Deadline"><br>
 
+                <label>Estimeret færdig:</label><br>
+                <input class="form-control" type="date" name="deadline" id="ETA"><br>
+
                 <label>Status for Opgaven:</label><br>
                 <select id="statusChange" style="width: 200px">
                     <option value="OPEN">Åben</option>
                     <option value="IN PROGRESS">Igangværende</option>
                     <option value="DONE">Færdig</option>
                     <option value="ON HOLD">På hold</option>
+                    <option value="CONFIRMED">Endeligt færdigmeldt</option>
                 </select>
 
                 <br>

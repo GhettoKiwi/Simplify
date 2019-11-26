@@ -2,10 +2,12 @@ const nameField = document.getElementById("Name");
 const descriptionField = document.getElementById("Description")
 const deadlineField = document.getElementById("Deadline");
 const statusField = document.getElementById("statusChange");
+const ETAField = document.getElementById("ETA");
+const listChosen = document.getElementById("taskChoice");
+
 let ActiveButton = null;
 
 let taskId = "";
-
 const departmentid = "5dd6a64f2e877324bcd7dd4f";
 
 async function generateTaskTable(task) {
@@ -43,9 +45,13 @@ async function getTask(task) {
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
-    let date = taskDB.deadline.slice(0, 10);
-    deadlineField.value = date;
+    let date1 = taskDB.deadline.slice(0, 10);
+    deadlineField.value = date1;
     statusField.value = taskDB.status;
+    if (taskDB.ETA !== null) {
+        let date2 = taskDB.ETA.slice(0, 10);
+        ETAField.value = date2;
+    }
 }
 
 async function main() {
@@ -54,21 +60,50 @@ async function main() {
     btnEdit.onclick = updateTask;
     let btnDelete = document.getElementById("BtnDeleteTask");
     btnDelete.onclick = deleteTask;
+    let list = document.getElementById("taskChoice")
+    list.onchange = update;
 }
 
 async function updateTask() {
     let responsible = await GET("/tasks/" + taskId);
-    let task = {
-        "name": nameField.value,
-        "description": descriptionField.value,
-        "deadline": deadlineField.value,
-        "status": statusField.value,
-        "responsible": responsible.responsible
-    };
-    try {
-        await PUT('/tasks/update/' + taskId, task);
-    } catch (e) {
-        console.log("Error: " + e);
+
+    // Dags dato opsætning
+    let today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + "-" + mm + "-" + dd;
+
+    if (nameField.value == null || nameField.value == "") {
+        alert("Opgaven har ikke noget navn")
+    } else if (descriptionField.value == null || descriptionField.value == "") {
+        alert("Opgaven har ikke nogen beskrivelse")
+    } else if (deadlineField.value == null || deadlineField.value == "") {
+        alert("Opgaven har ikke nogen tidsfrist")
+    }
+    else if (deadlineField.value < ETAField.value) {
+        alert("ETA er sat efter deadlinen")
+    }
+    else if (deadlineField.value < today) {
+        alert("Deadline forsøges sættes før dags dato")
+    }
+    else if (ETAField.value < today) {
+        alert("ETA forsøges sættes før dags dato")
+    }
+    else {
+        let task = {
+            "name": nameField.value,
+            "description": descriptionField.value,
+            "deadline": deadlineField.value,
+            "status": statusField.value,
+            "responsible": responsible.responsible,
+            "ETA": ETAField.value
+        };
+        try {
+            await PUT('/tasks/update/' + taskId, task);
+        } catch (e) {
+            console.log("Error: " + e);
+        }
     }
     update();
 }
@@ -80,9 +115,17 @@ async function deleteTask() {
         nameField.value = "";
         descriptionField.value = "";
         deadlineField.value = null;
+        ETAField.value = null;
     } catch (e) {
         console.log("Error: " + e);
     }
+    update();
+}
+
+async function addComment() {
+    let comment = document.getElementById("com" + taskId);
+    await PUT('/tasks/addComment/' + taskId, { "Comments": comment.value });
+    comment.value = "";
     update();
 }
 
@@ -92,7 +135,11 @@ async function update() {
         let deptasks = department.tasks;
         let tasks = [];
         for (let t of deptasks) {
-            tasks.push(await GET('/tasks/' + t));
+            let task = await GET('/tasks/' + t);
+            console.log(task);
+            if (task.status === listChosen.value || listChosen.value === "ALL") {
+                tasks.push(await GET('/tasks/' + t));
+            }
         }
         let taskTable = document.getElementById('OverviewOverListView');
         taskTable.innerHTML = await generateTaskTable(tasks);
@@ -166,7 +213,7 @@ async function DELETE(url, data) {
 }
 
 async function takeTask() {
-    let task = await GET("/tasks/"+taskId);
+    let task = await GET("/tasks/" + taskId);
     try {
         await PUT('/tasks/responsible/' + taskId, task);
     } catch (e) {
@@ -175,10 +222,10 @@ async function takeTask() {
     update();
 }
 
-async function checkIFLoggedIn(){
+async function checkIFLoggedIn() {
     const loggedIn = await POST('/session/checkIfLoggedIn');
     console.log(loggedIn.ok);
-    if(!loggedIn.ok){
+    if (!loggedIn.ok) {
         window.location.replace('/');
     } else {
         await main();
