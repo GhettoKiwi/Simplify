@@ -1,7 +1,17 @@
 let clickedAccountId = "";
 
-function saveClicked(clickedInput){
+function saveClicked(clickedInput, element){
     clickedAccountId = clickedInput;
+    resetMarks();
+    element.className = "acc marked";
+};
+
+function resetMarks(){
+    let div = document.querySelector("#scrollBoxAccounts");
+    let accounts = div.querySelectorAll(".acc");
+    for(let e of accounts){
+        e.className = "acc";
+    }
 };
 
 async function findAccount(input) {
