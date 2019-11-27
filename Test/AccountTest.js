@@ -21,7 +21,6 @@ describe('opret bruger', function() {
             .expect('Content-Type', /json/);
         response.body.username.should.be.equal('testperson');
         response.body.password.should.be.equal('testpassword');
-        response.body.rights.should.be.equal(2);
         response.body.position.should.be.equal("vicevært");
     })
     it("Test af delete af account", async () => {
