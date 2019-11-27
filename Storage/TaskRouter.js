@@ -56,8 +56,10 @@ router
     .put('/addComment/:id', (req, res) => {
         try {
                 let taskId = req.params.id;
+                let Comment = req.session.username + ": ";
                 const {Comments} = req.body;
-                controller.addCommentToTask(taskId, Comments)
+                Comment += Comments;
+                controller.addCommentToTask(taskId, Comment)
                 res.send(req.body)
             }
             catch (error) {

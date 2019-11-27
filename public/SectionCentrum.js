@@ -6,6 +6,7 @@ const ETAField = document.getElementById("ETA");
 const listChosen = document.getElementById("taskChoice");
 
 let ActiveButton = null;
+let ActiveTask = null;
 
 let taskId = "";
 const departmentid = "5dd54fac1ecfc1160cc62df2";
@@ -40,8 +41,17 @@ async function getTask(task) {
     if (ActiveButton !== null) {
         ActiveButton.disabled = true;
     }
-    ActiveButton = document.getElementById(taskId);
+    ActiveButton = document.getElementById("but" + taskId);
     ActiveButton.disabled = false;
+    if (ActiveTask !== null) {
+        ActiveTask.style.display = "none";
+    }
+    if (ActiveTask === document.getElementById("con" + taskId)) {
+        ActiveTask.style.display = "none";
+        ActiveTask = null;
+    } else {
+        ActiveTask = document.getElementById("con" + taskId);
+    }
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;

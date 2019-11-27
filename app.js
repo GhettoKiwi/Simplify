@@ -3,7 +3,6 @@ const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
 const session = require('express-session');
-// const controller = require('./Controllers/Controller'); // testing
 
 const app = express();
 app.use(express.static('public'));
@@ -14,12 +13,13 @@ app.use(morgan('tiny'));
 app.use(session({
     secret: 'hemmelig',
     saveUninitialized: false,
-    resave: false}));
+    resave: false
+}));
 
 // MONGODB & MONGOOSE SETUP
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect('mongodb+srv://AsgerDinesen:ludersoen@cluster0-cokpw.gcp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 
 // ROUTES FOR THE APP
 const userRouter = require("./Storage/accountRouter");

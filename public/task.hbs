@@ -1,8 +1,8 @@
 {{#each task}}
 <div onclick="getTask(this)" class="collapsible" data-customid="{{_id}}">{{name}} - {{status}}
-        <button id="{{_id}}" class="takeTask" onclick="takeTask()" disabled>Tag opgave</button>
+    <button id="but{{_id}}" class="takeTask" onclick="takeTask()" disabled>Tag opgave</button>
 </div>
-<div class="content">
+<div id="con{{_id}}" class="content">
     <label>Deadline: </label>
     <p>{{deadline}}</p>
     <label>Beskrivelse: </label>
@@ -12,8 +12,12 @@
     <label>ETA: </label>
     <p>{{ETA}}</p>
     <div class="collapsible">Kommentarer</div>
-    <div class="content>">
-        <p>{{Comments}}</p>
+    <div class="content">
+        <ul>
+            {{#each Comments}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
         <input type="text" id="com{{_id}}" placeholder="Skriv kommentar"></input>
         <button class="takeTask" onclick="addComment()">Tilføj</button>
     </div>
