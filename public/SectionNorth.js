@@ -6,6 +6,7 @@ const ETAField = document.getElementById("ETA");
 const listChosen = document.getElementById("taskChoice");
 
 let ActiveButton = null;
+let ActiveTask = null;
 
 let taskId = "";
 const departmentid = "5dd6a64f2e877324bcd7dd4f";
@@ -40,8 +41,17 @@ async function getTask(task) {
     if (ActiveButton !== null) {
         ActiveButton.disabled = true;
     }
-    ActiveButton = document.getElementById(taskId);
+    ActiveButton = document.getElementById("but" + taskId);
     ActiveButton.disabled = false;
+    if (ActiveTask !== null) {
+        ActiveTask.style.display = "none";
+    }
+    if (ActiveTask === document.getElementById("con" + taskId)) {
+        ActiveTask.style.display = "none";
+        ActiveTask = null;
+    } else {
+        ActiveTask = document.getElementById("con" + taskId);
+    }
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
@@ -136,7 +146,6 @@ async function update() {
         let tasks = [];
         for (let t of deptasks) {
             let task = await GET('/tasks/' + t);
-            console.log(task);
             if (task.status === listChosen.value || listChosen.value === "ALL") {
                 tasks.push(await GET('/tasks/' + t));
             }
