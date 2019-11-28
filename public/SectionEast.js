@@ -43,15 +43,6 @@ async function getTask(task) {
     }
     ActiveButton = document.getElementById("but" + taskId);
     ActiveButton.disabled = false;
-    if (ActiveTask !== null) {
-        ActiveTask.style.display = "none";
-    }
-    if (ActiveTask === document.getElementById("con" + taskId)) {
-        ActiveTask.style.display = "none";
-        ActiveTask = null;
-    } else {
-        ActiveTask = document.getElementById("con" + taskId);
-    }
     let taskDB = await GET('/tasks/' + taskId);
     nameField.value = taskDB.name;
     descriptionField.innerHTML = taskDB.description;
