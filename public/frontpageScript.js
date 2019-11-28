@@ -1,12 +1,5 @@
 //----------- HTML elements -----------
-const btnEast = document.querySelector('#btnEast');
-const btnCentrum = document.querySelector('#btnCentrum');
-const btnNorth = document.querySelector('#btnNorth');
-const btnMySelf = document.querySelector('#btnMySelf');
 const overviewDIV = document.querySelector('#overview');
-const centrumID = "5dd54fac1ecfc1160cc62df2";
-const eastID = "5dd54fac1ecfc1160cc62df1";
-const northID = "5dd6a64f2e877324bcd7dd4f";
 
 //----------- API CALLS -----------
 async function GET(url) {
@@ -75,7 +68,6 @@ async function collapibleSetup(){
 async function overviewForMySelf() {
     try{
         const tasks = await GET('/tasks');
-        console.log(tasks);
         const sessionUsername = await POST('/session/username');
         const myName = sessionUsername.currentUser;
         let myTasks = [];
@@ -91,41 +83,20 @@ async function overviewForMySelf() {
     }
 };
 
-async function overviewForDepartment(departmentID) {
+async function headlineMaker(){
     try {
-        const department = await GET('/department/' + departmentID);
-        const departmentTasks = department.tasks;
-        let tasks = [];
-        for (let t of departmentTasks) {
-            tasks.push(await GET('/tasks/' + t));
-        }
-        overviewDIV.innerHTML = await generateTaskTable(tasks);
-        await collapibleSetup();
-    } catch (e) {
-        console.log("Error: " + e);
+        const h1 = document.querySelector('#headlineFrontpage');
+        const sessionUsername = await POST('/session/username');
+        h1.innerHTML = "Oversigt for " + sessionUsername;
+    } catch (e){
+        console.log(e);
     }
 };
 
-async function setOnClicks() {
-    btnEast.onclick = async function () {
-        await overviewForDepartment(eastID);
-    };
-    btnNorth.onclick = async function () {
-        await overviewForDepartment(northID);
-    };
-    btnCentrum.onclick = async function () {
-        await overviewForDepartment(centrumID);
-    };
-    btnMySelf.onclick = async function () {
-        await overviewForMySelf();
-    };
-}
-
 //----------- Main and run -----------
 async function main () {
-    // Set overskrift ?!?
+    await headlineMaker();
     await overviewForMySelf();
-    await setOnClicks();
 };
 
 async function checkIFLoggedIn(){
