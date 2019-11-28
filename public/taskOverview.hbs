@@ -1,6 +1,15 @@
 {{#each task}}
-    <li>
-        <label class="overviewLabelTop" data-customid="{{_id}}"> {{name}}</label><BR>
-        <label class="overviewLabelBot"> Status: {{status}}, Ansvarlig: {{responsible}}</label>
-    </li>
+    <div class="collapsible" data-customid="{{_id}}">{{name}} - {{status}}
+    </div>
+    <div class="content">
+        <p>Deadline: {{deadline}}</p>
+        <p>Beskrivelse: {{description}}</p>
+        <p>Ansvarlig: {{responsible}}</p>
+        <p>ETA: {{ETA}}</p>
+        <p>Status: {{status}}</p>
+        <div class="collapsible">Kommentarer</div>
+        <div class="content>">
+            <p>{{Comments}}</p>
+        </div>
+    </div>
 {{/each}}

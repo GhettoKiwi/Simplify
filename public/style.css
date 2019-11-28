@@ -126,6 +126,10 @@ h1 {
     grid-column-gap: 20px;
 }
 
+.marked {
+    border: 1px solid green;
+}
+
 .deleteAccount {
     display: grid;
     grid-template-columns: auto;
