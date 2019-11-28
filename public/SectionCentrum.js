@@ -67,6 +67,7 @@ async function main() {
 
 async function updateTask() {
     let responsible = await GET("/tasks/" + taskId);
+    let rights = await POST('/session/accountPosition');
 
     // Dags dato opsætning
     let today = new Date();
@@ -81,15 +82,14 @@ async function updateTask() {
         alert("Opgaven har ikke nogen beskrivelse")
     } else if (deadlineField.value == null || deadlineField.value == "") {
         alert("Opgaven har ikke nogen tidsfrist")
-    }
-    else if (deadlineField.value < ETAField.value) {
+    } else if (deadlineField.value < ETAField.value) {
         alert("ETA er sat efter deadlinen")
-    }
-    else if (deadlineField.value < today) {
+    } else if (deadlineField.value < today) {
         alert("Deadline forsøges sættes før dags dato")
-    }
-    else if (ETAField.value < today) {
+    } else if (ETAField.value < today && ETAField.value !== "") {
         alert("ETA forsøges sættes før dags dato")
+    } else if (statusField.value === "CONFIRMED" && rights.pos !== "Ejendomsdirektør") {
+        alert("Kun Ejendomsdirektøren kan endeligt færdigmelde en opgave")
     }
     else {
         let task = {
@@ -129,15 +129,39 @@ async function addComment() {
     comment.value = "";
     update();
 }
+async function overviewForMySelf() {
+    try {
+        const tasks = await GET('/tasks');
+        console.log(tasks);
+        const sessionUsername = await POST('/session/username');
+        const myName = sessionUsername.currentUser;
+        let myTasks = [];
+        for (let t of tasks) {
+            if (t.responsible == myName) {
+                myTasks.push(t);
+            };
+        };
+        overviewDIV.innerHTML = await generateTaskTable(myTasks);
+    } catch (e) {
+        console.log("Error: " + e);
+    }
+};
 
 async function update() {
     try {
         let department = await GET('/department/' + departmentid);
         let deptasks = department.tasks;
         let tasks = [];
+        const sessionUsername = await POST('/session/username');
+        const myName = sessionUsername.currentUser;
         for (let t of deptasks) {
             let task = await GET('/tasks/' + t);
-            if (task.status === listChosen.value || listChosen.value === "ALL") {
+            if (listChosen.value === "MYTASKS") {
+                if (task.responsible === myName) {
+                    tasks.push(await GET('/tasks/' + t));
+                }
+            }
+            else if (task.status === listChosen.value || listChosen.value === "ALL") {
                 tasks.push(await GET('/tasks/' + t));
             }
         }
