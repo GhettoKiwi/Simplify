@@ -17,23 +17,8 @@ async function generateTaskTable(task) {
     return compiledTemplate({ task });
 }
 
-function daysBetween(second) {
-    let first = new Date();
-    let dd = String(first.getDate()).padStart(2, '0');
-    let mm = String(first.getMonth() + 1).padStart(2, '0'); //January is 0!
-    let yyyy = first.getFullYear();
-
-    first = mm + '/' + dd + '/' + yyyy;
-    let one = new Date(first.getFullYear(), first.getMonth(), first.getDate());
-    let two = new Date(second.getFullYear(), second.getMonth(), second.getDate());
-
-    // Do the math.
-    let millisecondsPerDay = 1000 * 60 * 60 * 24;
-    let millisBetween = two.getTime() - one.getTime();
-    let days = millisBetween / millisecondsPerDay;
-    console.log(days);
-    // Round down.
-    return Math.floor(days);
+function formatDate(Date) {
+    return Date.trim(0, 9);
 }
 
 async function getTask(task) {
@@ -129,6 +114,7 @@ async function addComment() {
     comment.value = "";
     update();
 }
+
 async function overviewForMySelf() {
     try {
         const tasks = await GET('/tasks');
@@ -166,6 +152,9 @@ async function update() {
             }
         }
         let taskTable = document.getElementById('OverviewOverListView');
+        for (let t of tasks){
+            t.deadline = t.deadline.slice(0, 10);
+        }
         taskTable.innerHTML = await generateTaskTable(tasks);
         let coll = document.getElementsByClassName("collapsible");
         for (let e of coll) {

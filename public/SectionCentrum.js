@@ -36,6 +36,10 @@ function daysBetween(second) {
     return Math.floor(days);
 }
 
+function formatDate(Date) {
+    return Date.trim(0, 9);
+}
+
 async function getTask(task) {
     taskId = task.dataset.customid;
     if (ActiveButton !== null) {
@@ -129,6 +133,7 @@ async function addComment() {
     comment.value = "";
     update();
 }
+
 async function overviewForMySelf() {
     try {
         const tasks = await GET('/tasks');
@@ -166,6 +171,9 @@ async function update() {
             }
         }
         let taskTable = document.getElementById('OverviewOverListView');
+        for (let t of tasks){
+            t.deadline = t.deadline.slice(0, 10);
+        }
         taskTable.innerHTML = await generateTaskTable(tasks);
         let coll = document.getElementsByClassName("collapsible");
         for (let e of coll) {
