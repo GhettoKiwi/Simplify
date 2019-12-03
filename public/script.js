@@ -24,7 +24,8 @@ async function POST(url, data) {
     }
     return await res.json();
 };
-
+//bruges til at hashe password så den passer den i databasen
+//hasher en string og returner et hash
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;

@@ -67,7 +67,8 @@ async function POST(url, data) {
     }
     return await res.json();
 };
-
+//tjekker om brugeren er logget ind og hvis man ikke er bliver man smidt tilbage til logind siden
+//ellers tjekker den om man har rettigheden til at tilgå siden, hvis man ikke har bliver man smidt til notAllowed
 async function checkIFLoggedIn(){
     const loggedIn = await POST('/session/checkIfLoggedIn');
     const position = await POST('/session/accountPosition');

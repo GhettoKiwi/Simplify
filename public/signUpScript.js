@@ -30,7 +30,8 @@ function checkIfFilled() {
         return true;
     }
 };
-
+// tager et navn ind og tjekker om der er en der hedder det i databasen
+//dette gør at navne på bruger er unikke
 async function nameIsValid(name){
     const response = await fetch('/accounts');
     const accounts = await response.json();
@@ -57,6 +58,7 @@ String.prototype.hashCode = function() {
 };
 
 async function setOnClick() {
+    //onclick for opret bruger med fejlmeddelser 
     document.querySelector('#btnCreateUser').onclick = async () => {
         if (checkIfFilled()) {
             const valid = await nameIsValid(usernameInput.value);

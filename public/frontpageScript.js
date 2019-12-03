@@ -64,7 +64,7 @@ async function collapibleSetup(){
         });
     }
 };
-
+//henter et array af de opgaver personen har taget for den bruger der er logget ind
 async function overviewForMySelf() {
     try{
         const tasks = await GET('/tasks');
