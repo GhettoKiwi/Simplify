@@ -6,6 +6,10 @@ const Task = require("../Model/Task");
 const app = require('../app');
 
 let id = "";
+/* 
+Hele testen parsede før session blev implementeret. Nu fejler GET'erne pga at session er implementeret 
+og vi har ikke haft tid til at få implementeret en session wrapper omkring testen. 
+*/
 
 describe('First post', () => {
     it("Test af: Post af Standardobjekt", async () => {
@@ -19,26 +23,22 @@ describe('First post', () => {
             .set('Accept', 'application/json')
             .expect(200)
             .expect('Content-Type', /json/);
-        response.body.name.should.be.equal('TEST MIG');
-        response.body.description.should.be.equal('Beskidte vinduer hele blokken');
-        response.body.deadline.should.be.equal('2020-12-17T03:24:00');
-    })
+            id = response.body;
+    }) 
 
     it("Test af: Get af oprettet standardobjekt", async () => {
         let response = await request(app)
-            .get('/tasks/')
+            .get('/tasks/'+id)
             .expect(200)
             .expect('Content-Type', /json/)
-        let test = response.body
-        for (let t of test) {
-            if (t.name === "TEST MIG") {
-                id = t._id;
-            }
-        }
+        response.body.name.should.be.equal("TEST MIG");
+        response.body.description.should.be.equal("Beskidte vinduer hele blokken");
+        response.body.deadline.should.be.equal("2020-12-17T03:24:00");
+        response.body.status.should.be.equal("OPEN");        
     })
     it("Test af: Put af eksisterende objekt (Update)", async () => {
         let response = await request(app)
-            .put('/tasks/' + id)
+            .put('/tasks/update/' + id)
             .send({
                 name: "Beskidte vinduer i hele afdelingen",
                 description: "Den er helt gal, man kan næsten ikke se ud",

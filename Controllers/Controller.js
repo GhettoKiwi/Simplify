@@ -25,7 +25,6 @@ exports.getUsers = function () {
 };
 
 exports.deleteUser = async function (accountId) {
-    console.log(accountId);
     return Account.findOneAndDelete({_id: accountId});
 };
 
@@ -47,6 +46,7 @@ exports.getTask = function (taskId) {
     return Task.findOne({ _id: taskId }).exec();
 };
 
+/* Finds the task matching the TaskID and then updates the data */
 exports.updateTask = async function (taskId, name, description, deadline, status, responsible, ETA, Comments) {
     let task = {
         name: name,
@@ -64,12 +64,14 @@ async function getTask(taskId) {
     return Task.findOne({ _id: taskId }).exec();
 }
 
+/* Finds a task from the taskID and then adds the comment to the array */
 exports.addCommentToTask = async function(taskId, comment) {
     let task = await getTask(taskId);
     task.Comments.push(comment); 
     return task.save(); 
 }
 
+/* Removes the task with the specified ID */
 exports.deleteTask = async function (taskId) {
     return Task.findOneAndDelete({_id: taskId})
 };
@@ -88,24 +90,30 @@ exports.createDepartment = function (name, tasks) {
     return department.save();
 };
 
+/* Returns the department with the specified ID */
 exports.getDepartment = function (depId) {
     return Department.findOne({ _id: depId }).exec();
 };
 
+/* Returns the departments */
 exports.getDepartments = function () {
     return Department.find().populate().exec();
 };
 
+/* Returns the department with the specified ID
+- This method is to be used within the controller */
 async function getDepartment(depId) {
     return Department.findOne({ _id: depId }).exec();
 }
 
+/* Adds the task to the department with the specified IDs */
 exports.addTaskToDepartment = async function(depId, taskId) {
     let department = await getDepartment(depId);
     department.tasks.push(taskId); 
     return department.save(); 
 }
 
+/* Removes the taskID from the department with the specified ID */
 exports.removeTaskFromDepartment = async function(depId, taskId) {
     let department = await getDepartment(depId);
     for (let i = 0; i < department.tasks.length; i++) {

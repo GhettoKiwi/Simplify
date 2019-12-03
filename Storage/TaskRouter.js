@@ -12,7 +12,7 @@ router
                 .catch(err => {
                     console.log(err);
                     res.status(500).send(err);
-                });
+                }); 
         }
     })
     .get('/:id', (req, res) => {
@@ -74,7 +74,8 @@ router
         try {
             let id = req.params.id;
             let responsible = req.session.username
-            const { name, description, deadline, status, ETA, Comments } = req.body;
+            let status = "IN PROGRESS"
+            const { name, description, deadline, ETA, Comments } = req.body;
             controller.updateTask(id, name, description, deadline, status, responsible, ETA, Comments);
             res.send(req.body)
         }

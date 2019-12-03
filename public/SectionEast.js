@@ -48,6 +48,14 @@ async function main() {
     btnDelete.onclick = deleteTask;
     let list = document.getElementById("taskChoice")
     list.onchange = update;
+
+    let rights = await POST('/session/accountPosition');
+    if (rights.pos === "Vicevært") {
+        nameField.disabled = true;
+        descriptionField.disabled = true;
+        deadlineField.disabled = true;
+        deleteButton.disabled = true;
+    }
 }
 
 async function updateTask() {
@@ -102,10 +110,10 @@ async function deleteTask() {
         descriptionField.value = "";
         deadlineField.value = null;
         ETAField.value = null;
+        update();
     } catch (e) {
         console.log("Error: " + e);
     }
-    update();
 }
 
 async function addComment() {
@@ -114,24 +122,6 @@ async function addComment() {
     comment.value = "";
     update();
 }
-
-async function overviewForMySelf() {
-    try {
-        const tasks = await GET('/tasks');
-        console.log(tasks);
-        const sessionUsername = await POST('/session/username');
-        const myName = sessionUsername.currentUser;
-        let myTasks = [];
-        for (let t of tasks) {
-            if (t.responsible == myName) {
-                myTasks.push(t);
-            };
-        };
-        overviewDIV.innerHTML = await generateTaskTable(myTasks);
-    } catch (e) {
-        console.log("Error: " + e);
-    }
-};
 
 async function update() {
     try {
@@ -152,8 +142,10 @@ async function update() {
             }
         }
         let taskTable = document.getElementById('OverviewOverListView');
-        for (let t of tasks){
+        for (let t of tasks) {
             t.deadline = t.deadline.slice(0, 10);
+            if (t.ETA !== null)
+                t.ETA = t.ETA.slice(0, 10);
         }
         taskTable.innerHTML = await generateTaskTable(tasks);
         let coll = document.getElementsByClassName("collapsible");
