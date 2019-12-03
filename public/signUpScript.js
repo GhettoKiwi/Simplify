@@ -45,7 +45,8 @@ async function nameIsValid(name){
     }
     return true;
 };
-
+//bruges til at hashe password så den passer den i databasen
+//hasher en string og returner et hash
 String.prototype.hashCode = function() {
     var hash = 0, i, chr;
     if (this.length === 0) return hash;
@@ -63,6 +64,7 @@ async function setOnClick() {
         if (checkIfFilled()) {
             const valid = await nameIsValid(usernameInput.value);
             console.log(valid);
+            //tjekker om navnet er vaild
             if (valid == true) {
                 const newPassword = passwordInput.value.hashCode();
                 const msg = {

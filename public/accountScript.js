@@ -1,11 +1,12 @@
 let clickedAccountId = "";
 
+//gemmer idet på den man vælger så man slette den person
 function saveClicked(clickedInput, element){
     clickedAccountId = clickedInput;
     resetMarks();
     element.className = "acc marked";
 };
-
+//reseter alle marked i arrayet
 function resetMarks(){
     let div = document.querySelector("#scrollBoxAccounts");
     let accounts = div.querySelectorAll(".acc");
@@ -39,6 +40,7 @@ async function getUsers() {
 };  
 
 function setOnClick() {
+    //sletter personen valgt på saveClicked
     document.querySelector('#btnRemoveAccount').onclick = async () => {
             const foundAccount = await findAccount(clickedAccountId);
             const url = '/accounts/' + foundAccount._id;

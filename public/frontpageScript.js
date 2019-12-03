@@ -43,13 +43,13 @@ function statusTranslater(status){
         return 'Godkendt';
     }
 };
-
+// generer table af tasks for taskOverview
 async function generateTaskTable(task) {
     let template = await GETtext('/taskOverview.hbs');
     let compiledTemplate = Handlebars.compile(template);
     return compiledTemplate({ task });
 };
-
+// generer funktionaliteten dropdown
 async function collapibleSetup(){
     let coll = document.getElementsByClassName("collapsible");
     for (let e of coll) {
@@ -64,7 +64,7 @@ async function collapibleSetup(){
         });
     }
 };
-//henter et array af de opgaver personen har taget for den bruger der er logget ind
+//henter et array af de opgaver brugenen har taget
 async function overviewForMySelf() {
     try{
         const tasks = await GET('/tasks');

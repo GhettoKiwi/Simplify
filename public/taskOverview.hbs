@@ -9,7 +9,11 @@
         <p>Status: {{status}}</p>
         <div class="collapsible">Kommentarer</div>
         <div class="content>">
-            <p>{{Comments}}</p>
+            <ul>
+                {{#each Comments}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
         </div>
     </div>
 {{/each}}

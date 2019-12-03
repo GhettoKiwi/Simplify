@@ -38,6 +38,8 @@ String.prototype.hashCode = function() {
 };
 
 function setOnClicks() {
+    //tjekker om det hashede password passer med det hashede password i databasen
+    //giver fejlmeddelser hvis de ikke passer sammen
     login.onclick = async () => {
         try{
             let newPassword = password.value.hashCode();
