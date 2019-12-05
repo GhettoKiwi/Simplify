@@ -1,5 +1,5 @@
 {{#each task}}
-<div onclick="getTask(this)" class="collapsible" data-customid="{{_id}}">{{name}} - {{status}}
+<div onclick="getTask(this)" class="collapsible" id="Coll" data-customid="{{_id}}">{{name}} - {{status}}
     <button id="but{{_id}}" class="takeTask" onclick="takeTask()" disabled>Tag opgave</button>
 </div>
 <div id="con{{_id}}" class="content">
@@ -11,7 +11,7 @@
     <p>{{responsible}}</p>
     <label>ETA: </label>
     <p>{{ETA}}</p>
-    <div class="collapsible">Kommentarer</div>
+    <div class="collapsible" id="commentColl">Kommentarer</div>
     <div class="content">
         <ul>
             {{#each Comments}}

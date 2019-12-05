@@ -4,39 +4,46 @@
     <meta charset="UTF-8">
     <title>Sign Up</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="handlebars-v4.4.3.js"></script>
     <script src="signUpScript.js" defer></script>
     <script src="Drop.js" defer></script>
 </head>
-<body bgcolor="#DDDDDD">
-
-<div class="signUp">
-    <h1> Opret bruger </h1>
-    <input id="usernameInput" placeholder="Username">
-    <input id="passwordInput" placeholder="Password">
-    <select id = "positionInput"style="width: 163px">
-        <option value="Vicevært">Vicevært</option>
-        <option value="Ejendomsmester">Ejendomsmester</option>
-        <option value="Ejendomsdirektør">Ejendomsdirektør</option>
-    </select>
-    <button type="button" id="btnCreateUser"><a>  Opret </a></button>
-    <h3 id="errorMsg"> </h3>
-</div>
-
-    <!--Dette er menu-baren i venstre side-->
-<div class="sidenav">
-    <a href="/web/frontpage">Forside</a>
-    <a href="/web/createAccount">Opret bruger</a>
-    <a href="/web/deleteAccount">Brugere</a>
-
-    <button class="btnForDropDownMenu">Opgaver</button>
-    <div class="DropDownMenuForTask">
-        <a href="/web/sectionNorth">Nordbyen</a>
-        <a href="/web/sectionCentrum">Midtbyen</a>
-        <a href="/web/sectionEast">Østbyen</a>
+<body>
+<h1> Opret en ny bruger </h1>
+<div class="OverviewOverCreatedTasks">
+    <div class="signpBox">
+        <div class="signUp">
+            <h1>Opret ny bruger</h1><br>
+            <input id="usernameInput" placeholder="Username">
+            <input id="passwordInput" placeholder="Password">
+            <select id = "positionInput"style="width: 163px">
+                <option value="Vicevært">Vicevært</option>
+                <option value="Ejendomsmester">Ejendomsmester</option>
+                <option value="Ejendomsdirektør">Ejendomsdirektør</option>
+            </select>
+            <button type="button" id="btnCreateUser"><a>  Opret </a></button>
+            <h3 id="errorMsg"> </h3>
+        </div>
+        <div id="scrollBoxAccounts">
+        </div>
     </div>
 
-    <a href="/web/createTask">Opret Opgaver</a>
-    <a href="/session/logout">Log af</a>
+    <!--Dette er menu-baren i venstre side-->
+    <div class="sidenav">
+        <a href="/web/frontpage">Forside</a>
+        <a href="/web/createAccount">Opret bruger</a>
+        <a href="/web/deleteAccount">Brugere</a>
+
+        <button class="btnForDropDownMenu">Opgaver</button>
+        <div class="DropDownMenuForTask">
+            <a href="/web/sectionNorth">Nordbyen</a>
+            <a href="/web/sectionCentrum">Midtbyen</a>
+            <a href="/web/sectionEast">Østbyen</a>
+        </div>
+
+        <a href="/web/createTask">Opret Opgaver</a>
+        <a href="/session/logout">Log af</a>
+    </div>
 </div>
 </body>
 </html>

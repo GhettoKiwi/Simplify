@@ -64,6 +64,7 @@ async function collapibleSetup(){
         });
     }
 };
+
 //henter et array af de opgaver brugenen har taget
 async function overviewForMySelf() {
     try{
@@ -73,6 +74,10 @@ async function overviewForMySelf() {
         let myTasks = [];
         for(let t of tasks) {
             if(t.responsible == myName){
+                t.deadline = t.deadline.slice(0, 10);
+                if (t.ETA !== null) {
+                    t.ETA = t.ETA.slice(0, 10);
+                }
                 myTasks.push(t);
             };
         };
@@ -87,9 +92,17 @@ async function headlineMaker(){
     try {
         const h1 = document.querySelector('#headlineFrontpage');
         const sessionUsername = await POST('/session/username');
-        h1.innerHTML = "Oversigt for " + sessionUsername;
+        h1.innerHTML = "Oversigt for " + sessionUsername.currentUser;
     } catch (e){
         console.log(e);
+    }
+};
+
+function x (){
+    for (let t of tasks) {
+        t.deadline = t.deadline.slice(0, 10);
+        if (t.ETA !== null)
+            t.ETA = t.ETA.slice(0, 10);
     }
 };
 

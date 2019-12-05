@@ -1,40 +1,16 @@
+
+
+/* Her starter css for loginsiden*/
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-.klasseContent {
-    display: grid;
-}
-
-.baggrunden {
-    width: 100%;
-    height: 96vh;
-    background-color: #001f3f;
-}
-
-.login {
-    margin: 15% 40% 10% 40%;
-    padding: 20px 20px;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto 30px auto 30px;
-    justify-items: center;
-    grid-gap: 10px;
-    grid-row: 1/5;
-    grid-column: 1/2;
-    background: rgb(117, 119, 119);
-    background: linear-gradient(0deg, rgba(117, 119, 119, 1) 2%, rgba(216, 216, 216, 1) 100%);
-    align-items: center;
-    -webkit-box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 23px 0px rgba(0, 0, 0, 0.75);
-}
-
 #loginErrorMsg {
     color: red;
-    font-size: 14px;
+    font-size: 25px;
+    background-color: black;
 }
 
 a {
@@ -43,11 +19,17 @@ a {
 }
 
 h1 {
-    font-family: "Calibri Light";
+    font-family: "Arial b";
+    text-align: center;
+}
+
+body {
+    background-color: #B6C0D2;
+    /*background-color:  #455268;*/
 }
 
 .frontpageLogin {
-    margin: 10% 0;
+    margin: 0% 0;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 80% auto auto auto auto;
@@ -55,78 +37,137 @@ h1 {
     grid-gap: 10%;
 }
 
+.frontpageLogin p {
+    background-color: #4CAF50;
+    font-size: large;
+    border-radius: 5px;
+}
+
+.frontpageLogin h1 {
+    background-color: #4CAF50;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.frontpageLogin input {
+    height: 35px;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+#loginBackground {
+    background-image: url('images/Baggrund.jpeg');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#btnLogin {
+    align-self: end;
+    height: 50px;
+    width: 95px;
+    border: none;
+    border-radius: 6px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.4s;
+
+}
+
+#btnLogin:hover {
+    background-color: #4CAF50; /* Green */
+    /* 97CC00 - dette er deres grøn */
+    color: white;
+}
+
+/* Her slutter css for login*/
+
+
+
+/* Her starter frontpage CSS*/
+
 .frontpageContainer{
     display: grid;
-    grid-gap: 5%;
+    grid-gap: 2%;
     grid-template-columns:  repeat(8, 100px);
-    grid-template-rows: repeat(8, 80px);
+    grid-template-rows: repeat(6, 80px);
     align-items: center;
 }
 
-#headlineFrontpage {
-    /*
-    TODO Overskrift for på forsiden, VISES ikke
-     */
-}
-
 .overviewFrontpage{
-    grid-column: 3 / 6;
-    grid-row: 2 / 6;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: whitesmoke;
+    border: 1px solid green;
+    border-radius: 4px;
+    width: 500px;
+    height: 500px;
+    grid-column: 2 / 6;
+    grid-row: 1 / 5;
+    overflow: scroll;
     align-self: stretch;
 }
 
-.btnDIV {
-    grid-column: 3 / 6;
-    grid-row: 6;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+#Coll {
+    background-color: #c4c4c4;
+    border: 1px solid whitesmoke;
 }
 
-#btnMySelf {
-    grid-column: 3/4;
-    grid-row: 6;
-    align-self: end;
-    height: 50px;
-    width: 100px;
+#Coll p {
+    color: black;
 }
 
-#btnEast {
-    grid-column: 3 / 4;
-    grid-row: 6;
-    align-self: end;
-    height: 50px;
-    width: 100px;
+#commentColl {
+    background-color: #dcdcdc;
 }
+/* Her slutter frontpage CSS*/
 
-#btnCentrum {
-    grid-column: 4 / 5;
-    grid-row: 6;
-    align-self: end;
-    height: 50px;
-    width: 100px;
-}
+/* Her starter signUp CSS*/
 
-#btnNorth {
-    grid-column: 5 / 6;
-    grid-row: 6;
-    align-self: end;
-    height: 50px;
-    width: 100px;
+.signpBox{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 3%;
 }
 
 .signUp {
-    margin: 10% 0;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto auto;
-    justify-items: center;
-    grid-gap: 10%;
+    grid-column: 2/3 ;
+    grid-row: 1;
+    justify-self: right;
+    grid-gap: 5%;
 }
+
+#btnCreateUser {
+    align-self: end;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 6px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.4s;
+
+}
+
+#btnCreateUser:hover {
+    background-color: #4CAF50; /* Green */
+    /* 97CC00 - dette er deres grøn */
+    color: white;
+}
+
+
+
+/* Her slutter signUP CSS*/
+
+
+/*Her starter account CSS*/
 
 .opdeling {
     display: grid;
     grid-template-columns: auto auto;
-    height: 100vh;
+    height: 70vh;
     grid-column-gap: 20px;
 }
 
@@ -144,6 +185,41 @@ h1 {
     grid-row-gap: 30px;
 }
 
+#btnRemoveAccount {
+    align-self: end;
+    height: 50px;
+    width: 100px;
+    border: none;
+    border-radius: 6px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.4s;
+
+}
+
+#btnRemoveAccount:hover {
+    background-color: #4CAF50; /* Green */
+    /* 97CC00 - dette er deres grøn */
+    color: white;
+}
+
+#scrollBoxAccounts {
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 7px 7px 5px grey;
+    justify-self: end;
+    align-self: center;
+    border: none;
+    padding: 5px;
+    font: 24px/36px sans-serif;
+    width: 500px;
+    height: 400px;
+    overflow: scroll;
+}
+
+/* Her slutter account CSS*/
+
+/* Her starter not allowed CSS */
+
 .NoAccessPlacement{
     display: grid;
     grid-template-columns: auto;
@@ -152,17 +228,9 @@ h1 {
     justify-self: start;
 }
 
-#scrollBoxAccounts {
-    justify-self: end;
-    align-self: center;
-    border: none;
-    padding: 5px;
-    font: 24px/36px sans-serif;
-    width: 400px;
-    height: 400px;
-    overflow: scroll;
-}
+/* Her slutter not allowed CSS*/
 
+/* Disse CSS bliver brugt i de fleste dokumenter*/
 .sidenav {
     height: 100%;
     width: 160px;
@@ -170,7 +238,7 @@ h1 {
     z-index: 1;
     top: 0;
     left: 0;
-    background: linear-gradient(to bottom, #339966 0%, #33cc33 100%);
+    background: linear-gradient(to bottom, #1F6521 0%, #53900F 100%);
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -210,6 +278,11 @@ h1 {
     background: #88ba1c;
 }
 
+/* Her slutter CSS'en der bliver brugt i de fleste*/
+
+
+/* Start css over Section */
+
 /* Overskiften "h1"*/
 .OverskiftenOverHeader{
     margin-left: 160px;
@@ -220,16 +293,14 @@ h1 {
 
 /* Div over Afldeling med Oversigt og Opdatere*/
 .DivOverviewOverSection {
-
+    border-radius: 10px;
+    box-shadow: 7px 7px 5px grey;
     border: 2px darkgray;
-    border-radius: 12px;
     width: 80%;
     height: 80%;
     margin: 1% auto 2% 165px;
     padding: 3%;
     background-color: whitesmoke;
-
-
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -238,15 +309,15 @@ h1 {
 
 /* Div over Opret opgave for valgte afdeling*/
 .OverviewOverCreatedTasks{
+    border-radius: 10px;
+    box-shadow: 7px 7px 5px grey;
     border: 2px darkgray;
-    border-radius: 12px;
+    /*border-radius: 12px;*/
     width: 80%;
     height: 80%;
     margin: 1% auto 2% 165px;
     padding: 3%;
-    background-color: whitesmoke;
-
-
+    background-color: #F5F5F5;
     display: grid;
     /*grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(1, 1fr);
@@ -260,25 +331,25 @@ h1 {
 
 /* Knappen for sletting */
 .btnDelete {
-    background-color: #4CAF50; /* Green */
+    background-color: lightgrey; /* Green */
     border: none;
     color: white;
     padding: 2px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    /*border-radius: 12px;*/
+    border-radius: 6px;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.4s;
+}
+
+.btnDelete:hover {
+    background-color: #4CAF50; /* Green */
+    /* 97CC00 - dette er deres grøn */
+    color: white;
 }
 
 /*Overskrift For Afdelingerne på grid Div*/
 .HeaderForSections{
     text-align: center;
 }
-
-
 
 /* Div Over Oversigten til Opgaverne*/
 #OverviewOverListView {
@@ -319,8 +390,6 @@ h1 {
     padding-left: 16px;
 }
 
-
-
 /* Textarealet i Opgaven delen (Tasks) */
 textarea{
     resize: none;
@@ -342,7 +411,7 @@ table tr{
     width: 100%;
     border-radius: 4px;
     overflow-y: scroll;
-  }
+}
 
 /* task - handlebar*/
 .collapsible {
@@ -355,24 +424,24 @@ table tr{
     text-align: left;
     outline: none;
     font-size: 15px;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+}
 
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-  }
+}
 
-  .collapsible:after {
+.collapsible:after {
     font-size: 13px;
     color: white;
     float: right;
     margin-left: 5px;
-  }
+}
 
 /* ----------------- Tilhører SectionEast -----------------*/
 
@@ -413,8 +482,8 @@ table tr{
     cursor: pointer;
     border-radius: 8px;
     float: right;
-} 
+}
 .takeTask:disabled,
 .takeTask[disabled]{
-  display:  none;
+    display:  none;
 }

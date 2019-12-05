@@ -11,78 +11,74 @@
 </head>
 
 <body>
+<!--Dette er menu-baren i venstre side-->
+<div class="sidenav">
+    <a href="/web/frontpage">Forside</a>
+    <a href="/web/createAccount">Opret bruger</a>
+    <a href="/web/deleteAccount">Brugere</a>
 
-    <!--Dette er menu-baren i venstre side-->
-    <div class="sidenav">
-        <a href="/web/frontpage">Forside</a>
-        <a href="/web/createAccount">Opret bruger</a>
-        <a href="/web/deleteAccount">Brugere</a>
-
-        <button class="btnForDropDownMenu">Opgaver</button>
-        <div class="DropDownMenuForTask">
-            <a href="/web/sectionNorth">Nordbyen</a>
-            <a href="/web/sectionCentrum">Midtbyen</a>
-            <a href="/web/sectionEast">Østbyen</a>
-        </div>
-
-        <a href="/web/createTask">Opret Opgaver</a>
-        <a href="/session/logout">Log af</a>
+    <button class="btnForDropDownMenu">Opgaver</button>
+    <div class="DropDownMenuForTask">
+        <a href="/web/sectionNorth">Nordbyen</a>
+        <a href="/web/sectionCentrum">Midtbyen</a>
+        <a href="/web/sectionEast">Østbyen</a>
     </div>
 
-    <!--Her skal siden indhold stå-->
-    <h1 class="OverskiftenOverHeader">Afdeling Nordbyen</h1>
-    <div class="DivOverviewOverSection">
+    <a href="/web/createTask">Opret Opgaver</a>
+    <a href="/session/logout">Log af</a>
+</div>
 
-        <div class="">
-            <h1 class="HeaderForSections"> Opgave Oversigt </h1><br><br>
-            <select id="taskChoice" style="width: 200px">
-                <option value="ALL">Alle Opgaver</option>
-                <optgroup label="Status: "></optgroup>
-                <option value="OPEN">Åbne Opgaver</option>
-                <option value="IN PROGRESS">Igangværende Opgaver</option>
-                <option value="DONE">Færdige Opgaver</option>
+<!--Her skal siden indhold stå-->
+<h1> Afdeling Nordbyen </h1>
+<div class="DivOverviewOverSection">
+
+    <div class="">
+        <h1 class="HeaderForSections"> Opgave Oversigt </h1><br><br>
+        <select id="taskChoice" style="width: 200px">
+            <option value="ALL">Alle Opgaver</option>
+            <option value="OPEN">Åbne Opgaver</option>
+            <option value="IN PROGRESS">Igangværende Opgaver</option>
+            <option value="DONE">Færdige Opgaver</option>
+            <option value="ON HOLD">På hold</option>
+            <option value="CONFIRMED">Endeligt Færdigmeldte Opgaver</option>
+        </select><br><br>
+        <div id="OverviewOverListView">
+        </div>
+    </div>
+
+    <div class="">
+        <h1 class="HeaderForSections">Info for Valgt Opgave</h1><br><br>
+        <div id="OverviewOverInfomationForTask">
+            <h1>Infomation:</h1><br>
+            <label>Opgavens Title:</label><br>
+            <input class="form-control" type="text" name="name" placeholder="Titel" id="Name" maxlength="50"><br>
+
+            <label>Beskrivelse for Opgaven</label><br>
+            <textarea class="form-control" type="text" name="description" id="Description"
+                      placeholder="Skriv din opgaves beskrivelse her"></textarea><br>
+
+            <label>Tidsfristen for Opgaven:</label><br>
+            <input class="form-control" type="date" name="deadline" id="Deadline"><br>
+
+            <label>Estimeret færdig:</label><br>
+            <input class="form-control" type="date" name="deadline" id="ETA"><br>
+
+            <label>Status for Opgaven:</label><br>
+            <select id="statusChange" style="width: 200px">
+                <option value="OPEN">Åben</option>
+                <option value="IN PROGRESS">Igangværende</option>
+                <option value="DONE">Færdig</option>
                 <option value="ON HOLD">På hold</option>
-                <option value="CONFIRMED">Endeligt Færdigmeldte Opgaver</option>
-                <optgroup label="Ansvarlig: "></optgroup>
-                <option value="MYTASKS">Mine Opgaver</option>
-            </select><br><br>
-            <div id="OverviewOverListView">
-            </div>
-        </div>
+                <option value="CONFIRMED">Endeligt færdigmeldt</option>
+            </select>
 
-        <div class="">
-            <h1 class="HeaderForSections">Info for Valgt Opgave</h1><br><br>
-            <div id="OverviewOverInfomationForTask">
-                <h1>Infomationen:</h1><br>
-                <label>Opgavens Title:</label><br>
-                <input class="form-control" type="text" name="name" placeholder="Navn" id="Name" maxlength="50"><br>
-
-                <label>Beskrivelse for Opgaven</label><br>
-                <textarea class="form-control" type="text" name="description" id="Description"
-                    placeholder="Skriv din opgaves beskrivelse her"></textarea><br>
-
-                <label>Tidsfristen for Opgaven:</label><br>
-                <input class="form-control" type="date" name="deadline" id="Deadline"><br>
-
-                <label>Estimeret færdig:</label><br>
-                <input class="form-control" type="date" name="deadline" id="ETA"><br>
-
-                <label>Status for Opgaven:</label><br>
-                <select id="statusChange" style="width: 200px">
-                    <option value="OPEN">Åben</option>
-                    <option value="IN PROGRESS">Igangværende</option>
-                    <option value="DONE">Færdig</option>
-                    <option value="ON HOLD">På hold</option>
-                    <option value="CONFIRMED">Endeligt færdigmeldt</option>
-                </select>
-
-                <br>
-                <!-- Knapperne for Ændre opgaven -->
-                <button type="button" class="btnDelete" id="btnEditTask"><a>Ændre Opgaven:</a></button>
-                <button type="button" class="btnDelete" id="BtnDeleteTask"><a>Slet Opgaven:</a></button>
-            </div>
+            <br>
+            <!-- Knapperne for Ændre opgaven -->
+            <button type="button" class="btnDelete" id="btnEditTask"><a>Ændre Opgaven:</a></button>
+            <button type="button" class="btnDelete" id="BtnDeleteTask"><a>Slet Opgaven:</a></button>
         </div>
     </div>
+</div>
 </body>
 
 </html>

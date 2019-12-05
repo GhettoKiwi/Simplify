@@ -1,16 +1,17 @@
 let clickedAccountId = "";
 
 //gemmer idet på den man vælger så man slette den person
-function saveClicked(clickedInput, element){
+function saveClicked(clickedInput, element) {
     clickedAccountId = clickedInput;
     resetMarks();
     element.className = "acc marked";
 };
+
 //reseter alle marked i arrayet
-function resetMarks(){
+function resetMarks() {
     let div = document.querySelector("#scrollBoxAccounts");
     let accounts = div.querySelectorAll(".acc");
-    for(let e of accounts){
+    for(let e of accounts) {
         e.className = "acc";
     }
 };
@@ -51,7 +52,6 @@ function setOnClick() {
                 throw new Error('Failed to fetch');
             };
             await getUsers();
-            //const json = await res.json();
     };
 };
 
@@ -69,6 +69,7 @@ async function POST(url, data) {
     }
     return await res.json();
 };
+
 //tjekker om brugeren er logget ind og hvis man ikke er bliver man smidt tilbage til logind siden
 //ellers tjekker den om man har rettigheden til at tilgå siden, hvis man ikke har bliver man smidt til notAllowed
 async function checkIFLoggedIn(){

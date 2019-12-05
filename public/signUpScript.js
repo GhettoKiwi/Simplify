@@ -17,11 +17,12 @@ async function POST(url, data) {
     return await res.json();
 };
 
-function update() {
+async function update() {
     usernameInput.value  = "";
     passwordInput.value  = "";
     positionInput.value  = "";
-}
+    await getUsers();
+};
 
 function checkIfFilled() {
     if(!usernameInput.value || !passwordInput.value || !positionInput.value) {
@@ -30,6 +31,7 @@ function checkIfFilled() {
         return true;
     }
 };
+
 // tager et navn ind og tjekker om der er en der hedder det i databasen
 //dette gør at navne på bruger er unikke
 async function nameIsValid(name){
@@ -45,6 +47,7 @@ async function nameIsValid(name){
     }
     return true;
 };
+
 //bruges til at hashe password så den passer den i databasen
 //hasher en string og returner et hash
 String.prototype.hashCode = function() {
@@ -56,6 +59,22 @@ String.prototype.hashCode = function() {
         hash |= 0; // Convert to 32bit integer
     }
     return hash;
+};
+
+async function getUsers() {
+    const [template, userResponse] = await Promise.all(
+        [fetch('user.hbs'), fetch('/accounts')]);
+    const [templateText, users] = await Promise.all(
+        [template.text(), userResponse.json()]);
+    const compiledTemplate = Handlebars.compile(templateText);
+    let userHTML = '';
+    users.forEach(user => {
+        userHTML += compiledTemplate({
+            username: user.username,
+            position: user.position
+        });
+    });
+    document.querySelector('#scrollBoxAccounts').innerHTML = userHTML;
 };
 
 async function setOnClick() {
@@ -81,7 +100,7 @@ async function setOnClick() {
                         if (response.status >= 400)
                             throw new Error(response.status);
                         else
-                            update();
+                           update();
                         return response.json();
                     })
                     .catch(err => console.log('Error: ' + err));
@@ -104,6 +123,7 @@ async function main(){
     if (position.pos == "Vicevært") {
         window.location.replace('/web/notAllowed');
     } else {
+        await getUsers();
         await setOnClick();
     }
 };
