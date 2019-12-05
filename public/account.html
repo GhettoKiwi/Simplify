@@ -10,26 +10,25 @@
 </head>
 
 <body>
-<h1> Alle brugere </h1>
-<div class="OverviewOverCreatedTasks">
-    <h1> Slet en bruger </h1>
-    <!--Dette er menu-baren i venstre side-->
-    <div class="sidenav">
-        <a href="/web/frontpage">Forside</a>
-        <a href="/web/createAccount">Opret bruger</a>
-        <a href="/web/deleteAccount">Brugere</a>
-
-        <button class="btnForDropDownMenu">Opgaver</button>
-        <div class="DropDownMenuForTask">
+<div class="MenuBar">
+    <a href="/web/frontpage"><img class="MenuLogoFrontpage" src="images/LOGO.png"></a>
+    <a href="/web/createAccount">Opret bruger</a>
+    <a href="/web/deleteAccount">Brugere</a>
+    <div class="DropDown">
+        <button class="BtnDrop">Opgaver</button>
+        <div class=" DropDown-Content">
             <a href="/web/sectionNorth">Nordbyen</a>
             <a href="/web/sectionCentrum">Midtbyen</a>
             <a href="/web/sectionEast">Østbyen</a>
         </div>
-
-        <a href="/web/createTask">Opret Opgaver</a>
-        <a href="/session/logout">Log af</a>
     </div>
-
+    <a href="/web/createTask">Opret Opgaver</a>
+    <a href="/session/logout">Log af</a>
+</div>
+<h1> Alle brugere </h1>
+<div class="OverviewOverCreatedTasks">
+    <h1> Slet en bruger </h1>
+    <!--Dette er menu-baren i venstre side-->
     <div class="opdeling">
         <div id="scrollBoxAccounts">
         </div>

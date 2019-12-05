@@ -1,16 +1,9 @@
-
-
-/* Her starter css for loginsiden*/
+/* Generel */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
-
-#loginErrorMsg {
-    color: red;
-    font-size: 25px;
-    background-color: black;
+    font-family: "Times New Roman";
 }
 
 a {
@@ -19,13 +12,19 @@ a {
 }
 
 h1 {
-    font-family: "Arial b";
     text-align: center;
 }
 
 body {
     background-color: #B6C0D2;
     /*background-color:  #455268;*/
+}
+
+/* Her starter css for loginsiden*/
+
+#loginErrorMsg {
+    color: red;
+    font-size: 20px;
 }
 
 .frontpageLogin {
@@ -44,7 +43,7 @@ body {
 }
 
 .frontpageLogin h1 {
-    background-color: #4CAF50;
+    background-color: limegreen;
     height: 40px;
     border-radius: 10px;
 }
@@ -66,25 +65,41 @@ body, html {
     background-size: cover;
 }
 
-#btnLogin {
-    align-self: end;
-    height: 50px;
-    width: 95px;
-    border: none;
-    border-radius: 6px;
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.4s;
-
+.LoginLogo{
+    width: 300px;
+}
+.PStyling{
+    font-size: 30px;
+}
+.InputStyling{
+    width: 200px;
+    font-size: 20px;
 }
 
-#btnLogin:hover {
-    background-color: #4CAF50; /* Green */
-    /* 97CC00 - dette er deres grøn */
-    color: white;
+.LoginFrontPage {
+    margin: 10% 10%;
+    display: grid;
+    grid-gap: 3%;
+    border-style: solid;
+    border-radius: 10px;
+    box-shadow: 7px 7px 5px grey;
+    border: 2px darkgray;
+    background-color: whitesmoke;
+    justify-items: center;
+}
+
+#btnLogin{
+    background-color: white;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+#btnLogin:hover{
+    background-color: cornflowerblue;
 }
 
 /* Her slutter css for login*/
-
 
 
 /* Her starter frontpage CSS*/
@@ -105,7 +120,7 @@ body, html {
     height: 500px;
     grid-column: 2 / 6;
     grid-row: 1 / 5;
-    overflow: scroll;
+    overflow-y: scroll;
     align-self: stretch;
 }
 
@@ -148,11 +163,10 @@ body, html {
     border-radius: 6px;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.4s;
-
 }
 
 #btnCreateUser:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: limegreen; /* Green */
     /* 97CC00 - dette er deres grøn */
     color: white;
 }
@@ -172,7 +186,8 @@ body, html {
 }
 
 .marked {
-    border: 1px solid green;
+    border: 2px solid green;
+    border-radius: 8px;
 }
 
 .deleteAccount {
@@ -197,7 +212,7 @@ body, html {
 }
 
 #btnRemoveAccount:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: limegreen; /* Green */
     /* 97CC00 - dette er deres grøn */
     color: white;
 }
@@ -213,7 +228,7 @@ body, html {
     font: 24px/36px sans-serif;
     width: 500px;
     height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 /* Her slutter account CSS*/
@@ -230,38 +245,91 @@ body, html {
 
 /* Her slutter not allowed CSS*/
 
-/* Disse CSS bliver brugt i de fleste dokumenter*/
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
+
+/*
+  __  __                    ____
+ |  \/  | ___ _ __  _   _  | __ )  __ _ _ __ ___ _ __
+ | |\/| |/ _ \ '_ \| | | | |  _ \ / _` | '__/ _ \ '_ \
+ | |  | |  __/ | | | |_| | | |_) | (_| | | |  __/ | | |
+ |_|  |_|\___|_| |_|\__,_| |____/ \__,_|_|  \___|_| |_|
+------------------------------------------------------------------------------------------------------------------------------------------
+*/
+.MenuBar {
+    overflow: hidden;
+    background-color: #387F9A;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
     top: 0;
-    left: 0;
-    background: linear-gradient(to bottom, #1F6521 0%, #53900F 100%);
-    overflow-x: hidden;
-    padding-top: 20px;
+    width: 100%;
+
+}
+.MenuBar a {
+    float: left;
+    font-size: 20px;
+    text-align: center;
+    padding: 14px 16px;
 }
 
-.sidenav a {
-    display: grid;
-    grid-template-columns: 50%;
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
+.DropDown {
+    float: left;
+    overflow: hidden;
+}
+
+.DropDown .BtnDrop {
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 20px;
+    margin: 0;
+}
+
+.MenuBar a:hover, .DropDown:hover .BtnDrop {
+    color: white;
+}
+
+.DropDown-Content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.DropDown-Content a {
+    float: none;
     color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    background-color: #007F9A;
+}
+
+.DropDown-Content a:hover {
+    color: white;
+}
+
+.DropDown:hover .DropDown-Content {
     display: block;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
+.MenuLogoFrontpage{
+    width: 70px;
 }
+/*
+------------------------------------------------------------------------------------------------------------------------------------------
+*/
 
+
+/* Disse CSS bliver brugt i de fleste dokumenter*/
 
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
-
 }
 
 ::-webkit-scrollbar-track {
@@ -278,6 +346,7 @@ body, html {
     background: #88ba1c;
 }
 
+
 /* Her slutter CSS'en der bliver brugt i de fleste*/
 
 
@@ -288,7 +357,6 @@ body, html {
     margin-left: 160px;
     text-align: center;
     font-size: 40px;
-    font-family: "Times New Roman";
 }
 
 /* Div over Afldeling med Oversigt og Opdatere*/
@@ -324,10 +392,7 @@ body, html {
      */
     justify-items: center;
     gap: 3%;
-
-
 }
-
 
 /* Knappen for sletting */
 .btnDelete {
@@ -341,7 +406,7 @@ body, html {
 }
 
 .btnDelete:hover {
-    background-color: #4CAF50; /* Green */
+    background-color: limegreen; /* Green */
     /* 97CC00 - dette er deres grøn */
     color: white;
 }
@@ -381,7 +446,7 @@ body, html {
     display: block;
     border: none;
     background: none;
-    font-family: "Times New Roman";
+
 }
 
 /* Dropdown Menuen for Opgaver i venstre side */
@@ -465,12 +530,10 @@ table tr{
     overflow-y: scroll;
 }
 
-
-
 /* ----------------- "Tag opgave" afdelinger -----------------*/
 
 .takeTask{
-    background-color: #4CAF50; /* Green */
+    background-color: limegreen; /* Green */
     border: none;
     color: white;
     padding: 2px;
